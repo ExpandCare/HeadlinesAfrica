@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "Headlines": {
+            "applicationId": "7iYJMHDqqHJ2xmIiimYjDSBOeia4IcKz6cUJluqB", 
+            "masterKey": "TOu0CmMteZMRrqrbSt0oDNbqWAcnUX6IGjz2uS5C"
+        }, 
+        "_default": {
+            "link": "Headlines"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  Headlines
+//
+//  Created by Алексей Поляков on 19.03.15.
+//  Copyright (c) 2015 Cleveroad. All rights reserved.
+//
+
+#ifndef Headlines_PrefixHeader_pch
+#define Headlines_PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import "Constants.h"
+#import "AppDelegate.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#import <Parse/PFTwitterUtils.h>
+
+#ifndef DEBUG
+#define NSLog(...)
+#endif
+
+#endif

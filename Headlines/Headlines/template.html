@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>Example 1</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0 25px 0 25px;
+                font-family: "HelveticaNeue";
+                font-size: 1.1em;
+                text-align: justify;
+                word-wrap: break-word;
+                background-color: #f7f7f7;
+                //line-height: 1.4em;
+            }
+        img {
+            max-width: 100%%;
+            padding: 0 0 5px 0;
+        }
+        .big-img {
+            width: 100%%;
+        }
+        div, p {
+            overflow: hidden;
+        }
+        p {
+            margin-top: 0;
+        }
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #23527c;
+            text-decoration: underline;
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%%;
+            height: 0;
+            padding-bottom: 60%%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%%;
+            height: 100%%;
+        }
+        .source {
+            font-size:1.3em;
+            color:#494949;
+            font-family: HelveticaNeue;
+            text-align: left;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size:1.4em;
+            font-family: HelveticaNeue-Bold;
+            text-align: left;
+            margin-bottom: 15px;
+            border-top: 6px solid #000000;
+            border-bottom: 2px solid #000000;
+            padding: 10px 0 10px 0;
+        }
+        .author {
+            font-size:1.2em;
+            color:#000000;
+            font-family: HelveticaNeue;
+            text-align: left;
+            margin-bottom: 2px;
+        }
+        .date {
+            font-size: 1em;
+            color: #646464;
+            font-family: HelveticaNeue;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .module {
+            display: none;
+        }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                var imgs = document.getElementsByTagName('img'),
+                length = imgs.length,
+                i = length;
+                while (i--) {
+                    console.dir(imgs[i]);
+                    resize(imgs[i]);
+                }
+                function resize(img) {
+                    if (window.innerWidth > img.width * 2.5) {
+                        img.style.display = 'block';
+                        img.style.margin = '0 auto';
+                        if (img.nextSibling) {
+                            img.parentNode.insertBefore(document.createElement('br'), img.nextSibling);
+                        } else {
+                            img.parentNode.appendChild(document.createElement('br'));
+                        }
+                    } else {
+                        console.log('less');
+                        img.style.width = "100%%";
+                    }
+                }
+                // wrap iframes
+                $('iframe').addClass('video').wrap("<div class='iframe-container'></div>");
+                
+                $('[itemprop=articleBody] ad').hide();
+            }
+        </script>
+    </head>
+    <body>
+        <p class="source" style="padding: 10px 0 5px 0;">%@</p>
+        <p class="title">%@</p>
+        
+        <p class="author">%@</p>
+        <p class="date">%@</p>
+        %@
+    </body>
+</html>
