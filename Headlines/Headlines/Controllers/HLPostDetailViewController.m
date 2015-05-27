@@ -135,6 +135,8 @@
 {
     [super viewWillAppear:animated];
     
+    self.commentsButton.enabled = YES;
+    
     if (self.post)
     {
         [self loadPost];
@@ -535,6 +537,8 @@
         
         return;
     }
+    
+    self.commentsButton.enabled = NO;
     
     [self performSegueWithIdentifier:@"toCommentsScreen" sender:self];
     

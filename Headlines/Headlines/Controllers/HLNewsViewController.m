@@ -188,6 +188,10 @@
     
     [self setInsets];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.resultController.delegate = self;
+    
     __weak typeof(self) controller = self;
     
     static dispatch_once_t onceToken;
@@ -201,11 +205,19 @@
 {
     [super viewWillDisappear:animated];
     
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    self.resultController.delegate = nil;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationDoubleTap object:nil];
 }
 
 - (void)dealloc
 {
+    self.resultController.delegate = nil;
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
