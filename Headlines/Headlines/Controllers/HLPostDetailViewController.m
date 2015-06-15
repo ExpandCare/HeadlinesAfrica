@@ -171,6 +171,28 @@
     [self configureBottomView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //[self moveAdBaner]
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)checkIsLiked
 {
     NSString *postIdentifier = self.parsePost.postID;
@@ -291,25 +313,6 @@
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(60, 0, 60 + BIG_BANNER_HEIGHT, 0);
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    //[self moveAdBaner]
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)addBanner:(GADBannerView *)banner toSuperView:(UIView *)parentView contentView:(UIView *)contentView bottom:(BOOL)bottom
 {
     [parentView addSubview:banner];
@@ -412,7 +415,6 @@
             
             NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%f%%'", fontSize];
             [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-            
  
             [self moveAdBaner];
             
@@ -720,6 +722,9 @@
 
 - (void)backButtonPressed:(UIButton *)sender
 {
+    [_webView stopLoading];
+    _webView.delegate = nil;
+    
     [self.navigationController dismissViewControllerAnimated:NO completion:NULL];
 }
 

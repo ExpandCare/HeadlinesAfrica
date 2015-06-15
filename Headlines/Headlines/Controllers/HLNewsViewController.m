@@ -60,6 +60,8 @@
     
     NSLog(@"Memory warning");
     
+    [[SDWebImageManager sharedManager] cancelAll];
+    
     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
     
     [[SDImageCache sharedImageCache] clearMemory];
@@ -188,25 +190,23 @@
     
     [self setInsets];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
     self.resultController.delegate = self;
+
+    [self.tableView reloadData];
     
-    __weak typeof(self) controller = self;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        [controller.tableView reloadData];
-    });
+//    __weak typeof(self) controller = self;
+//    
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        
+//        [controller.tableView reloadData];
+//    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    self.tableView.delegate = nil;
-    self.tableView.dataSource = nil;
     self.resultController.delegate = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationDoubleTap object:nil];
@@ -214,6 +214,8 @@
 
 - (void)dealloc
 {
+    [[SDWebImageManager sharedManager] cancelAll];
+    
     self.resultController.delegate = nil;
     self.tableView.delegate = nil;
     self.tableView.dataSource = nil;
@@ -341,8 +343,15 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
+            
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:nIP]
                              withRowAnimation:UITableViewRowAnimationFade];
+            
+            if (newIndexPath.row == 0 && self.tableView.contentOffset.y < CGRectGetHeight(self.view.bounds))
+            {
+                [self.tableView reloadData];
+            }
+            
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -526,7 +535,7 @@
         [self fetchAndLoadNewsWithSkipping:YES];
     }
     
-    Post *post = [self.resultController fetchedObjects][indexPath.row];
+    //Post *post = [self.resultController fetchedObjects][indexPath.row];
     
     if (!indexPath.row)
     {
