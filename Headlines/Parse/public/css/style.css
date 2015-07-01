@@ -1,0 +1,86 @@
+.app-name {
+	font-family: 'Helvetica Neue', Helvetica, 'Myriad Pro', 'Lucida Grande', sans-serif;
+	font-size: 30px;
+	margin: 20px;
+	text-align: center;
+}
+.section {
+    font-size: 20px;
+    color: #5a6b77;
+    width: 600px;
+    margin: 0 auto 36px auto;    
+    border-radius: 7px;
+    text-align: center;
+    border: 1px solid #5a6b77;
+}
+.section-header {
+    background: #f9fcff;
+    border-radius: 7px 7px 0 0;
+    border-bottom: 1px solid #b0b8bf;    
+}
+.section-header h1 {
+	color: #5a6b77;
+	font-size: 20px;
+	margin: 0 auto;
+	padding: 15px 0;
+	border-radius: 7px;
+	font-family: 'Helvetica Neue', Helvetica, 'Myriad Pro', 'Lucida Grande', sans-serif;
+}
+.content {
+	padding: 15px 0;
+}
+.content form {
+	margin: 0;
+}
+.content form [type=text], .content form [type=password] {
+	border: 1px solid #b0b8bf;
+	border-radius: 10px;
+	height: 30px;
+	outline: 0;
+	padding: 10px;
+	font-family: 'Helvetica Neue', Helvetica, 'Myriad Pro', 'Lucida Grande', sans-serif;
+	font-size: 18px;
+}
+.content form [type=button], #signOut, .btn {
+	color: white;
+  	background: #5298fc;
+	text-decoration: none;
+	text-align: center;
+	border-radius: 5px;
+	outline: 0;
+	cursor: pointer;	
+	display: inline-block;
+	font-weight: 500;
+	font-size: 1em;
+	line-height: 1.25em;
+	height: 30px;	
+	border: none;
+	border-radius: 10px;	
+	font-family: 'Helvetica Neue', Helvetica, 'Myriad Pro', 'Lucida Grande', sans-serif;
+}
+.btn {
+	width: 100px;
+}
+.content form [type=submit]:hover, #signOut:hover {
+	background: #3e79cd;
+
+}
+#signOut {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+#table_wrapper {
+	display: none;
+	margin: 0 auto;
+	width: 100%;
+	/*border: 1px solid black;*/
+}
+#dateTable td {
+	vertical-align: top;
+	border-bottom: 1px solid #000000;
+}
+
+.module {
+    display: none;
+}

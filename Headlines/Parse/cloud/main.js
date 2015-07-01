@@ -1,6 +1,6 @@
-
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("hello", function(request, response) {
-  response.success("Hello world!");
-});
+require("cloud/job.js");
+require("cloud/cleaner.js");
+require("cloud/email.js");
+require("cloud/push.js");
+require("cloud/admin.js");
+require("cloud/comments.js");
