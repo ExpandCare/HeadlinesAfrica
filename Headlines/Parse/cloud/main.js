@@ -4,3 +4,4 @@ require("cloud/email.js");
 require("cloud/push.js");
 require("cloud/admin.js");
 require("cloud/comments.js");
+require("cloud/post.js");
