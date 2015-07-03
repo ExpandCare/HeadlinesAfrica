@@ -3,9 +3,8 @@ Parse.Cloud.define("fillSearchPosts", function(request, response)
 
 var Post = Parse.Object.extend("Post");
 var contentQuery = new Parse.Query(Post);
-contentQuery.limit(1000);
-contentQuery.skip(10000);
-contentQuery.descending("createdAt");
+contentQuery.limit(200);
+contentQuery.skip(800);
 var SearchPost = Parse.Object.extend("SearchPost");
 contentQuery.find(
 {
@@ -16,26 +15,42 @@ contentQuery.find(
      {
         var post = results[j];
         
+        var contentString = post.get("content").concat(" ", post.get("title"));
+
+   var tokens = tokensFromString(contentString);
+
+   var resultStr = "";
+
+   for(var i = 0; i < tokens.length; i++)
+   {
+     var token = tokens[i];
+     
+     if(resultStr.length + token.length >= 998)
+     {
         var searchPost = new SearchPost();
-        searchPost.set("content", post.get("content").replace(/<(?:.|\n)*?>/gm, '').concat(" ", post.get("title")).toLowerCase());
+
+        searchPost.set("content", resultStr);
         searchPost.set("post", post);
-        
-        searchPost.save(null, {
-          success: function(searchPost)
-          {
-            if(j == results.length - 1)
-            {
-              response.success();
-            }
-          },
-          error: function(searchPost, error) 
-          {
-            if(j == results.length - 1)
-            {
-              response.success();
-            }
-          }
-        });
+        resultStr = "";
+        searchPost.save();
+
+     }
+     else
+     {
+        resultStr = resultStr.concat(" ", token);
+     }
+
+   }
+
+   if(resultStr.length > 0)
+   {
+      var searchPost = new SearchPost();
+
+        searchPost.set("content", resultStr);
+        searchPost.set("post", post);
+        resultStr = "";
+        searchPost.save();
+   }
      }
      
      
@@ -53,42 +68,44 @@ contentQuery.find(
 
 Parse.Cloud.define("searchPost", function(request, response) {
 
-var Post = Parse.Object.extend("Post");
-//$.parse("asdfasdf").text();
-var htmlRegExp = "(?![^<]*>)(?i)";
+var _ = require('underscore');
+var SearchPost = Parse.Object.extend("SearchPost");
 
-var contentQuery = new Parse.Query(Post);
-//contentQuery.matches("content", htmlRegExp.concat(request.params.keyword));
-contentQuery.matches("content", request.params.keyword);
 
-var titleQuery = new Parse.Query(Post);
-//titleQuery.matches("title", request.params.keyword);
-titleQuery.matches("title", request.params.keyword);
 
-var mainQuery = Parse.Query.or(contentQuery, titleQuery);
+var tokens = tokensFromString(request.params.keyword);
 
-var startTime = new Date().getTime();
+var queries = [];
 
-mainQuery.find({
+for(var i = 0; i < tokens.length; i++)
+{
+   var token = tokens[i];
+   var subQuery = new Parse.Query(SearchPost);
+   subQuery.contains("content", token);
+   subQuery.include("post");
+   queries.push(subQuery);
+
+}
+
+var contentQuery = Parse.Query.or.apply(Parse.Query, queries);
+
+
+contentQuery.find(
+{
   success: function(results) 
   {
+    var postt = results[0];
+    var res =  postt["post"];
+    console.log('POST ='.concat(res));
      var responseDict = new Object();
-     responseDict["posts"] = results;
+     responseDict["posts"] = _.pluck(results, "post");
      responseDict["keyword"] = request.params.keyword;
 
-     var endTime = new Date().getTime(); 
-     var time = endTime - startTime;
-     console.log('Execution time: ' + time);
      response.success(responseDict);
   },
   error: function(error) 
   {
-
-    var endTime = new Date().getTime(); 
-    var time = endTime - startTime;
-    console.log('Execution time: ' + time);
     response.error(error);
-    
   }
 });
 
@@ -96,21 +113,62 @@ mainQuery.find({
 
 Parse.Cloud.afterSave("Post", function(request, response)
 {
-
+   
    var SearchPost = Parse.Object.extend("SearchPost");
-   var searchPost = new SearchPost();
 
-   searchPost.set("content", request.object.get("content").replace(/<(?:.|\n)*?>/gm, '').concat(" ", request.object.get("title")).toLowerCase());
-   searchPost.set("post", request.object);
+   var contentString = request.object.get("content").concat(" ", request.object.get("title"));
 
-   searchPost.save(null, {
-     success: function(searchPost)
+   var tokens = tokensFromString(contentString);
+
+   var resultStr = "";
+
+   for(var i = 0; i < tokens.length; i++)
+   {
+     var token = tokens[i];
+
+     if(resultStr.length + token.length > 999)
      {
-         response.success();
-     },
-     error: function(searchPost, error) 
-     {
-         response.error(error);
+        var searchPost = new SearchPost();
+
+        searchPost.set("content", resultStr);
+        searchPost.set("post", request.object);
+        resultStr = "";
+        searchPost.save();
+
      }
-   });
+     else
+     {
+        resultStr = resultStr.concat(" ", token);
+     }
+
+   }
+
+   if(resultStr.length > 0)
+   {
+      var searchPost = new SearchPost();
+
+        searchPost.set("content", resultStr);
+        searchPost.set("post", request.object);
+        resultStr = "";
+        searchPost.save();
+   }
 });
+
+function tokensFromString(contentString) 
+{
+   var _ = require('underscore');
+
+   var contentStr = contentString.replace(/<(?:.|\n)*?>/gm, '').toLowerCase();
+   var tokens = contentStr.split(/[^A-Za-z]/);
+
+   var toRemove = ['of', 'the', "in", "on", "at", "to", "a", "is", "for", "", "undefined", "as", "in", "and", "it", "any", "an", "or", "do", "does"];
+
+   tokens = tokens.filter( function( el ) 
+   {
+      return toRemove.indexOf( el ) < 0;
+   });
+
+   tokens = _.uniq(tokens, false);
+
+   return tokens;
+}
