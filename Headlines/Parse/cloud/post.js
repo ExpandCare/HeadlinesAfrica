@@ -71,34 +71,44 @@ Parse.Cloud.define("searchPost", function(request, response) {
 var _ = require('underscore');
 var SearchPost = Parse.Object.extend("SearchPost");
 
-
-
 var tokens = tokensFromString(request.params.keyword);
 
 var queries = [];
 
-for(var i = 0; i < tokens.length; i++)
-{
+ for(var i = 0; i < tokens.length; i++)
+ {
    var token = tokens[i];
    var subQuery = new Parse.Query(SearchPost);
-   subQuery.contains("content", token);
-   subQuery.include("post");
+   subQuery.contains("content", " ".concat(token).concat(" "));
    queries.push(subQuery);
 
 }
 
 var contentQuery = Parse.Query.or.apply(Parse.Query, queries);
-
+contentQuery.include("post");
 
 contentQuery.find(
 {
   success: function(results) 
   {
-    var postt = results[0];
-    var res =  postt["post"];
-    console.log('POST ='.concat(res));
+    var posts = [];
+
+    for(var i = 0; i < results.length; i++)
+    {
+        var post = results[i].get("post");
+        var tokensNumber = numberOfTokensInPost(results[i].get("content"), tokens);
+        
+        var postDict = new Object();
+        postDict["post"] = post;
+        postDict["tokensNumber"] = tokensNumber;
+
+        posts.push(postDict);
+    }
+
+    posts.sort(compare);
+    
      var responseDict = new Object();
-     responseDict["posts"] = _.pluck(results, "post");
+     responseDict["posts"] = _.pluck(posts, "post");
      responseDict["keyword"] = request.params.keyword;
 
      response.success(responseDict);
@@ -154,6 +164,38 @@ Parse.Cloud.afterSave("Post", function(request, response)
    }
 });
 
+function compare(a, b) 
+{
+  if (a.tokensNumber > b.tokensNumber)
+  {
+    return -1;
+  }
+    
+  if (a.tokensNumber < b.tokensNumber)
+  {
+     return 1;
+  }
+   
+  return 0;
+}
+
+function numberOfTokensInPost(post, tokens)
+{
+  var tokensNumber = 0;
+  
+  for(var i = 0; i < tokens.length; i++)
+  {
+     var token = tokens[i];
+
+     if(post.indexOf(" ".concat(token).concat(" ")) != -1)
+     {
+       tokensNumber++;
+     }
+  }
+
+  return tokensNumber;
+}
+
 function tokensFromString(contentString) 
 {
    var _ = require('underscore');
@@ -161,7 +203,7 @@ function tokensFromString(contentString)
    var contentStr = contentString.replace(/<(?:.|\n)*?>/gm, '').toLowerCase();
    var tokens = contentStr.split(/[^A-Za-z]/);
 
-   var toRemove = ['of', 'the', "in", "on", "at", "to", "a", "is", "for", "", "undefined", "as", "in", "and", "it", "any", "an", "or", "do", "does"];
+   var toRemove = ['of', 'the', "in", "on", "at", "to", "a", "is", "for", "", "undefined", "as", "in", "and", "it", "any", "an", "or", "do", "does", "be", "with", "you", "that", "he", "was", "are", "i", "his", "they", "one", "have", "this", "from", "had", "by", "but", "some", "what", "there", "we", "can", "out", "other", "were", "all", "your", "up", "use", "she", "each", "has"];
 
    tokens = tokens.filter( function( el ) 
    {
