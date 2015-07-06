@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 
 #define HEADLINES_BLUE [UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]
+#define HEADLINES_BLUE_NEW [UIColor colorWithRed:0.03 green:0.58 blue:0.82 alpha:1]
 #define HEADLINES_FONT @"HelveticaNeue-CondensedBold"
 
 #define BANNER_INDEX_PADDING 20 + BIG_BANNER_CELL_INDEX
