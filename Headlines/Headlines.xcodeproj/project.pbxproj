@@ -70,6 +70,8 @@
 		49DAC6961AD2C8F900ADC969 /* SBGradientOverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6901AD2C8F900ADC969 /* SBGradientOverlayLayer.m */; };
 		49DAC6971AD2C8F900ADC969 /* SBTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6921AD2C8F900ADC969 /* SBTickerView.m */; };
 		49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */; };
+		49EB86C41B4AA26A00B21806 /* HLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C31B4AA26A00B21806 /* HLButton.m */; };
+		49EB86C71B4AB29200B21806 /* HLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C61B4AB29200B21806 /* HLSearchViewController.m */; };
 		49FB5CB01AC45876001CFE37 /* HLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CAF1AC45876001CFE37 /* HLWindow.m */; };
 		49FB5CB91AC5B3DE001CFE37 /* HLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CB81AC5B3DE001CFE37 /* HLComment.m */; };
 		49FB5CBD1AC5C328001CFE37 /* HLCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBC1AC5C328001CFE37 /* HLCommentsViewController.m */; };
@@ -203,6 +205,10 @@
 		49DAC6921AD2C8F900ADC969 /* SBTickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTickerView.m; sourceTree = "<group>"; };
 		49DAC6931AD2C8F900ADC969 /* UIView+SBExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SBExtras.h"; sourceTree = "<group>"; };
 		49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SBExtras.m"; sourceTree = "<group>"; };
+		49EB86C21B4AA26A00B21806 /* HLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLButton.h; path = Subclasses/HLButton.h; sourceTree = "<group>"; };
+		49EB86C31B4AA26A00B21806 /* HLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLButton.m; path = Subclasses/HLButton.m; sourceTree = "<group>"; };
+		49EB86C51B4AB29200B21806 /* HLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchViewController.h; path = Controllers/HLSearchViewController.h; sourceTree = "<group>"; };
+		49EB86C61B4AB29200B21806 /* HLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchViewController.m; path = Controllers/HLSearchViewController.m; sourceTree = "<group>"; };
 		49FB5CAE1AC45876001CFE37 /* HLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWindow.h; sourceTree = "<group>"; };
 		49FB5CAF1AC45876001CFE37 /* HLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLWindow.m; sourceTree = "<group>"; };
 		49FB5CB71AC5B3DE001CFE37 /* HLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLComment.h; path = ParseSubclusses/HLComment.h; sourceTree = "<group>"; };
@@ -420,6 +426,8 @@
 				49C22CE71AB1CCF000BCEFAF /* HLPostDetailViewController.m */,
 				49C22CE01AB1CA9800BCEFAF /* HLCategoriesViewController.h */,
 				49C22CE11AB1CA9800BCEFAF /* HLCategoriesViewController.m */,
+				49EB86C51B4AB29200B21806 /* HLSearchViewController.h */,
+				49EB86C61B4AB29200B21806 /* HLSearchViewController.m */,
 				49784EC31ACD3A2200ECDE26 /* Profile */,
 				49C22CF51AB1F98A00BCEFAF /* Login */,
 				49CC83841AC078390067A2FB /* HLWebViewController.h */,
@@ -478,6 +486,8 @@
 				49C22D101AB2FCF700BCEFAF /* HLTextField.m */,
 				49FB5CAE1AC45876001CFE37 /* HLWindow.h */,
 				49FB5CAF1AC45876001CFE37 /* HLWindow.m */,
+				49EB86C21B4AA26A00B21806 /* HLButton.h */,
+				49EB86C31B4AA26A00B21806 /* HLButton.m */,
 			);
 			name = Subclasses;
 			sourceTree = "<group>";
@@ -743,6 +753,7 @@
 				49BAAA491ABC4156004C99AD /* ForgotPasswordCell.m in Sources */,
 				49A212EC1ACAD3CD00CE8204 /* Comment+Additions.m in Sources */,
 				49C22D0B1AB2DFB600BCEFAF /* ButtonCell.m in Sources */,
+				49EB86C71B4AB29200B21806 /* HLSearchViewController.m in Sources */,
 				49CC83801AC058240067A2FB /* HLLinkedInLoginViewController.m in Sources */,
 				49C22D051AB2DE7C00BCEFAF /* LoginWithFacebookCell.m in Sources */,
 				49C22CDF1AB1C4CA00BCEFAF /* HLNewsViewController.m in Sources */,
@@ -771,6 +782,7 @@
 				49D441E31ADFA7600091C401 /* BigBannerPostCell.m in Sources */,
 				49C22CE81AB1CCF000BCEFAF /* HLPostDetailViewController.m in Sources */,
 				497A276D1ABACF3C0063ACB8 /* Post+Additions.m in Sources */,
+				49EB86C41B4AA26A00B21806 /* HLButton.m in Sources */,
 				49C4184D1AC29D600051164C /* HLPost.m in Sources */,
 				49A212F21ACAD92400CE8204 /* Comment.m in Sources */,
 				49C22CD41AB0322800BCEFAF /* TopPostCell.m in Sources */,

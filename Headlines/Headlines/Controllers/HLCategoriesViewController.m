@@ -29,13 +29,17 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     CellIndexHealthcare
 };
 
-@interface HLCategoriesViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HLCategoriesViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isDownloading;
 @property (strong, nonatomic) NSMutableDictionary *usedURLs;
+@property (weak, nonatomic) IBOutlet UIButton *topicsButton;
+@property (weak, nonatomic) IBOutlet UIButton *countriesButton;
+@property (weak, nonatomic) IBOutlet UICollectionView *countriesCollectionView;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
 
 @end
 
@@ -43,6 +47,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     NSMutableArray *images;
     NSArray *categories;
+    NSArray *countries;
 }
 
 - (void)viewDidLoad
@@ -58,6 +63,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     [self.collectionView addSubview:self.refreshControl];
     self.collectionView.alwaysBounceVertical = YES;
     
+    [self topicsButtonPressed:self.topicsButton];
+    
     [self prepareImagesArray];
     
     categories = @[@"Blogs",
@@ -66,6 +73,20 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                    @"Sports",
                    @"Technology",
                    @"Healthcare"];
+    
+    countries = @[@"Eastern Arica",
+                  @"Ethiopia",
+                  @"Kenya",
+                  @"Middle Africa",
+                  @"Angola",
+                  @"Cameroon",
+                  @"Nothern Africa",
+                  @"Algeria",
+                  @"Egypt",
+                  @"Southern Africa",
+                  @"Western Africa",
+                  @"Ghana",
+                  @"Nigeria"];
     
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCell class])
                                                     bundle:[NSBundle mainBundle]]
@@ -324,6 +345,15 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     return bounds;
 }
 
+#pragma mark - TextField
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self performSegueWithIdentifier:@"toSearchScreen" sender:self];
+    
+    return YES;
+}
+
 #pragma mark - CollectionView
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -388,6 +418,26 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     [self presentViewController:navController animated:NO completion:nil];
     //[self.navigationController presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark - Actions
+
+- (IBAction)topicsButtonPressed:(id)sender
+{
+    [self.topicsButton setSelected:YES];
+    [self.countriesButton setSelected:NO];
+    
+    self.collectionView.hidden = NO;
+    self.countriesCollectionView.hidden = YES;
+}
+
+- (IBAction)countriesButtonPressed:(id)sender
+{
+    [self.countriesButton setSelected:YES];
+    [self.topicsButton setSelected:NO];
+    
+    self.collectionView.hidden = YES;
+    self.countriesCollectionView.hidden = NO;
 }
 
 #pragma mark - Navigation
