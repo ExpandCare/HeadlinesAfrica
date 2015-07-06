@@ -76,6 +76,7 @@
 		49FB5CB91AC5B3DE001CFE37 /* HLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CB81AC5B3DE001CFE37 /* HLComment.m */; };
 		49FB5CBD1AC5C328001CFE37 /* HLCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBC1AC5C328001CFE37 /* HLCommentsViewController.m */; };
 		49FB5CC01AC5C4D1001CFE37 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */; };
+		597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 597E59681B4AB56000E8BD97 /* SearchCell.m */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -218,6 +219,8 @@
 		49FB5CBE1AC5C4D1001CFE37 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentCell.h; path = Views/Cells/CommentCell.h; sourceTree = "<group>"; };
 		49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentCell.m; path = Views/Cells/CommentCell.m; sourceTree = "<group>"; };
 		4C72B6F1508031ACBADC7039 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		597E59671B4AB56000E8BD97 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		597E59681B4AB56000E8BD97 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -393,6 +396,8 @@
 			isa = PBXGroup;
 			children = (
 				49C22D021AB2DE3200BCEFAF /* LoginRegistration */,
+				597E59671B4AB56000E8BD97 /* SearchCell.h */,
+				597E59681B4AB56000E8BD97 /* SearchCell.m */,
 				49C22CD11AB0322800BCEFAF /* TopPostCell.h */,
 				49C22CD21AB0322800BCEFAF /* TopPostCell.m */,
 				49C22CD31AB0322800BCEFAF /* TopPostCell.xib */,
@@ -767,6 +772,7 @@
 				494230BF1AB9BEAE00DE722F /* NSString+EmailValidation.m in Sources */,
 				49C22CEF1AB1DEE900BCEFAF /* CategoryCell.m in Sources */,
 				49C22CF31AB1EDAA00BCEFAF /* HLTabBarViewController.m in Sources */,
+				597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */,
 				49FB5CB01AC45876001CFE37 /* HLWindow.m in Sources */,
 				49C22CFB1AB1FA0000BCEFAF /* HLLoginViewController.m in Sources */,
 				49A8E7A01AF0F4DC008C1DDD /* NSCache+Fix.m in Sources */,

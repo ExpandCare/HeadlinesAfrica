@@ -223,6 +223,11 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 147.f;
+}
+
 #pragma mark - Action
 
 - (void)backButtonPressed:(UIButton *)sender

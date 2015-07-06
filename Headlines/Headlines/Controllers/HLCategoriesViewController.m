@@ -14,6 +14,7 @@
 #import <UIImage-Categories/UIImage+Resize.h>
 #import "NSString+URLEncoding.h"
 #import <SDWebImage/SDWebImageManager.h>
+#import "HLSearchViewController.h"
 
 #define CELL_ID @"CELL_ID"
 #define CELL_LINE_PADDING 1.5
@@ -444,6 +445,10 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+   if([segue.identifier isEqualToString:@"toSearchScreen"])
+   {
+       ((HLSearchViewController *)(((UINavigationController *)segue.destinationViewController)).viewControllers[0]).searchString = self.searchField.text;
+   }
 }
 
 @end
