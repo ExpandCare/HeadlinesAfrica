@@ -15,6 +15,7 @@
 #import "NSString+URLEncoding.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import "HLCountryCell.h"
+#import "HLSearchViewController.h"
 
 #define CELL_ID @"CELL_ID"
 #define CELL_ID_COUNTRY @"countryCell"
@@ -505,6 +506,10 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+   if([segue.identifier isEqualToString:@"toSearchScreen"])
+   {
+       ((HLSearchViewController *)(((UINavigationController *)segue.destinationViewController)).viewControllers[0]).searchString = self.searchField.text;
+   }
 }
 
 @end

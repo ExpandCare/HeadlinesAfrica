@@ -10,4 +10,6 @@
 
 @interface HLSearchViewController : HLViewController
 
+@property (nonatomic, strong) NSString *searchString;
+
 @end

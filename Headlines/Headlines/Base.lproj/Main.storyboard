@@ -787,7 +787,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYX-2R-ZiA">
                                                             <rect key="frame" x="254" y="10" width="10" height="10"/>
-                                                            <color key="backgroundColor" patternImage="01BF2BA4-E91E-4164-9EAD-A8FF8B9259BF" colorSpace="pattern"/>
+                                                            <color key="backgroundColor" patternImage="D6C23412-239F-47AC-883A-F009E3BEFE70" colorSpace="pattern"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="vYX-2R-ZiA" secondAttribute="height" multiplier="1:1" id="VZk-4v-eel"/>
                                                                 <constraint firstAttribute="width" constant="10" id="qpI-9g-Jxd"/>
@@ -875,7 +875,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSR-LG-s5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="457"/>
+            <point key="canvasLocation" x="1457" y="517"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cxx-5g-fJz">
@@ -892,7 +892,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IK-y1-hwo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="507"/>
+            <point key="canvasLocation" x="1972" y="517"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="hw1-r0-Abg">
@@ -905,14 +905,79 @@
                     <view key="view" contentMode="scaleToFill" id="yXB-Yf-zXp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="129" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RGV-nY-r5K">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchTableViewCellIdentifier" rowHeight="147" id="G9k-YC-h7m" customClass="SearchCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9k-YC-h7m" id="83P-rI-FH4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="247" placeholderIntrinsicHeight="36" text="Yellowtail amberjack haddock Yellowtail amberjack haddock haddock Yellowtail amberjack haddock" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="274" translatesAutoresizingMaskIntoConstraints="NO" id="oBZ-uJ-gZP">
+                                                    <rect key="frame" x="23" y="26" width="247" height="36"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="255" placeholderIntrinsicHeight="49" text="A post for loved ones, friends, co-workers, or probably business officials may be done through Twitter, Facebook, and Yelp. " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="255" translatesAutoresizingMaskIntoConstraints="NO" id="klZ-GT-GwL">
+                                                    <rect key="frame" x="23" y="74" width="255" height="49"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_0007_bt_open_next" translatesAutoresizingMaskIntoConstraints="NO" id="J72-QM-BS0">
+                                                    <rect key="frame" x="284" y="36" width="11" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="5Ky-tf-DB6"/>
+                                                        <constraint firstAttribute="width" constant="11" id="wrB-k2-j2y"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="oBZ-uJ-gZP" secondAttribute="trailing" constant="50" id="7gp-tV-Mmg"/>
+                                                <constraint firstItem="oBZ-uJ-gZP" firstAttribute="leading" secondItem="83P-rI-FH4" secondAttribute="leading" constant="23" id="DO8-Wf-4fE"/>
+                                                <constraint firstAttribute="bottom" secondItem="klZ-GT-GwL" secondAttribute="bottom" constant="23" id="Hfe-UD-thv"/>
+                                                <constraint firstItem="klZ-GT-GwL" firstAttribute="top" secondItem="oBZ-uJ-gZP" secondAttribute="bottom" constant="12" id="N6z-mx-iag"/>
+                                                <constraint firstItem="klZ-GT-GwL" firstAttribute="leading" secondItem="83P-rI-FH4" secondAttribute="leading" constant="23" id="cFn-6K-ZBs"/>
+                                                <constraint firstAttribute="trailing" secondItem="J72-QM-BS0" secondAttribute="trailing" constant="25" id="eGy-Zu-rJe"/>
+                                                <constraint firstItem="oBZ-uJ-gZP" firstAttribute="centerY" secondItem="J72-QM-BS0" secondAttribute="centerY" id="kOb-WU-YyM"/>
+                                                <constraint firstItem="oBZ-uJ-gZP" firstAttribute="top" secondItem="83P-rI-FH4" secondAttribute="top" constant="26" id="ovy-1p-QoD"/>
+                                                <constraint firstAttribute="trailing" secondItem="klZ-GT-GwL" secondAttribute="trailing" constant="42" id="ttJ-Rv-pvX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="contentLbl" destination="klZ-GT-GwL" id="eNP-Ii-Es3"/>
+                                            <outlet property="titleLbl" destination="oBZ-uJ-gZP" id="8lh-6Y-kX0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ASi-bJ-zyM" id="htk-ar-Z0S"/>
+                                    <outlet property="delegate" destination="ASi-bJ-zyM" id="S7V-PN-6Pk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RGV-nY-r5K" firstAttribute="leading" secondItem="yXB-Yf-zXp" secondAttribute="leading" id="2jF-6E-6T3"/>
+                            <constraint firstAttribute="trailing" secondItem="RGV-nY-r5K" secondAttribute="trailing" id="T8W-11-cSE"/>
+                            <constraint firstItem="RGV-nY-r5K" firstAttribute="top" secondItem="UK0-Ik-19j" secondAttribute="bottom" constant="-64" id="ltu-ew-KGf"/>
+                            <constraint firstItem="aPs-2a-wqV" firstAttribute="top" secondItem="RGV-nY-r5K" secondAttribute="bottom" id="n7q-2j-fmf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="53I-zP-qO6"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="RGV-nY-r5K" id="TeP-hY-rCE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wu-iT-E90" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2275" y="517"/>
+            <point key="canvasLocation" x="2435" y="517"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="PIi-n7-qBn">
@@ -949,7 +1014,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sa-JU-wUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2690" y="517"/>
+            <point key="canvasLocation" x="2860" y="517"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="N3s-py-Nfs">
@@ -1158,7 +1223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBI-A1-Sz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="1115"/>
+            <point key="canvasLocation" x="1972" y="1169"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="aBl-OJ-cIx">
@@ -1760,11 +1825,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q8-mv-nqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="1116"/>
+            <point key="canvasLocation" x="1457" y="1169"/>
         </scene>
     </scenes>
     <resources>
-        <image name="01BF2BA4-E91E-4164-9EAD-A8FF8B9259BF" width="320" height="460">
+        <image name="D6C23412-239F-47AC-883A-F009E3BEFE70" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -11653,6 +11718,7 @@ AAAAAAAAAAAJCvs
         </image>
         <image name="FB_button" width="357" height="45"/>
         <image name="NewLogo" width="90" height="90"/>
+        <image name="_0007_bt_open_next" width="13" height="21"/>
         <image name="cntr" width="375" height="667"/>
         <image name="ic_comment" width="24" height="24"/>
         <image name="ic_comment_active" width="24" height="24"/>
