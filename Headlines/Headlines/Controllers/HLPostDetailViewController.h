@@ -10,5 +10,6 @@
 @interface HLPostDetailViewController : HLViewController
 
 @property (strong, nonatomic) NSString *postID;
+@property (assign, nonatomic) BOOL isSearchPost;
 
 @end
