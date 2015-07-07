@@ -11,6 +11,8 @@
 #import "SearchCell.h"
 #import "HLPost.h"
 #import "NSString+HTML.h"
+#import <SAMHUDView/SAMHUDView.h>
+#import "HLPostDetailViewController.h"
 
 static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellIdentifier";
 
@@ -18,6 +20,9 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) SAMHUDView *hud;
+@property (nonatomic, strong) HLPost *selectedPost;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *searchBtn;
 
 @end
 
@@ -29,6 +34,8 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 {
     [super viewDidLoad];
     
+    self.title = NSLocalizedString(@"search results", nil);
+    
     [((HLNavigationController *)self.navigationController) setBlueColor];
     
     [self configureBackButtonWhite:YES];
@@ -39,6 +46,9 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
                               @"keyword" : self.searchString
                             };
     
+    self.hud = [[SAMHUDView alloc] initWithTitle:NSLocalizedString(@"Searching", nil)];
+    [self.hud show];
+    
     [PFCloud callFunctionInBackground:@"searchPost"
                        withParameters:params
                                 block:^(PF_NULLABLE_S id object, NSError *PF_NULLABLE_S error)
@@ -47,6 +57,11 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
         {
             weakSelf.searchResults = [NSArray arrayWithArray:object[@"posts"]];
             [weakSelf.tableView reloadData];
+            [weakSelf.hud completeAndDismissWithTitle:NSLocalizedString(@"Success", nil)];
+        }
+        else
+        {
+            [weakSelf.hud failAndDismissWithTitle:NSLocalizedString(@"Failed", nil)];
         }
         
     }];
@@ -89,6 +104,35 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
     
     [sizingCell configureCellWithTitle:((HLPost *)self.searchResults[indexPath.row]).title content:[((HLPost *)self.searchResults[indexPath.row]).content stringByConvertingHTMLToPlainText]];
     return [sizingCell calculateHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.selectedPost = self.searchResults[indexPath.row];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [Post createOrUpdatePostsInBackground:@[self.selectedPost] completion:^(BOOL success, NSError *error)
+    {
+       if(!error)
+       {
+           [weakSelf performSegueWithIdentifier:@"toPostDetailController" sender:weakSelf];
+       }
+    }];
+    
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"toPostDetailController"])
+    {
+        ((HLPostDetailViewController *)segue.destinationViewController).isSearchPost = YES;
+        ((HLPostDetailViewController *)segue.destinationViewController).postID = self.selectedPost.objectId;
+    }
 }
 
 @end

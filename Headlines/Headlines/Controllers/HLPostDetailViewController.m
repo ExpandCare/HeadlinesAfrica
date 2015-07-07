@@ -725,7 +725,15 @@
     [_webView stopLoading];
     _webView.delegate = nil;
     
-    [self.navigationController dismissViewControllerAnimated:NO completion:NULL];
+    if(self.isSearchPost)
+    {
+       [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+       [self.navigationController dismissViewControllerAnimated:NO completion:NULL];
+    }
+    
 }
 
 - (void)incrementShares

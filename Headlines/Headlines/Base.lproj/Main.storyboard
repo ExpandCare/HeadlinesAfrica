@@ -486,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRJ-Ge-sBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1972" y="-185"/>
+            <point key="canvasLocation" x="2445" y="-205"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="CR5-Z3-3We">
@@ -617,7 +617,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBH-h3-YWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2435" y="-192"/>
+            <point key="canvasLocation" x="2860" y="-205"/>
         </scene>
         <!--Linked In Login View Controller-->
         <scene sceneID="4T9-no-B5r">
@@ -654,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ik1-O0-7ow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1972" y="-987"/>
+            <point key="canvasLocation" x="1930" y="-903"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="FNa-H5-NYZ">
@@ -932,10 +932,21 @@
                             <constraint firstItem="aPs-2a-wqV" firstAttribute="top" secondItem="RGV-nY-r5K" secondAttribute="bottom" id="n7q-2j-fmf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="53I-zP-qO6"/>
+                    <navigationItem key="navigationItem" id="53I-zP-qO6">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Krc-aL-cpc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v2D-qk-oyo">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="RGV-nY-r5K" id="TeP-hY-rCE"/>
+                        <segue destination="GFw-5N-kKJ" kind="push" identifier="toPostDetailController" id="6aK-9d-chb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wu-iT-E90" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1732,7 +1743,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvM-Dy-6wp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="-185"/>
+            <point key="canvasLocation" x="1972" y="-205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oel-Wj-x6N">
@@ -1808,5 +1819,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bfm-we-cFW"/>
+        <segue reference="6aK-9d-chb"/>
     </inferredMetricsTieBreakers>
 </document>
