@@ -21,7 +21,7 @@
             
             if (!theComment)
             {
-                theComment = [Comment MR_createInContext:localContext];
+                theComment = [Comment MR_createEntityInContext:localContext];
                 
                 theComment.commentID = comment.objectId;
             }

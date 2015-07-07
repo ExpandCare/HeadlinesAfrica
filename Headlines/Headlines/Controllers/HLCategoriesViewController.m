@@ -468,12 +468,52 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     return theCell;
 }
 
+- (void)selectCellsAtIndexPathes:(NSArray *)pathes
+{
+    for (NSIndexPath *indexPath in pathes)
+    {
+        [self.countriesCollectionView selectItemAtIndexPath:indexPath
+                                                   animated:YES
+                                             scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    }
+}
+
+- (void)deselectCellsAtIndexPathes:(NSArray *)pathes
+{
+    for (NSIndexPath *indexPath in pathes)
+    {
+        [self.countriesCollectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (NSArray *)pathesForRegionAtRow:(NSInteger)region
+{
+    NSMutableArray *arr = [NSMutableArray new];
+    
+    NSInteger i = 0;
+    
+    while (i < 2)
+    {
+        if (region + 1 < countries.count)
+        {
+            [arr addObject:[NSIndexPath indexPathForItem:++region inSection:0]];
+        }
+        
+        i++;
+    }
+    
+    return arr;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
-        [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        if (IS_BIG_CELL)
+        {
+            [self selectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.row]];
+        }
         
         return;
     }
@@ -490,6 +530,20 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     [self presentViewController:navController animated:NO completion:nil];
     //[self.navigationController presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Countries
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        if (IS_BIG_CELL)
+        {
+            [self deselectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.row]];
+        }
+        
+        return;
+    }
 }
 
 #pragma mark - Actions

@@ -18,8 +18,30 @@
     [super awakeFromNib];
     
     self.textColor = TEXT_COLOR;
-    
     self.layer.cornerRadius = 8;
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                   target:nil
+                                                                                   action:nil];
+    
+    UIToolbar* keyboardCancelButtonView = [[UIToolbar alloc] init];
+    [keyboardCancelButtonView sizeToFit];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(cancelPressed:)];
+    
+    cancelButton.tintColor = HEADLINES_BLUE_NEW;
+    
+    [keyboardCancelButtonView setItems:[NSArray arrayWithObjects:flexibleSpace, cancelButton, nil]];
+    self.inputAccessoryView = keyboardCancelButtonView;
+}
+
+- (void)cancelPressed:(UIButton *)sender
+{
+    self.text = nil;
+    
+    [self resignFirstResponder];
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds

@@ -53,7 +53,7 @@
             
             if (!thePost)
             {
-                thePost = [Post MR_createInContext:localContext];
+                thePost = [Post MR_createEntityInContext:localContext];
                 
                 thePost.postID = post.objectId;
             }
