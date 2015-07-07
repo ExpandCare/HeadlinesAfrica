@@ -16,6 +16,8 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import "HLCountryCell.h"
 #import "HLSearchViewController.h"
+#import "HLCountry.h"
+#import "HLRegion.h"
 
 #define CELL_ID @"CELL_ID"
 #define CELL_ID_COUNTRY @"countryCell"
@@ -25,7 +27,13 @@
 #define COUNTRY_CELL_HEIGHT_WITH_PADDING 45
 #define CELL_LEFT_RIGHT_INSETS 8 //Check in storyboard
 #define BIG_CELL_WIDTH (CGRectGetWidth(self.view.frame) / 1.6f) // ¯\_(ツ)_/¯
-#define IS_BIG_CELL (indexPath.row == 0 || !(indexPath.row % 3))
+#define IS_BIG_CELL (indexPath.row == 0)
+
+static const NSString * kRegionKey = @"kRegionKey";
+static const NSString * kRegionSelectedKey = @"kCountrkRegionSelectedKeyySelectedKey";
+static const NSString * kCountriesKey = @"kCountriesKey";
+static const NSString * kCountryNameKey = @"kCountrkCountryNameKeyyKey";
+static const NSString * kCountrySelectedKey = @"kCountrySelectedKey";
 
 typedef NS_ENUM(NSUInteger, CollectionViewTag) {
     CollectionViewTagCategories,
@@ -62,7 +70,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     NSMutableArray *images;
     NSArray *categories;
-    NSArray *countries;
+    NSArray *regions;
 }
 
 - (void)viewDidLoad
@@ -98,19 +106,23 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     [self.collectionView reloadData];
     
-    countries = @[@"Eastern Africa",
-                  @"Ethiopia",
-                  @"Kenya",
-                  @"Middle Africa",
-                  @"Angola",
-                  @"Cameroon",
-                  @"Nothern Africa",
-                  @"Algeria",
-                  @"Egypt",
-                  @"Southern Africa",
-                  @"Ghana",
-                  @"Nigeria",
-                  @"Western Africa"];
+    regions = @[[HLRegion regionWithName:@"Eastern Africa"
+                               countries:[HLCountry countriesWithNames:@[@"Ethiopia",
+                                                                         @"Kenya"]]],
+                [HLRegion regionWithName:@"Middle Africa"
+                               countries:[HLCountry countriesWithNames:@[@"Angola",
+                                                                         @"Cameroon"]]],
+                [HLRegion regionWithName:@"Nothern Africa"
+                               countries:[HLCountry countriesWithNames:@[@"Algeria",
+                                                                         @"Egypt"]]],
+                [HLRegion regionWithName:@"Southern Africa"
+                               countries:[HLCountry countriesWithNames:@[@"Ghana",
+                                                                         @"Nigeria"]]],
+                [HLRegion regionWithName:@"Western Africa"
+                               countries:[HLCountry countriesWithNames:@[@"Chad",
+                                                                         @"Mali",
+                                                                         @"Niger"]]]];
+    
     
     self.countriesCollectionView.allowsMultipleSelection = YES;
     self.countriesCollectionView.backgroundColor = [UIColor clearColor];
@@ -134,6 +146,12 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    insets.top = 15;
+    
+    //self.countriesCollectionView.contentInset = insets;
+    //self.countriesCollectionView.contentOffset = CGPointMake(0, -insets.top);
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadImages)
@@ -385,7 +403,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
-        cellSize.height = IS_BIG_CELL ? COUNTRY_CELL_HEIGHT : COUNTRY_CELL_HEIGHT_WITH_PADDING;
+        cellSize.height = IS_BIG_CELL ? COUNTRY_CELL_HEIGHT : COUNTRY_CELL_HEIGHT;
         cellSize.width = IS_BIG_CELL ? BIG_CELL_WIDTH : (CGRectGetWidth(self.view.frame) - CELL_LEFT_RIGHT_INSETS * 3) / 2;
         
         return cellSize;
@@ -402,10 +420,29 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
-        return countries.count + 1;
+        if (section == regions.count)
+        {
+            return 1;
+        }
+        
+        HLRegion *region = regions[section];
+        
+        return region.countries.count + 1;
     }
     
     return images.count;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        return regions.count + 1;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -416,7 +453,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         HLCountryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID_COUNTRY
                                                                            forIndexPath:indexPath];
         
-        if (indexPath.row == countries.count)
+
+        if (indexPath.section == regions.count)
         {
             theCell.hidden = YES;
             
@@ -427,9 +465,37 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
             theCell.hidden = NO;
         }
         
+        HLRegion *region = regions[indexPath.section];
+        
         [theCell setSelected:NO];
-        theCell.theLabel.text = countries[indexPath.row];
+        
+        if (!indexPath.row)
+        {
+            NSLog(@"Region: %@, Selected: %@", region.name, [NSNumber numberWithBool:region.selected]);
+            
+            theCell.theLabel.text = region.name;
+            
+            if (theCell.selected != region.selected)
+            {
+                [theCell setSelected:region.selected];
+            }
+        }
+        else
+        {
+            HLCountry *country = region.countries[indexPath.row - 1];
+            
+            NSLog(@"Country: %@, Selected: %@", country.name, [NSNumber numberWithBool:country.selected]);
+            
+            theCell.theLabel.text = country.name;
+            
+            if (theCell.selected != country.selected)
+            {
+                [theCell setSelected:country.selected];
+            }
+        }
 
+        theCell.userInteractionEnabled = YES;
+        
         return theCell;
     }
     
@@ -472,6 +538,9 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     for (NSIndexPath *indexPath in pathes)
     {
+        HLCountry *country = [regions[indexPath.section] countries][indexPath.row - 1];
+        country.selected = YES;
+        
         [self.countriesCollectionView selectItemAtIndexPath:indexPath
                                                    animated:YES
                                              scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
@@ -482,27 +551,38 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     for (NSIndexPath *indexPath in pathes)
     {
-        [self.countriesCollectionView deselectItemAtIndexPath:indexPath animated:YES];
+        HLCountry *country = [regions[indexPath.section] countries][indexPath.row - 1];
+        country.selected = NO;
     }
 }
 
-- (NSArray *)pathesForRegionAtRow:(NSInteger)region
+- (NSArray *)pathesForRegionAtRow:(NSInteger)regionNumber
 {
     NSMutableArray *arr = [NSMutableArray new];
     
+    HLRegion *region = regions[regionNumber];
+    
     NSInteger i = 0;
     
-    while (i < 2)
+    while (i < region.countries.count)
     {
-        if (region + 1 < countries.count)
-        {
-            [arr addObject:[NSIndexPath indexPathForItem:++region inSection:0]];
-        }
-        
-        i++;
+        [arr addObject:[NSIndexPath indexPathForItem:++i inSection:regionNumber]];
     }
     
     return arr;
+}
+
+- (BOOL)allCountriesSelectedInSection:(NSInteger)section
+{
+    for (HLCountry *country in [regions[section] countries])
+    {
+        if (!country.selected)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -510,9 +590,28 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
+        HLRegion *region = regions[indexPath.section];
+        
         if (IS_BIG_CELL)
         {
-            [self selectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.row]];
+            region.selected = YES;
+            
+            [self selectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.section]];
+        }
+        else
+        {
+            HLCountry *country = [regions[indexPath.section] countries][indexPath.row - 1];
+            country.selected = YES;
+            
+            if ([self allCountriesSelectedInSection:indexPath.section])
+            {
+                region.selected = YES;
+                
+                [self.countriesCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0
+                                                                                        inSection:indexPath.section]
+                                                           animated:YES
+                                                     scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+            }
         }
         
         return;
@@ -537,9 +636,27 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
+        HLRegion *region = regions[indexPath.section];
+        
         if (IS_BIG_CELL)
         {
-            [self deselectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.row]];
+            region.selected = NO;
+            
+            [self deselectCellsAtIndexPathes:[self pathesForRegionAtRow:indexPath.section]];
+            
+            [self.countriesCollectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        }
+        else
+        {
+            HLCountry *country = [regions[indexPath.section] countries][indexPath.row - 1];
+            country.selected = NO;
+            
+            if (region.selected)
+            {
+                region.selected = NO;
+
+                [self.countriesCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:indexPath.section]]];
+            }
         }
         
         return;
