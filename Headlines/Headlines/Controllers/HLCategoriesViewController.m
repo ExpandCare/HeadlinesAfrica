@@ -14,11 +14,19 @@
 #import <UIImage-Categories/UIImage+Resize.h>
 #import "NSString+URLEncoding.h"
 #import <SDWebImage/SDWebImageManager.h>
+#import "HLCountryCell.h"
 #import "HLSearchViewController.h"
 
 #define CELL_ID @"CELL_ID"
+#define CELL_ID_COUNTRY @"countryCell"
 #define CELL_LINE_PADDING 1.5
 #define CATEGORIES_COUNT 10
+#define COUNTRY_CELL_HEIGHT 30
+
+typedef NS_ENUM(NSUInteger, CollectionViewTag) {
+    CollectionViewTagCategories,
+    CollectionViewTagCountries
+};
 
 typedef NS_ENUM(NSUInteger, CellIndex) {
     CellIndexAllNews,
@@ -41,6 +49,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *countriesButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *countriesCollectionView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIImageView *countryBackground;
 
 @end
 
@@ -56,6 +65,9 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     [super viewDidLoad];
     
     self.usedURLs = [NSMutableDictionary new];
+    
+    self.collectionView.tag = CollectionViewTagCategories;
+    self.countriesCollectionView.tag = CollectionViewTagCountries;
     
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self
@@ -75,6 +87,12 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                    @"Technology",
                    @"Healthcare"];
     
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCell class])
+                                                    bundle:[NSBundle mainBundle]]
+          forCellWithReuseIdentifier:CELL_ID];
+    
+    [self.collectionView reloadData];
+    
     countries = @[@"Eastern Arica",
                   @"Ethiopia",
                   @"Kenya",
@@ -85,15 +103,13 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                   @"Algeria",
                   @"Egypt",
                   @"Southern Africa",
-                  @"Western Africa",
                   @"Ghana",
-                  @"Nigeria"];
+                  @"Nigeria",
+                  @"Western Africa"];
     
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCell class])
-                                                    bundle:[NSBundle mainBundle]]
-          forCellWithReuseIdentifier:CELL_ID];
-    
-    [self.collectionView reloadData];
+    self.countriesCollectionView.allowsMultipleSelection = YES;
+    self.countriesCollectionView.backgroundColor = [UIColor clearColor];
+    [self.countriesCollectionView reloadData];
 }
 
 - (void)refresh:(UIRefreshControl *)control
@@ -360,6 +376,17 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize cellSize;
+   
+    // Countries
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        cellSize.height = COUNTRY_CELL_HEIGHT;
+
+        // TEMP CODE - Do this without constants
+        cellSize.width = (indexPath.row == 0 || !(indexPath.row % 3)) ? 225.f : 150.f;
+        
+        return cellSize;
+    }
     
     cellSize.width = CGRectGetWidth(self.view.bounds) / 2 - CELL_LINE_PADDING;
     cellSize.height = cellSize.width;
@@ -369,11 +396,37 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    // Countries
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        return countries.count + 1;
+    }
+    
     return images.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Countries
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        HLCountryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID_COUNTRY forIndexPath:indexPath];
+        
+        if (indexPath.row == countries.count)
+        {
+            theCell.hidden = YES;
+            
+            return theCell;
+        }
+        
+        [theCell setSelected:NO];
+        theCell.theLabel.text = countries[indexPath.row];
+
+        return theCell;
+    }
+    
+    
+    // Categories
     CategoryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
     theCell.layer.masksToBounds = NO;
     theCell.clipsToBounds = NO;
@@ -409,6 +462,14 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Countries
+    if (collectionView.tag == CollectionViewTagCountries)
+    {
+        [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        
+        return;
+    }
+    
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     HLNewsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardIDNewsController];
@@ -428,8 +489,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     [self.topicsButton setSelected:YES];
     [self.countriesButton setSelected:NO];
     
-    self.collectionView.hidden = NO;
-    self.countriesCollectionView.hidden = YES;
+    self.collectionView.hidden = self.searchField.hidden = NO;
+    self.countriesCollectionView.hidden = self.countryBackground.hidden = YES;
 }
 
 - (IBAction)countriesButtonPressed:(id)sender
@@ -437,8 +498,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     [self.countriesButton setSelected:YES];
     [self.topicsButton setSelected:NO];
     
-    self.collectionView.hidden = YES;
-    self.countriesCollectionView.hidden = NO;
+    self.collectionView.hidden = self.searchField.hidden = YES;
+    self.countriesCollectionView.hidden = self.countryBackground.hidden = NO;
 }
 
 #pragma mark - Navigation

@@ -72,6 +72,7 @@
 		49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */; };
 		49EB86C41B4AA26A00B21806 /* HLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C31B4AA26A00B21806 /* HLButton.m */; };
 		49EB86C71B4AB29200B21806 /* HLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C61B4AB29200B21806 /* HLSearchViewController.m */; };
+		49EB86CA1B4AB6A700B21806 /* HLCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C91B4AB6A700B21806 /* HLCountryCell.m */; };
 		49FB5CB01AC45876001CFE37 /* HLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CAF1AC45876001CFE37 /* HLWindow.m */; };
 		49FB5CB91AC5B3DE001CFE37 /* HLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CB81AC5B3DE001CFE37 /* HLComment.m */; };
 		49FB5CBD1AC5C328001CFE37 /* HLCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBC1AC5C328001CFE37 /* HLCommentsViewController.m */; };
@@ -210,6 +211,8 @@
 		49EB86C31B4AA26A00B21806 /* HLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLButton.m; path = Subclasses/HLButton.m; sourceTree = "<group>"; };
 		49EB86C51B4AB29200B21806 /* HLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchViewController.h; path = Controllers/HLSearchViewController.h; sourceTree = "<group>"; };
 		49EB86C61B4AB29200B21806 /* HLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchViewController.m; path = Controllers/HLSearchViewController.m; sourceTree = "<group>"; };
+		49EB86C81B4AB6A700B21806 /* HLCountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLCountryCell.h; path = Views/Cells/HLCountryCell.h; sourceTree = "<group>"; };
+		49EB86C91B4AB6A700B21806 /* HLCountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLCountryCell.m; path = Views/Cells/HLCountryCell.m; sourceTree = "<group>"; };
 		49FB5CAE1AC45876001CFE37 /* HLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWindow.h; sourceTree = "<group>"; };
 		49FB5CAF1AC45876001CFE37 /* HLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLWindow.m; sourceTree = "<group>"; };
 		49FB5CB71AC5B3DE001CFE37 /* HLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLComment.h; path = ParseSubclusses/HLComment.h; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */,
 				497035C21AD68F4A00878EE1 /* HLHeaderViewCell.h */,
 				497035C31AD68F4A00878EE1 /* HLHeaderViewCell.m */,
+				49EB86C81B4AB6A700B21806 /* HLCountryCell.h */,
+				49EB86C91B4AB6A700B21806 /* HLCountryCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -774,6 +779,7 @@
 				49C22CF31AB1EDAA00BCEFAF /* HLTabBarViewController.m in Sources */,
 				597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */,
 				49FB5CB01AC45876001CFE37 /* HLWindow.m in Sources */,
+				49EB86CA1B4AB6A700B21806 /* HLCountryCell.m in Sources */,
 				49C22CFB1AB1FA0000BCEFAF /* HLLoginViewController.m in Sources */,
 				49A8E7A01AF0F4DC008C1DDD /* NSCache+Fix.m in Sources */,
 				49C22CF81AB1F9DF00BCEFAF /* HLStartViewController.m in Sources */,
