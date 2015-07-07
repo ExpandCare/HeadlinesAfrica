@@ -7,6 +7,7 @@
 //
 
 #define BORDER_COLOR [UIColor colorWithRed:0.55 green:0.55 blue:0.55 alpha:1]
+#define TEXT_COLOR [UIColor colorWithRed:0.55 green:0.55 blue:0.55 alpha:1]
 
 #import "HLCountryCell.h"
 
@@ -40,7 +41,7 @@
         self.containerView.backgroundColor = [UIColor clearColor];
         self.containerView.layer.borderColor = BORDER_COLOR.CGColor;
         self.containerView.layer.borderWidth = 1.f;
-        self.theLabel.textColor = BORDER_COLOR;
+        self.theLabel.textColor = TEXT_COLOR;
         self.indicatorView.backgroundColor = [UIColor clearColor];
      
         self.indicatorView.layer.borderWidth = 0.5f;

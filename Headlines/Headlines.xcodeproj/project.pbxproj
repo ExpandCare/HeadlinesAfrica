@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49015F1E1AC9A125002CC1D7 /* FindCoordinates.js in Resources */ = {isa = PBXBuildFile; fileRef = 49015F1D1AC9A125002CC1D7 /* FindCoordinates.js */; };
 		494230BF1AB9BEAE00DE722F /* NSString+EmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494230BE1AB9BEAE00DE722F /* NSString+EmailValidation.m */; };
+		4967C02B1B4BD6A50020F3C1 /* HLSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967C02A1B4BD6A50020F3C1 /* HLSearchTextField.m */; };
 		497035C41AD68F4A00878EE1 /* HLHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 497035C31AD68F4A00878EE1 /* HLHeaderViewCell.m */; };
 		49784EC61ACD3A4D00ECDE26 /* HLChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49784EC51ACD3A4D00ECDE26 /* HLChangePasswordViewController.m */; };
 		497A27601ABACAAA0063ACB8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497A275E1ABACAAA0063ACB8 /* Model.xcdatamodeld */; };
@@ -96,6 +97,8 @@
 		49015F1D1AC9A125002CC1D7 /* FindCoordinates.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FindCoordinates.js; sourceTree = "<group>"; };
 		494230BD1AB9BEAE00DE722F /* NSString+EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+EmailValidation.h"; path = "Categories/NSString+EmailValidation.h"; sourceTree = "<group>"; };
 		494230BE1AB9BEAE00DE722F /* NSString+EmailValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+EmailValidation.m"; path = "Categories/NSString+EmailValidation.m"; sourceTree = "<group>"; };
+		4967C0291B4BD6A50020F3C1 /* HLSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchTextField.h; path = Subclasses/HLSearchTextField.h; sourceTree = "<group>"; };
+		4967C02A1B4BD6A50020F3C1 /* HLSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchTextField.m; path = Subclasses/HLSearchTextField.m; sourceTree = "<group>"; };
 		497035C21AD68F4A00878EE1 /* HLHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLHeaderViewCell.h; path = Views/Cells/HLHeaderViewCell.h; sourceTree = "<group>"; };
 		497035C31AD68F4A00878EE1 /* HLHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLHeaderViewCell.m; path = Views/Cells/HLHeaderViewCell.m; sourceTree = "<group>"; };
 		49784EC41ACD3A4D00ECDE26 /* HLChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChangePasswordViewController.h; path = Controllers/HLChangePasswordViewController.h; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 				49FB5CAF1AC45876001CFE37 /* HLWindow.m */,
 				49EB86C21B4AA26A00B21806 /* HLButton.h */,
 				49EB86C31B4AA26A00B21806 /* HLButton.m */,
+				4967C0291B4BD6A50020F3C1 /* HLSearchTextField.h */,
+				4967C02A1B4BD6A50020F3C1 /* HLSearchTextField.m */,
 			);
 			name = Subclasses;
 			sourceTree = "<group>";
@@ -799,6 +804,7 @@
 				49A212F21ACAD92400CE8204 /* Comment.m in Sources */,
 				49C22CD41AB0322800BCEFAF /* TopPostCell.m in Sources */,
 				49C22CFE1AB1FA2100BCEFAF /* HLRegistrationViewController.m in Sources */,
+				4967C02B1B4BD6A50020F3C1 /* HLSearchTextField.m in Sources */,
 				49DAC6951AD2C8F900ADC969 /* SBDoubleSidedLayer.m in Sources */,
 				49A212F51ACAE47700CE8204 /* HLLike.m in Sources */,
 				49C22CAF1AB028CA00BCEFAF /* AppDelegate.m in Sources */,

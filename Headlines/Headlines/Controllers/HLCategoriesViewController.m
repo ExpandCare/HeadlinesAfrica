@@ -22,6 +22,10 @@
 #define CELL_LINE_PADDING 1.5
 #define CATEGORIES_COUNT 10
 #define COUNTRY_CELL_HEIGHT 30
+#define COUNTRY_CELL_HEIGHT_WITH_PADDING 45
+#define CELL_LEFT_RIGHT_INSETS 8 //Check in storyboard
+#define BIG_CELL_WIDTH (CGRectGetWidth(self.view.frame) / 1.6f) // ¯\_(ツ)_/¯
+#define IS_BIG_CELL (indexPath.row == 0 || !(indexPath.row % 3))
 
 typedef NS_ENUM(NSUInteger, CollectionViewTag) {
     CollectionViewTagCategories,
@@ -50,6 +54,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 @property (weak, nonatomic) IBOutlet UICollectionView *countriesCollectionView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UIImageView *countryBackground;
+@property (weak, nonatomic) IBOutlet UIImageView *searchIconView;
 
 @end
 
@@ -93,7 +98,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     [self.collectionView reloadData];
     
-    countries = @[@"Eastern Arica",
+    countries = @[@"Eastern Africa",
                   @"Ethiopia",
                   @"Kenya",
                   @"Middle Africa",
@@ -380,10 +385,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
-        cellSize.height = COUNTRY_CELL_HEIGHT;
-
-        // TEMP CODE - Do this without constants
-        cellSize.width = (indexPath.row == 0 || !(indexPath.row % 3)) ? 225.f : 150.f;
+        cellSize.height = IS_BIG_CELL ? COUNTRY_CELL_HEIGHT : COUNTRY_CELL_HEIGHT_WITH_PADDING;
+        cellSize.width = IS_BIG_CELL ? BIG_CELL_WIDTH : (CGRectGetWidth(self.view.frame) - CELL_LEFT_RIGHT_INSETS * 3) / 2;
         
         return cellSize;
     }
@@ -410,13 +413,18 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
-        HLCountryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID_COUNTRY forIndexPath:indexPath];
+        HLCountryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID_COUNTRY
+                                                                           forIndexPath:indexPath];
         
         if (indexPath.row == countries.count)
         {
             theCell.hidden = YES;
             
             return theCell;
+        }
+        else
+        {
+            theCell.hidden = NO;
         }
         
         [theCell setSelected:NO];
@@ -470,6 +478,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         return;
     }
     
+    [self.view endEditing:YES];
+    
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     HLNewsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardIDNewsController];
@@ -486,19 +496,23 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (IBAction)topicsButtonPressed:(id)sender
 {
+    [self.view endEditing:YES];
+    
     [self.topicsButton setSelected:YES];
     [self.countriesButton setSelected:NO];
     
-    self.collectionView.hidden = self.searchField.hidden = NO;
+    self.collectionView.hidden = self.searchField.hidden = self.searchIconView.hidden = NO;
     self.countriesCollectionView.hidden = self.countryBackground.hidden = YES;
 }
 
 - (IBAction)countriesButtonPressed:(id)sender
 {
+    [self.view endEditing:YES];
+    
     [self.countriesButton setSelected:YES];
     [self.topicsButton setSelected:NO];
     
-    self.collectionView.hidden = self.searchField.hidden = YES;
+    self.collectionView.hidden = self.searchField.hidden = self.searchIconView.hidden = YES;
     self.countriesCollectionView.hidden = self.countryBackground.hidden = NO;
 }
 
@@ -506,10 +520,10 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-   if([segue.identifier isEqualToString:@"toSearchScreen"])
-   {
-       ((HLSearchViewController *)(((UINavigationController *)segue.destinationViewController)).viewControllers[0]).searchString = self.searchField.text;
-   }
+    if([segue.identifier isEqualToString:@"toSearchScreen"])
+    {
+        ((HLSearchViewController *)(((UINavigationController *)segue.destinationViewController)).viewControllers[0]).searchString = self.searchField.text;
+    }
 }
 
 @end
