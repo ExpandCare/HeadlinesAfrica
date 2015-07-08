@@ -16,6 +16,8 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import "HLCountryCell.h"
 #import "HLSearchViewController.h"
+#import "AppDelegate.h"
+#import "DAKeyboardControl.h"
 
 #define CELL_ID @"CELL_ID"
 #define CELL_ID_COUNTRY @"countryCell"
@@ -55,6 +57,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UIImageView *countryBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *searchIconView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoriesCollectionViewBottomSpacingConstraint;
 
 @end
 
@@ -135,6 +138,29 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     [super viewWillAppear:animated];
     
+    __weak typeof(self) weakSelf = self;
+    
+    [self.view addKeyboardPanningWithFrameBasedActionHandler:nil
+                                constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing)
+     {
+         static CGFloat y;
+         
+         if (opening || y == 0)
+         {
+             y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
+         }
+         
+         if (closing)
+         {
+             weakSelf.categoriesCollectionViewBottomSpacingConstraint.constant = 48;
+         }
+         else
+         {
+             weakSelf.categoriesCollectionViewBottomSpacingConstraint.constant = y - keyboardFrameInView.origin.y;
+         }
+         
+     }];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadImages)
                                                  name:kNotificationDownloadedPosts
@@ -146,9 +172,18 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     [super viewWillDisappear:animated];
     
+     [self.view removeKeyboardControl];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kNotificationDownloadedPosts
                                                   object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.searchField.text = nil;
 }
 
 - (void)dealloc
@@ -371,6 +406,18 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if(!textField.text.length)
+    {
+        SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"", NSLocalizedString(@"Please, enter search phrase", nil));
+        return YES;
+    }
+    
+    if(!IS_INTERNET_CONNECTED)
+    {
+        SHOW_INTERNET_FAILED_ALERT;
+        return YES;
+    }
+    
     [self performSegueWithIdentifier:@"toSearchScreen" sender:self];
     
     return YES;
