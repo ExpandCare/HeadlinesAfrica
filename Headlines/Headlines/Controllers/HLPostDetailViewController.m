@@ -456,6 +456,7 @@
     NSString *html = [contentString htmlStringWithTitle:self.post.title
                                                  author:self.post.author
                                                  source:self.post.source
+                                                country:@"Nigeria"
                                                    date:[self.post.createdAt formattedString]
                                                imageURL:self.post.imageURL];
     

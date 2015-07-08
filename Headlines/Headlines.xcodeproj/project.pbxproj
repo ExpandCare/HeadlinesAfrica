@@ -15,6 +15,8 @@
 		497A27601ABACAAA0063ACB8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497A275E1ABACAAA0063ACB8 /* Model.xcdatamodeld */; };
 		497A276D1ABACF3C0063ACB8 /* Post+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 497A276C1ABACF3C0063ACB8 /* Post+Additions.m */; };
 		497A27741ABC19180063ACB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497A27731ABC19180063ACB8 /* QuartzCore.framework */; };
+		499749901B4C05B300C2093F /* HLCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997498F1B4C05B300C2093F /* HLCountry.m */; };
+		499749931B4C05C300C2093F /* HLRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 499749921B4C05C300C2093F /* HLRegion.m */; };
 		499946571AB6FF1D0042A5E8 /* HLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499946561AB6FF1D0042A5E8 /* HLNavigationController.m */; };
 		4999465A1AB723820042A5E8 /* HLStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 499946591AB723820042A5E8 /* HLStatusBarView.m */; };
 		499946651AB872030042A5E8 /* UIFont+Consended.m in Sources */ = {isa = PBXBuildFile; fileRef = 499946641AB872030042A5E8 /* UIFont+Consended.m */; };
@@ -109,6 +111,10 @@
 		497A276C1ABACF3C0063ACB8 /* Post+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Post+Additions.m"; path = "Headlines/DB/Post/Post+Additions.m"; sourceTree = "<group>"; };
 		497A276F1ABAD48F0063ACB8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		497A27731ABC19180063ACB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4997498E1B4C05B300C2093F /* HLCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCountry.h; sourceTree = "<group>"; };
+		4997498F1B4C05B300C2093F /* HLCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCountry.m; sourceTree = "<group>"; };
+		499749911B4C05C300C2093F /* HLRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLRegion.h; sourceTree = "<group>"; };
+		499749921B4C05C300C2093F /* HLRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLRegion.m; sourceTree = "<group>"; };
 		499946551AB6FF1D0042A5E8 /* HLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLNavigationController.h; path = Subclasses/HLNavigationController.h; sourceTree = "<group>"; };
 		499946561AB6FF1D0042A5E8 /* HLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLNavigationController.m; path = Subclasses/HLNavigationController.m; sourceTree = "<group>"; };
 		499946581AB723820042A5E8 /* HLStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLStatusBarView.h; path = Views/HLStatusBarView.h; sourceTree = "<group>"; };
@@ -286,6 +292,17 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
+		499749941B4C05CA00C2093F /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				4997498E1B4C05B300C2093F /* HLCountry.h */,
+				4997498F1B4C05B300C2093F /* HLCountry.m */,
+				499749911B4C05C300C2093F /* HLRegion.h */,
+				499749921B4C05C300C2093F /* HLRegion.m */,
+			);
+			name = Countries;
+			sourceTree = "<group>";
+		};
 		499946621AB871D40042A5E8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +357,7 @@
 		49C22CA81AB028CA00BCEFAF /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				499749941B4C05CA00C2093F /* Countries */,
 				49C4184F1AC2AFBB0051164C /* template.html */,
 				49015F1D1AC9A125002CC1D7 /* FindCoordinates.js */,
 				49DAC68C1AD2C8F900ADC969 /* Ticker */,
@@ -810,6 +828,7 @@
 				49A212F21ACAD92400CE8204 /* Comment.m in Sources */,
 				49C22CD41AB0322800BCEFAF /* TopPostCell.m in Sources */,
 				49C22CFE1AB1FA2100BCEFAF /* HLRegistrationViewController.m in Sources */,
+				499749901B4C05B300C2093F /* HLCountry.m in Sources */,
 				4967C02B1B4BD6A50020F3C1 /* HLSearchTextField.m in Sources */,
 				49DAC6951AD2C8F900ADC969 /* SBDoubleSidedLayer.m in Sources */,
 				49A212F51ACAE47700CE8204 /* HLLike.m in Sources */,
@@ -819,6 +838,7 @@
 				49D441E01ADFA6A60091C401 /* SmallBannerPostCell.m in Sources */,
 				49A212FB1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m in Sources */,
 				49C22CEA1AB1D32700BCEFAF /* Constants.m in Sources */,
+				499749931B4C05C300C2093F /* HLRegion.m in Sources */,
 				49CC83861AC078390067A2FB /* HLWebViewController.m in Sources */,
 				4999465A1AB723820042A5E8 /* HLStatusBarView.m in Sources */,
 				49C4184A1AC1D02F0051164C /* NSDate+Extentions.m in Sources */,

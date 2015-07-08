@@ -15,9 +15,15 @@
 - (NSString *)htmlStringWithTitle:(NSString *)title
                            author:(NSString *)author
                            source:(NSString *)source
+                          country:(NSString *)country
                              date:(NSString *)dateString
                          imageURL:(NSString *)imageURL
 {
+    if ([author isEqualToString:source])
+    {
+        author = @"";
+    }
+    
     NSString *result;
     
     NSString *template = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"template"
@@ -119,7 +125,7 @@
     
     [changedContent insertString:emptyTag atIndex:0];
     
-    result = [NSString stringWithFormat:template, source, title, author, dateString, changedContent];
+    result = [NSString stringWithFormat:template, source, title, author, dateString, country, changedContent];
     
     return result;
 }
