@@ -116,12 +116,10 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                countries:[HLCountry countriesWithNames:@[@"Algeria",
                                                                          @"Egypt"]]],
                 [HLRegion regionWithName:@"Southern Africa"
-                               countries:[HLCountry countriesWithNames:@[@"Ghana",
-                                                                         @"Nigeria"]]],
+                               countries:[HLCountry countriesWithNames:@[@"South Africa"]]],
                 [HLRegion regionWithName:@"Western Africa"
-                               countries:[HLCountry countriesWithNames:@[@"Chad",
-                                                                         @"Mali",
-                                                                         @"Niger"]]]];
+                               countries:[HLCountry countriesWithNames:@[@"Ghana",
+                                                                         @"Nigeria"]]]];
     
     
     self.countriesCollectionView.allowsMultipleSelection = YES;
