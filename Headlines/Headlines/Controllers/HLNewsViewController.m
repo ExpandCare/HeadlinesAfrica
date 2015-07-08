@@ -313,7 +313,7 @@
                 NSLog(@"Error: %@", error);
             }
             
-            [controller.resultController performFetch:nil];
+            //[controller.resultController performFetch:nil];
             //[controller.tableView reloadData];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadedPosts
