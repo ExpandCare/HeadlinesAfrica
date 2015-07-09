@@ -161,6 +161,7 @@ function savePosts(response, options, cbNext) {
                 preview = jsonResults.results[i]['preview'] || '',
                 link = jsonResults.results[i]['title'] || '',
                 category = options.category || 'blogs',
+                country = options.country || '',
                 source = options.source || 'no source';
 
             //        console.log('Image: ' + image);
@@ -176,6 +177,7 @@ function savePosts(response, options, cbNext) {
                 preview: preview,
                 link: link,
                 category: category,
+                country: country,
                 source: source,
                 sharesCount: 0
             });
@@ -553,27 +555,33 @@ Parse.Cloud.job("updateThisDayLive", function(request, status) {
     var options = [{
         url: "https://api.import.io/store/data/51ecbd34-6575-45ce-b68d-0dbdd5355b35/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fhealth-and-wellbeing%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/8d73dc13-f159-4106-b75a-122674c96969/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Flife-and-style%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/be7d3490-801a-4f28-96f8-58ffb228261b/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fpoliticsthisday%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/4a6dd05d-c24e-4f71-83b9-7c8b199a4219/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fnews%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/27be2039-cf5b-4788-a264-c279c1f6bae5/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fthisdaysports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/b06358ff-8966-408c-8b44-a80f4ec3f938/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fthisdaybusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }];
 
     Parse.Cloud.useMasterKey();
@@ -595,23 +603,28 @@ Parse.Cloud.job("updateVanguard", function(request, status) {
     var options = [{
         url: "https://api.import.io/store/data/c48cf559-c0e5-4485-9087-dab4715f19b5/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fnational-news%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0ba525cf-d031-4406-8d5e-dab550487f0f/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/72230680-4385-47aa-a900-970c4a1203c9/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fsports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/b539fb7d-3049-408d-b6fd-a235c74de478/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0b2b12c8-3974-4335-b6d7-8b79371374ce/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Ftechnology%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Technology'
+        category: 'Technology',
+        country: 'Nigeria'
     }];
     Parse.Cloud.useMasterKey();
     var actions = [];
@@ -631,23 +644,28 @@ Parse.Cloud.job("updatePunch", function(request, status) {
     var options = [{
         url: "https://api.import.io/store/data/4e026c09-2614-4e40-8202-79c281b13f3a/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fnews%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/749c2e0c-4982-44e6-8c01-ee4b80c2a472/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/73175fef-c946-42db-ad40-1287ca5ddd96/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fbusiness%2Fbusiness-economy%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/78fa3062-9149-41ff-a919-ff8d0edc2897/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fsports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0bcdd7d3-31e5-4787-b525-42d1d2d2c145/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fhealth%2Fhealthwise%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }];
 
     Parse.Cloud.useMasterKey();
@@ -668,11 +686,13 @@ Parse.Cloud.job("updateBlogs", function(request, status) {
     var options = [{
         url: "https://api.import.io/store/data/189a8329-a73e-4191-a6ea-60378c052659/_query?input/webpage/url=http%3A%2F%2Flindaikeji.blogspot.com%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Linda Ikeji',
-        category: 'Blogs'
+        category: 'Blogs',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/42180d9a-c7e4-4ec2-9165-ed375eb17ec3/_query?input/webpage/url=http%3A%2F%2Fwww.bellanaija.com%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Bella Naija',
-        category: 'Blogs'
+        category: 'Blogs',
+        country: 'Nigeria'
     }];
 
     Parse.Cloud.useMasterKey();
@@ -693,79 +713,98 @@ Parse.Cloud.job("updateAll", function(request, status) {
     var options = [{
         url: "https://api.import.io/store/data/189a8329-a73e-4191-a6ea-60378c052659/_query?input/webpage/url=http%3A%2F%2Flindaikeji.blogspot.com%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Linda Ikeji',
-        category: 'Blogs'
+        category: 'Blogs',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/42180d9a-c7e4-4ec2-9165-ed375eb17ec3/_query?input/webpage/url=http%3A%2F%2Fwww.bellanaija.com%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Bella Naija',
-        category: 'Blogs'
+        category: 'Blogs',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/4e026c09-2614-4e40-8202-79c281b13f3a/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fnews%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/749c2e0c-4982-44e6-8c01-ee4b80c2a472/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/73175fef-c946-42db-ad40-1287ca5ddd96/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fbusiness%2Fbusiness-economy%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/78fa3062-9149-41ff-a919-ff8d0edc2897/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fsports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0bcdd7d3-31e5-4787-b525-42d1d2d2c145/_query?input/webpage/url=http%3A%2F%2Fwww.punchng.com%2Fhealth%2Fhealthwise%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Punch',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/c48cf559-c0e5-4485-9087-dab4715f19b5/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fnational-news%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0ba525cf-d031-4406-8d5e-dab550487f0f/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/72230680-4385-47aa-a900-970c4a1203c9/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fsports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/b539fb7d-3049-408d-b6fd-a235c74de478/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/0b2b12c8-3974-4335-b6d7-8b79371374ce/_query?input/webpage/url=http%3A%2F%2Fwww.vanguardngr.com%2Fcategory%2Ftechnology%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vanguard',
-        category: 'Technology'
+        category: 'Technology',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/51ecbd34-6575-45ce-b68d-0dbdd5355b35/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fhealth-and-wellbeing%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/8d73dc13-f159-4106-b75a-122674c96969/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Flife-and-style%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Healthcare'
+        category: 'Healthcare',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/be7d3490-801a-4f28-96f8-58ffb228261b/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fpoliticsthisday%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Politics'
+        category: 'Politics',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/4a6dd05d-c24e-4f71-83b9-7c8b199a4219/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fnews%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'News'
+        category: 'News',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/27be2039-cf5b-4788-a264-c279c1f6bae5/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fthisdaysports%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/b06358ff-8966-408c-8b44-a80f4ec3f938/_query?input/webpage/url=http%3A%2F%2Fwww.thisdaylive.com%2Fthisdaybusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'This Day Live',
-        category: 'Business'
+        category: 'Business',
+        country: 'Nigeria'
     }, {
         url: "https://api.import.io/store/data/ddbe78d5-0529-43d7-a570-2a6ec07927cc/_query?input/webpage/url=http%3A%2F%2Fwww.goal.com%2Fen%2Fnews%2Farchive%2F1%3FICID%3DOP&_user=" + user + "&_apikey=" + apiKey,
         source: 'Goal',
-        category: 'Sports'
+        category: 'Sports',
+        country: 'Nigeria'
     }];
 
     Parse.Cloud.useMasterKey();
