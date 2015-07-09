@@ -11,6 +11,7 @@
 @dynamic author;
 @dynamic category;
 @dynamic content;
+@dynamic country;
 @dynamic createdAt;
 @dynamic imageURL;
 @dynamic link;

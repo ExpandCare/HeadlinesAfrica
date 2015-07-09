@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *theLabel;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
+- (void)setCountryEnabled:(BOOL)enabled;
+
 @end

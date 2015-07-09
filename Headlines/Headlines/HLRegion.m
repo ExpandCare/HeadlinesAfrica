@@ -7,6 +7,7 @@
 //
 
 #import "HLRegion.h"
+#import "HLCountry.h"
 
 @implementation HLRegion
 
@@ -17,7 +18,30 @@
     region.name = name;
     region.countries = countries;
     
+    [region checkCountrySelection];
+    
     return region;
+}
+
+- (BOOL)isAllCountriesSelected
+{
+    for (HLCountry *country in self.countries)
+    {
+        if (!country.selected)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (void)checkCountrySelection
+{
+    if ([self isAllCountriesSelected])
+    {
+        self.selected = YES;
+    }
 }
 
 @end

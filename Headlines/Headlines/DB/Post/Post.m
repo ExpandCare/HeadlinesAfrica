@@ -11,6 +11,7 @@
 
 @dynamic author;
 @dynamic category;
+@dynamic country;
 @dynamic commentsCount;
 @dynamic content;
 @dynamic createdAt;

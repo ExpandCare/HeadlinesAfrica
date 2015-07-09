@@ -32,3 +32,5 @@ NSString * const kNotificationOpenPost = @"kNotificationOpenPost";
 
 #pragma mark - Defaults
 NSString * const kDefaultsUserKeyPassword = @"kPFUserKeyPassword";
+NSString * const kDefaultsNeedToUpdate = @"kNeedToUpdate";
+NSString * const kDefaultsEnabledCountries = @"kDefaultsEnabledCountries";

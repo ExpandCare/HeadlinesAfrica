@@ -46,3 +46,5 @@ extern NSString * const kNotificationOpenPost;
 
 #pragma mark - Defaults
 extern NSString * const kDefaultsUserKeyPassword;
+extern NSString * const kDefaultsNeedToUpdate;
+extern NSString * const kDefaultsEnabledCountries;

@@ -469,26 +469,36 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         
         if (!indexPath.row)
         {
-            NSLog(@"Region: %@, Selected: %@", region.name, [NSNumber numberWithBool:region.selected]);
-            
             theCell.theLabel.text = region.name;
             
             if (theCell.selected != region.selected)
             {
                 [theCell setSelected:region.selected];
+                
+                if (region.selected)
+                {
+                    [collectionView selectItemAtIndexPath:indexPath
+                                                 animated:YES
+                                           scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+                }
             }
         }
         else
         {
             HLCountry *country = region.countries[indexPath.row - 1];
             
-            NSLog(@"Country: %@, Selected: %@", country.name, [NSNumber numberWithBool:country.selected]);
-            
             theCell.theLabel.text = country.name;
             
             if (theCell.selected != country.selected)
             {
                 [theCell setSelected:country.selected];
+                
+                if (country.selected)
+                {
+                    [collectionView selectItemAtIndexPath:indexPath
+                                                 animated:YES
+                                           scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+                }
             }
         }
 
@@ -659,6 +669,11 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         
         return;
     }
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark - Actions

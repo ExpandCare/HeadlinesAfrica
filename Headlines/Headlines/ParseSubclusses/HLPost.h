@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSString * author;
 @property (nonatomic) NSString * category;
+@property (nonatomic) NSString * country;
 @property (nonatomic) NSString * content;
 @property (nonatomic) NSDate * createdAt;
 @property (nonatomic) NSArray * imageURL;

@@ -28,7 +28,12 @@
 {
     [super setSelected:selected];
     
-    if (selected)
+    [self setCountryEnabled:selected];
+}
+
+- (void)setCountryEnabled:(BOOL)enabled
+{
+    if (enabled)
     {
         self.containerView.backgroundColor = HEADLINES_BLUE_NEW;
         self.containerView.layer.borderColor = HEADLINES_BLUE_NEW.CGColor;
@@ -43,7 +48,7 @@
         self.containerView.layer.borderWidth = 1.f;
         self.theLabel.textColor = TEXT_COLOR;
         self.indicatorView.backgroundColor = [UIColor clearColor];
-     
+        
         self.indicatorView.layer.borderWidth = 0.5f;
         self.indicatorView.layer.borderColor = [UIColor whiteColor].CGColor;
     }
