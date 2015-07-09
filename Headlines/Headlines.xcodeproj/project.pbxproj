@@ -73,6 +73,7 @@
 		49DAC6961AD2C8F900ADC969 /* SBGradientOverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6901AD2C8F900ADC969 /* SBGradientOverlayLayer.m */; };
 		49DAC6971AD2C8F900ADC969 /* SBTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6921AD2C8F900ADC969 /* SBTickerView.m */; };
 		49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */; };
+		49EB0D1C1B4D565E00667F74 /* NSUserDefaults+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0D1B1B4D565E00667F74 /* NSUserDefaults+Countries.m */; };
 		49EB86C41B4AA26A00B21806 /* HLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C31B4AA26A00B21806 /* HLButton.m */; };
 		49EB86C71B4AB29200B21806 /* HLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C61B4AB29200B21806 /* HLSearchViewController.m */; };
 		49EB86CA1B4AB6A700B21806 /* HLCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB86C91B4AB6A700B21806 /* HLCountryCell.m */; };
@@ -217,6 +218,9 @@
 		49DAC6921AD2C8F900ADC969 /* SBTickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTickerView.m; sourceTree = "<group>"; };
 		49DAC6931AD2C8F900ADC969 /* UIView+SBExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SBExtras.h"; sourceTree = "<group>"; };
 		49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SBExtras.m"; sourceTree = "<group>"; };
+		49EB0D1A1B4D565E00667F74 /* NSUserDefaults+Countries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Countries.h"; path = "Subclasses/NSUserDefaults+Countries.h"; sourceTree = "<group>"; };
+		49EB0D1B1B4D565E00667F74 /* NSUserDefaults+Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Countries.m"; path = "Subclasses/NSUserDefaults+Countries.m"; sourceTree = "<group>"; };
+		49EB0D1D1B4D604A00667F74 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		49EB86C21B4AA26A00B21806 /* HLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLButton.h; path = Subclasses/HLButton.h; sourceTree = "<group>"; };
 		49EB86C31B4AA26A00B21806 /* HLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLButton.m; path = Subclasses/HLButton.m; sourceTree = "<group>"; };
 		49EB86C51B4AB29200B21806 /* HLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchViewController.h; path = Controllers/HLSearchViewController.h; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				49A212FA1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m */,
 				49A8E79E1AF0F4DC008C1DDD /* NSCache+Fix.h */,
 				49A8E79F1AF0F4DC008C1DDD /* NSCache+Fix.m */,
+				49EB0D1A1B4D565E00667F74 /* NSUserDefaults+Countries.h */,
+				49EB0D1B1B4D565E00667F74 /* NSUserDefaults+Countries.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -796,6 +802,7 @@
 				49CC83801AC058240067A2FB /* HLLinkedInLoginViewController.m in Sources */,
 				49C22D051AB2DE7C00BCEFAF /* LoginWithFacebookCell.m in Sources */,
 				49C22CDF1AB1C4CA00BCEFAF /* HLNewsViewController.m in Sources */,
+				49EB0D1C1B4D565E00667F74 /* NSUserDefaults+Countries.m in Sources */,
 				49CC83831AC05A2F0067A2FB /* HLLinkedInActivity.m in Sources */,
 				497035C41AD68F4A00878EE1 /* HLHeaderViewCell.m in Sources */,
 				49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */,
@@ -1069,9 +1076,10 @@
 		497A275E1ABACAAA0063ACB8 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				49EB0D1D1B4D604A00667F74 /* Model 2.xcdatamodel */,
 				497A275F1ABACAAA0063ACB8 /* Model.xcdatamodel */,
 			);
-			currentVersion = 497A275F1ABACAAA0063ACB8 /* Model.xcdatamodel */;
+			currentVersion = 49EB0D1D1B4D604A00667F74 /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

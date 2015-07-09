@@ -18,6 +18,7 @@
 #import "HLHeaderViewCell.h"
 #import <SAMHUDView/SAMHUDView.h>
 #import "NSCache+Fix.h"
+#import "NSUserDefaults+Countries.h"
 
 #define CELL_ID_TOP @"CELL_ID_TOP"
 #define CELL_ID_REGULAR @"CELL_ID_REGULAR"
@@ -201,6 +202,17 @@
 //        
 //        [controller.tableView reloadData];
 //    });
+    
+    if ([NSUserDefaults countryPostsUpdateNeeded])
+    {
+        self.resultController.fetchRequest.predicate = [self thePredicate];
+        [self.resultController performFetch:nil];
+        [self.tableView reloadData];
+        
+        [self fetchAndLoadNewsWithSkipping:NO];
+        
+        [NSUserDefaults countryPostsUpdated];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -209,7 +221,9 @@
     
     self.resultController.delegate = nil;
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationDoubleTap object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kNotificationDoubleTap
+                                                  object:nil];
 }
 
 - (void)dealloc
@@ -286,6 +300,11 @@
 
     [query orderByDescending:@"createdAt"];
     query.limit = LOAD_NEWS_COUNT;
+    
+    if ([NSUserDefaults enabledCountries])
+    {
+        [query whereKey:@"country" containedIn:[NSUserDefaults enabledCountries]];
+    }
     
     if (skip)
     {
@@ -385,26 +404,7 @@
         return _resultController;
     }
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([Post class])
-                                              inManagedObjectContext:[NSManagedObjectContext MR_defaultContext]];
-    [fetchRequest setEntity:entity];
-    
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-    
-    if (self.category)
-    {
-        if ([self.category isEqualToString:@"all"])
-        {
-            self.title = @"All News";
-        }
-        else
-        {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category == %@", self.category];
-            [fetchRequest setPredicate:predicate];
-        }
-    }
+    NSFetchRequest *fetchRequest = [self fetchRequest];
     
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                                   managedObjectContext:[NSManagedObjectContext MR_defaultContext]
@@ -415,6 +415,69 @@
     self.resultController.delegate = self;
     
     return theFetchedResultsController;
+}
+
+- (NSFetchRequest *)fetchRequest
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([Post class])
+                                              inManagedObjectContext:[NSManagedObjectContext MR_defaultContext]];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    NSPredicate *completePredicate = [self thePredicate];
+    
+    if (completePredicate)
+    {
+        [fetchRequest setPredicate:completePredicate];
+    }
+
+    return fetchRequest;
+}
+
+- (NSPredicate *)thePredicate
+{
+    NSPredicate *predicate = nil;
+    
+    if (self.category)
+    {
+        if ([self.category isEqualToString:@"all"])
+        {
+            self.title = @"All News";
+        }
+        else
+        {
+            predicate = [NSPredicate predicateWithFormat:@"category == %@", self.category];
+        }
+    }
+    
+    NSPredicate *countryPredicate;
+    
+    NSMutableArray *predicates = [NSMutableArray new];
+    for (NSString *country in [NSUserDefaults enabledCountries])
+    {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"country == %@", country]];
+    }
+    
+    if (predicates.count > 0)
+    {
+        countryPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+        
+        if (predicate)
+        {
+            return [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, countryPredicate]];
+        }
+        else
+        {
+            return countryPredicate;
+        }
+    }
+    else
+    {
+        return predicate;
+    }
 }
 
 #pragma mark - TableView

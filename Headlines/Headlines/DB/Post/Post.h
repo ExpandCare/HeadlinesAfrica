@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSString * author;
 @property (nonatomic, retain) NSString * category;
+@property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSNumber * commentsCount;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * createdAt;

@@ -29,6 +29,9 @@ NSString * const kHLPostCommentsCountKey = @"commentsCount";
 NSString * const kNotificationDoubleTap = @"kNotificationDoubleTap";
 NSString * const kNotificationDownloadedPosts = @"kNotificationDownloadedPosts";
 NSString * const kNotificationOpenPost = @"kNotificationOpenPost";
+NSString * const kNotificationFilterChanged = @"kNotificationFilterChanged";
 
 #pragma mark - Defaults
 NSString * const kDefaultsUserKeyPassword = @"kPFUserKeyPassword";
+NSString * const kDefaultsNeedToUpdate = @"kNeedToUpdate";
+NSString * const kDefaultsEnabledCountries = @"kDefaultsEnabledCountries";

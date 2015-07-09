@@ -71,6 +71,7 @@
             
             thePost.title = post.title;
             thePost.author = post.author;
+            thePost.country = post.country.length ? post.country : @"Nigeria";
             thePost.source = post.source;
             thePost.createdAt = post.createdAt;
             thePost.content = post.content;

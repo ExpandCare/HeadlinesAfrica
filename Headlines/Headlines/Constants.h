@@ -43,6 +43,10 @@ extern NSString * const kHLPostCommentsCountKey;
 extern NSString * const kNotificationDoubleTap;
 extern NSString * const kNotificationDownloadedPosts;
 extern NSString * const kNotificationOpenPost;
+extern NSString * const kNotificationFilterChanged;
 
 #pragma mark - Defaults
 extern NSString * const kDefaultsUserKeyPassword;
+extern NSString * const kDefaultsNeedToUpdate;
+extern NSString * const kDefaultsEnabledCountries;
+

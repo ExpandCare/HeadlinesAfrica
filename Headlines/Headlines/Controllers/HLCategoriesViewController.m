@@ -74,6 +74,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     NSMutableArray *images;
     NSArray *categories;
     NSArray *regions;
+    
+    BOOL filterUpdated;
 }
 
 - (void)viewDidLoad
@@ -178,10 +180,13 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     //self.countriesCollectionView.contentOffset = CGPointMake(0, -insets.top);
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(filterChanged)
+                                                 name:kNotificationFilterChanged
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadImages)
                                                  name:kNotificationDownloadedPosts
                                                object:nil];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -205,6 +210,14 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)filterChanged
+{
+    filterUpdated = YES;
+    
+    [self.usedURLs removeAllObjects];
+    [self prepareImagesArray];
 }
 
 #pragma mark - News
@@ -261,18 +274,46 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     }
 }
 
+- (NSPredicate *)predicateForCategory:(NSString *)categoryName
+{
+    NSPredicate *countryPredicate = nil;
+    
+    NSMutableArray *predicates = [NSMutableArray new];
+    for (NSString *country in [NSUserDefaults enabledCountries])
+    {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"country == %@", country]];
+    }
+    
+    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"category == %@ && imageURL.length > 0", categoryName];
+    
+    if (predicates.count > 0)
+    {
+        countryPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+        
+        NSCompoundPredicate *completePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[categoryPredicate, countryPredicate]];
+        
+        return completePredicate;
+    }
+    else
+    {
+        return categoryPredicate;
+    }
+}
+
 - (void)reloadImages
 {
+    filterUpdated = NO;
+    
     for (NSInteger i = 0; i < CellIndexHealthcare; i++)
     {
         NSString *categoryName = categories[i];
-        Post *featuredPost = [Post MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"category == %@ && imageURL.length > 0", categoryName]
+        Post *featuredPost = [Post MR_findFirstWithPredicate:[self predicateForCategory:categoryName]
                                                     sortedBy:@"createdAt"
                                                    ascending:NO];
         
         NSString *key = [NSString stringWithFormat:@"%li", (long)i];
         
-        if (!featuredPost && ![self.usedURLs[key] length])
+        if (!featuredPost && !self.usedURLs[key])
         {
             self.usedURLs[key] = @"";
             [self showImageAtIndex:i animated:YES];
@@ -516,26 +557,36 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         
         if (!indexPath.row)
         {
-            NSLog(@"Region: %@, Selected: %@", region.name, [NSNumber numberWithBool:region.selected]);
-            
             theCell.theLabel.text = region.name;
             
             if (theCell.selected != region.selected)
             {
                 [theCell setSelected:region.selected];
+                
+                if (region.selected)
+                {
+                    [collectionView selectItemAtIndexPath:indexPath
+                                                 animated:YES
+                                           scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+                }
             }
         }
         else
         {
             HLCountry *country = region.countries[indexPath.row - 1];
             
-            NSLog(@"Country: %@, Selected: %@", country.name, [NSNumber numberWithBool:country.selected]);
-            
             theCell.theLabel.text = country.name;
             
             if (theCell.selected != country.selected)
             {
                 [theCell setSelected:country.selected];
+                
+                if (country.selected)
+                {
+                    [collectionView selectItemAtIndexPath:indexPath
+                                                 animated:YES
+                                           scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+                }
             }
         }
 
@@ -708,6 +759,11 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     }
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
 #pragma mark - Actions
 
 - (IBAction)topicsButtonPressed:(id)sender
@@ -719,6 +775,11 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     self.collectionView.hidden = self.searchField.hidden = self.searchIconView.hidden = NO;
     self.countriesCollectionView.hidden = self.countryBackground.hidden = YES;
+    
+    if (filterUpdated)
+    {
+        [self reloadImages];
+    }
 }
 
 - (IBAction)countriesButtonPressed:(id)sender
