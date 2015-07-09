@@ -41,6 +41,9 @@
 {
     if (_selected != selected)
     {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFilterChanged
+                                                            object:nil];
+        
         if (selected)
         {
             [NSUserDefaults countryEnabled:self.name];
