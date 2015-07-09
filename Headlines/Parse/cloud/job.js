@@ -539,7 +539,8 @@ function getPostsList(options) {
                 console.log(options.source + ' ' + options.category);
                 savePosts(httpResponse.text, {
                     category: options.category,
-                    source: options.source
+                    source: options.source,
+                    country: options.country
                 }, next);
             },
             error: function(httpResponse) {
