@@ -89,6 +89,13 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
     [self.view removeKeyboardControl];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+     self.tableView.userInteractionEnabled = YES;
+}
+
 
 #pragma mark - Private
 
@@ -216,6 +223,8 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
     self.selectedPost = self.searchResults[indexPath.row];
     
     __weak typeof(self) weakSelf = self;
+    
+    tableView.userInteractionEnabled = NO;
     
     [Post createOrUpdatePostsInBackground:@[self.selectedPost] completion:^(BOOL success, NSError *error)
     {
