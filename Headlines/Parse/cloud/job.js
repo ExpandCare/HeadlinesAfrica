@@ -245,6 +245,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Goal') {
                     actions.push(getGoalPost(postsArr[i].get('link')));
                 }
+                if (options.source === 'Vibeghana') {
+                    actions.push(getVibeghanaPost(postsArr[i].get('link')));
+                };
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -263,6 +266,52 @@ function savePosts(response, options, cbNext) {
                     }
                 });
             })();
+
+            function getVibeghanaPost(url) {
+                var body = JSON.stringify({
+                    "input": {
+                        "webpage/url": url
+                    }
+                })
+
+                Parse.Cloud.httpRequest({
+                    method: 'POST',
+                    url: "https://api.import.io/store/data/2b52d6b3-7f95-4ffa-bb15-cc89688903af/_query?_user=" + user + "&_apikey=" + apiKey,
+                    body: body,
+                    success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0].content) {
+
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                    //images
+                                    if (data.results && data.results[0].image) {
+                                        if (typeof data.results[0].image === "string") {
+                                            postsArr[i].set("image", [data.results[0].image]);
+                                        } else {
+                                            postsArr[i].set("image", data.results[0].image);
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        } 
+                })
+            }
 
             function getThisDayPost(url) {
 
@@ -805,6 +854,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Goal',
         category: 'Sports',
         country: 'Nigeria'
+    }, {
+        url: "https://api.import.io/store/data/fe91f34b-2ea0-4a8c-afe7-727a73800935/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Vibeghana',
+        category: 'Politics',
+        country: 'Ghana'
     }];
 
     Parse.Cloud.useMasterKey();
