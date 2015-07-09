@@ -271,7 +271,6 @@ function savePosts(response, options, cbNext) {
             })();
 
             function getVibeghanaPost(url) {
-                console.log('This is url:' + url);
 
                 return function(next) {
                     var body = JSON.stringify({
