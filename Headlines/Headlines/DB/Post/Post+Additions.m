@@ -40,6 +40,8 @@
 {
     PostsUpdatingCompletion completionCopy = [completion copy];
     
+    posts = [Post filterOutDuplicatePosts:posts];
+    
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         
         for (HLPost *post in posts)
@@ -53,9 +55,18 @@
             
             if (!thePost)
             {
-                thePost = [Post MR_createEntityInContext:localContext];
+                thePost = [Post MR_findFirstByAttribute:@"title" withValue:post.title];
                 
-                thePost.postID = post.objectId;
+                if(!thePost)
+                {
+                    thePost = [Post MR_createEntityInContext:localContext];
+                    
+                    thePost.postID = post.objectId;
+                }
+                else
+                {
+                    continue;
+                }
             }
             
             thePost.title = post.title;
@@ -87,6 +98,20 @@
             }
         }];
     }];
+}
+
++ (NSArray *)filterOutDuplicatePosts:(NSArray *)unFilteredArray
+{
+    NSMutableArray *filteredArrayOfObjects = [[NSMutableArray alloc] init];
+    
+    for (HLPost *post in unFilteredArray)
+    {
+        if(!([[filteredArrayOfObjects valueForKeyPath:@"title"] containsObject:post.title]))
+        {
+            [filteredArrayOfObjects addObject:post];
+        }
+    }
+    return filteredArrayOfObjects;
 }
 
 @end

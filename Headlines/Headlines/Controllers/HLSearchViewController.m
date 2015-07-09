@@ -13,16 +13,21 @@
 #import "NSString+HTML.h"
 #import <SAMHUDView/SAMHUDView.h>
 #import "HLPostDetailViewController.h"
+#import "HLSearchTextField.h"
+#import "DAKeyboardControl.h"
+#import "AppDelegate.h"
 
 static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellIdentifier";
 
-@interface HLSearchViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface HLSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) SAMHUDView *hud;
 @property (nonatomic, strong) HLPost *selectedPost;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *searchBtn;
+@property (nonatomic, strong) IBOutlet UIView *searchView;
+@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewBottomSpacingConstraint;
 
 @end
 
@@ -34,17 +39,91 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 {
     [super viewDidLoad];
     
+    [[self.searchTextField valueForKey:@"textInputTraits"] setValue:[UIColor whiteColor] forKey:@"insertionPointColor"];
+    
+    [self cancelSearchAction];
+    
     self.title = NSLocalizedString(@"search results", nil);
     
     [((HLNavigationController *)self.navigationController) setBlueColor];
     
     [self configureBackButtonWhite:YES];
     
+    [self makeSearchWithText:self.searchString];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.view addKeyboardPanningWithFrameBasedActionHandler:nil
+                                constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing)
+     {
+         static CGFloat y;
+         
+         if (opening || y == 0)
+         {
+             y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
+         }
+         
+         if (closing)
+         {
+             weakSelf.tableViewBottomSpacingConstraint.constant = 0;
+         }
+         else
+         {
+             weakSelf.tableViewBottomSpacingConstraint.constant = y - keyboardFrameInView.origin.y;
+         }
+         
+     }];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.view removeKeyboardControl];
+}
+
+
+#pragma mark - Private
+
+- (void)cancelSearchAction
+{
+    self.title = NSLocalizedString(@"search results", nil);
+    self.navigationItem.titleView = nil;
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonAction:)];
+    [searchItem setTintColor:[UIColor whiteColor]];
+    [searchItem setBackgroundVerticalPositionAdjustment:1.5 forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.rightBarButtonItem = searchItem;
+    self.searchTextField.text = nil;
+}
+
+- (void)searchButtonAction:(id)sender
+{
+    self.title = nil;
+    self.navigationItem.titleView = self.searchView;
+    UIBarButtonItem *stopItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelSearchAction)];
+    [stopItem setTintColor:[UIColor whiteColor]];
+    [stopItem setBackgroundVerticalPositionAdjustment:1.5 forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.rightBarButtonItem = stopItem;
+    
+    [self.searchTextField becomeFirstResponder];
+    
+}
+
+- (void)makeSearchWithText:(NSString *)searchText
+{
     __weak typeof(self) weakSelf = self;
     
     NSDictionary *params = @{
-                              @"keyword" : self.searchString
-                            };
+                             @"keyword" : searchText,
+                             @"limit"   : @(50)
+                             };
     
     self.hud = [[SAMHUDView alloc] initWithTitle:NSLocalizedString(@"Searching", nil)];
     [self.hud show];
@@ -52,19 +131,20 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
     [PFCloud callFunctionInBackground:@"searchPost"
                        withParameters:params
                                 block:^(PF_NULLABLE_S id object, NSError *PF_NULLABLE_S error)
-    {
-        if(!error)
-        {
-            weakSelf.searchResults = [NSArray arrayWithArray:object[@"posts"]];
-            [weakSelf.tableView reloadData];
-            [weakSelf.hud completeAndDismissWithTitle:NSLocalizedString(@"Success", nil)];
-        }
-        else
-        {
-            [weakSelf.hud failAndDismissWithTitle:NSLocalizedString(@"Failed", nil)];
-        }
-        
-    }];
+     {
+         if(!error)
+         {
+             weakSelf.searchResults = [NSArray arrayWithArray:object[@"posts"]];
+             [weakSelf.tableView reloadData];
+             [weakSelf.hud completeAndDismissWithTitle:NSLocalizedString(@"Success", nil)];
+         }
+         else
+         {
+             [weakSelf.hud failAndDismissWithTitle:NSLocalizedString(@"Failed", nil)];
+         }
+         
+     }];
+
 }
 
 #pragma mark - Actions
@@ -72,6 +152,29 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 - (void)backButtonPressed:(UIButton *)sender
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - UITextField delegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view hideKeyboard];
+    
+    if(!textField.text.length)
+    {
+        SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"", NSLocalizedString(@"Please, enter search phrase", nil));
+        return NO;
+    }
+    
+    if(!IS_INTERNET_CONNECTED)
+    {
+        SHOW_INTERNET_FAILED_ALERT;
+        return NO;
+    }
+    
+    [self makeSearchWithText:textField.text];
+    
+    return NO;
 }
 
 #pragma mark - UITableView datasource and delegate methods
