@@ -161,7 +161,6 @@ function savePosts(response, options, cbNext) {
                 preview = jsonResults.results[i]['preview'] || '',
                 link = jsonResults.results[i]['title'] || '',
                 category = options.category || 'blogs',
-                country = options.country || '',
                 source = options.source || 'no source';
 
             //        console.log('Image: ' + image);
@@ -177,7 +176,7 @@ function savePosts(response, options, cbNext) {
                 preview: preview,
                 link: link,
                 category: category,
-                country: country,
+                country: options.country,
                 source: source,
                 sharesCount: 0
             });
