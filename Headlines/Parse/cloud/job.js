@@ -247,7 +247,10 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'Vibeghana') {
                     actions.push(getVibeghanaPost(postsArr[i].get('link')));
-                };
+                }
+                if (options.source === 'Mail & Guardian') {
+                    actions.push(getMailAndGuardianPost(postsArr[i].get('link')));
+                }
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -268,15 +271,16 @@ function savePosts(response, options, cbNext) {
             })();
 
             function getVibeghanaPost(url) {
+
                 var body = JSON.stringify({
                     "input": {
                         "webpage/url": url
                     }
-                })
+                });
 
                 Parse.Cloud.httpRequest({
                     method: 'POST',
-                    url: "https://api.import.io/store/data/2b52d6b3-7f95-4ffa-bb15-cc89688903af/_query?_user=" + user + "&_apikey=" + apiKey,
+                    url: "https://api.import.io/store/data/46236694-c06c-4ccc-ae6d-eaeebbee4d40/_query?_user=" + user + "&_apikey=" + apiKey,
                     body: body,
                     success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -310,7 +314,7 @@ function savePosts(response, options, cbNext) {
                             console.log("Error: " + httpResponse.text);
                             next();
                         } 
-                })
+                });
             }
 
             function getThisDayPost(url) {
@@ -576,6 +580,49 @@ function savePosts(response, options, cbNext) {
                     });
                 }
             }
+
+            function getMailAndGuardianPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/45aebd4c-d87b-406c-98c8-0a18978a7dcd/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -859,6 +906,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Vibeghana',
         category: 'Politics',
         country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/0125e943-bb25-466f-811e-500036f36e37/_query?input/webpage/url=http%3A%2F%2Fmg.co.za%2Fsection%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Mail & Guardian',
+        category: 'Business',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
