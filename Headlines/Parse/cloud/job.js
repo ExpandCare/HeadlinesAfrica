@@ -271,24 +271,26 @@ function savePosts(response, options, cbNext) {
             })();
 
             function getVibeghanaPost(url) {
+                console.log('This is url:' + url);
 
-                var body = JSON.stringify({
-                    "input": {
-                        "webpage/url": url
-                    }
-                });
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
 
-                Parse.Cloud.httpRequest({
-                    method: 'POST',
-                    url: "https://api.import.io/store/data/46236694-c06c-4ccc-ae6d-eaeebbee4d40/_query?_user=" + user + "&_apikey=" + apiKey,
-                    body: body,
-                    success: function(httpResponse) {
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',
+                        url: "https://api.import.io/store/data/46236694-c06c-4ccc-ae6d-eaeebbee4d40/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
                                     //Content
-                                    if (data.results && data.results[0].content) {
+                                    if (data.results && data.results[0] && data.results[0].content) {
 
                                         if (typeof data.results[0].content === "string") {
                                             postsArr[i].set("content", data.results[0].content);
@@ -296,14 +298,15 @@ function savePosts(response, options, cbNext) {
                                             postsArr[i].set("content", data.results[0].content.join(''));
                                         }
                                     }
-                                    //images
-                                    if (data.results && data.results[0].image) {
-                                        if (typeof data.results[0].image === "string") {
-                                            postsArr[i].set("image", [data.results[0].image]);
-                                        } else {
-                                            postsArr[i].set("image", data.results[0].image);
-                                        }
-                                    }
+
+                                    // //images
+                                    // if (data.results && data.results[0] && data.results[0].image) {
+                                    //     if (typeof data.results[0].image === "string") {
+                                    //         postsArr[i].set("image", [data.results[0].image]);
+                                    //     } else {
+                                    //         postsArr[i].set("image", data.results[0].image);
+                                    //     }
+                                    // }
                                 }
                             }
 
@@ -313,8 +316,9 @@ function savePosts(response, options, cbNext) {
                         error: function(httpResponse) {
                             console.log("Error: " + httpResponse.text);
                             next();
-                        } 
-                });
+                        }
+                    });
+                }
             }
 
             function getThisDayPost(url) {
