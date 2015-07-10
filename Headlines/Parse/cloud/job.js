@@ -1057,7 +1057,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Ghana'
     }, {
-        url: "https://api.import.io/store/data/d1ea65fc-edae-4eb6-9f78-914435c9c4aa/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fhealth%2Fpage%2F4%2F&_user=" + user + '&_apikey' + apiKey,
+        url: "https://api.import.io/store/data/d1ea65fc-edae-4eb6-9f78-914435c9c4aa/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fhealth%2Fpage%2F4%2F&_user=" + user + '&_apikey=' + apiKey,
         source: 'Vibeghana',
         category: 'Healthcare',
         country: 'Ghana'

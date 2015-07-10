@@ -127,6 +127,11 @@
     
     result = [NSString stringWithFormat:template, source, title, author, dateString, country, changedContent];
     
+    if ([source isEqualToString:@"Daily Guide"])
+    {
+        result = [result stringByReplacingOccurrencesOfString:@"$('[itemprop=articleBody] ad').hide();" withString:@"$('[itemprop=articleBody] ad').hide();\nvar images = document.getElementsByTagName('img');while(images.length > 0) {images[0].parentNode.removeChild(images[0]);}"];
+    }
+    
     return result;
 }
 
