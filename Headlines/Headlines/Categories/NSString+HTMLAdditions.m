@@ -112,7 +112,7 @@
     NSString *titleImageCatalog = [[imageURL componentsSeparatedByString:@"/"] lastObject];
     titleImageCatalog = [imageURL stringByReplacingOccurrencesOfString:titleImageCatalog withString:@""];
     
-    if (titleImageCatalog.length && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
+    if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
     {
         if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:imageURL]])
         {

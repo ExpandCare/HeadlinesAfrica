@@ -24,6 +24,11 @@
 {
     NSRange urlLocation = [self rangeOfString:@"?"];
     
+    if ([self rangeOfString:@"vibeghana"].location != NSNotFound)
+    {
+        return self;
+    }
+    
     if (urlLocation.location == NSNotFound)
     {
         return self;
