@@ -254,6 +254,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Times Live') {
                     actions.push(getLiveTimesPost(postsArr[i].get('link')));
                 }
+                if (options.source === 'Angop') {
+                    actions.push(getAngopPost(postsArr[i].get('link')));
+                }
                 if (options.source === 'Daily Guide') {
                     actions.push(getDailyGuideGhanaPost(postsArr[i].get('link')));
                 };
@@ -312,6 +315,56 @@ function savePosts(response, options, cbNext) {
                                     //         postsArr[i].set("image", data.results[0].image);
                                     //     }
                                     // }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getAngopPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',
+                        url: "https://api.import.io/store/data/326e8023-88da-4a3a-849f-2c016eb610b8/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+
+                                    //images
+                                    if (data.results && data.results[0] && data.results[0].image) {
+                                        if (typeof data.results[0].image === "string") {
+                                            postsArr[i].set("image", [data.results[0].image]);
+                                        } else {
+                                            postsArr[i].set("image", data.results[0].image);
+                                        }
+                                    }
                                 }
                             }
 
@@ -1057,6 +1110,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Times Live',
         category: 'Politics',
         country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/b2a86faf-b676-406c-8e17-21e55b7b9a22/_query?input/webpage/url=http%3A%2F%2Fwww.portalangop.co.ao%2Fangola%2Fen_us%2Fnoticias%2Feconomia.html&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Angop',
+        category: 'Business',
+        country: 'Angola'
     }];
 
     Parse.Cloud.useMasterKey();
