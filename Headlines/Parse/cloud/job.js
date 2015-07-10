@@ -256,6 +256,9 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'Daily Guide') {
                     actions.push(getDailyGuideGhanaPost(postsArr[i].get('link')));
+                }
+                if (options.source === 'Egypt Independent') {
+                    actions.push(getEgyptIndependentPost(postsArr[i].get('link')));
                 };
             }
 
@@ -724,6 +727,47 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getEgyptIndependentPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/213ccf53-bcb0-475d-8caa-eec9c4e99164/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1057,6 +1101,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Times Live',
         category: 'Politics',
         country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/c1def6b1-5d24-4f4e-9cc7-3a0bb6dfd98b/_query?input/webpage/url=http%3A%2F%2Fwww.egyptindependent.com%2F%2Fsubchannel%2FLocal%2520press%2520review&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Egypt Independent',
+        category: 'Business',
+        country: 'Egypt'
     }];
 
     Parse.Cloud.useMasterKey();
