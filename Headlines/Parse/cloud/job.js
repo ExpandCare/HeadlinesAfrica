@@ -910,6 +910,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Politics',
         country: 'Ghana'
     }, {
+        url: "https://api.import.io/store/data/a9865e42-4cd4-4578-916e-d21896c9ff8e/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fbuisness%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Vibeghana',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
         url: "https://api.import.io/store/data/0125e943-bb25-466f-811e-500036f36e37/_query?input/webpage/url=http%3A%2F%2Fmg.co.za%2Fsection%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Mail & Guardian',
         category: 'Business',
