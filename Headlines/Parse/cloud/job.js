@@ -251,6 +251,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Mail & Guardian') {
                     actions.push(getMailAndGuardianPost(postsArr[i].get('link')));
                 }
+                if (options.source === 'Times Live') {
+                    actions.push(getLiveTimesPost(postsArr[i].get('link')));
+                }
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -626,6 +629,47 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getLiveTimesPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/fc2e0a32-d864-4de0-b2da-bb5055259696/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -912,6 +956,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
     }, {
         url: "https://api.import.io/store/data/0125e943-bb25-466f-811e-500036f36e37/_query?input/webpage/url=http%3A%2F%2Fmg.co.za%2Fsection%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Mail & Guardian',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/d6bfeb2e-2312-4afb-9fb4-0850f794dfd8/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fbusinesstimes%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Times Live',
         category: 'Business',
         country: 'South Africa'
     }];
