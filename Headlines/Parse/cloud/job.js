@@ -959,6 +959,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Ghana'
     }, {
+        url: "https://api.import.io/store/data/d1ea65fc-edae-4eb6-9f78-914435c9c4aa/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fhealth%2Fpage%2F4%2F&_user=" + user + '&_apikey' + apiKey,
+        source: 'Vibeghana',
+        category: 'Healthcare',
+        country: 'Ghana'
+    }, {
         url: "https://api.import.io/store/data/0125e943-bb25-466f-811e-500036f36e37/_query?input/webpage/url=http%3A%2F%2Fmg.co.za%2Fsection%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Mail & Guardian',
         category: 'Business',
