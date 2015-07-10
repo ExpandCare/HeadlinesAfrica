@@ -1171,6 +1171,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Egypt Independent',
         category: 'Healthcare',
         country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/95dce79c-0f3b-4b7f-ad9c-a7fff34a2cd8/_query?input/webpage/url=http%3A%2F%2Fwww.egyptindependent.com%2Fsubchannel%2F189&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Egypt Independent',
+        category: 'Technology',
+        country: 'Egypt'
     }];
 
     Parse.Cloud.useMasterKey();
