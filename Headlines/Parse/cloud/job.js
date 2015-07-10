@@ -701,7 +701,7 @@ function savePosts(response, options, cbNext) {
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
-                                    if (data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
                                     //Content
                                     if (data.results && data.results[0] && data.results[0].content) {
                                         if (typeof data.results[0].content === "string") {
@@ -1026,6 +1026,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         url: "https://api.import.io/store/data/d6bfeb2e-2312-4afb-9fb4-0850f794dfd8/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fbusinesstimes%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Times Live',
         category: 'Business',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/e110eaaf-d45a-4fe2-9ff6-e7e8c4d9ec66/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Flifestyle%2Ffood%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Times Live',
+        category: 'Food',
         country: 'South Africa'
     }, {
         url: "https://api.import.io/store/data/83e39aea-740c-4875-8a5b-de275f59c42d/_query?input/webpage/url=http%3A%2F%2Fwww.dailyguideghana.com%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
