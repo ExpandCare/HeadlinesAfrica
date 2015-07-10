@@ -701,6 +701,7 @@ function savePosts(response, options, cbNext) {
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
+                                    if (data.results[0].author) postsArr[i].set("author", data.results[0].author);
                                     //Content
                                     if (data.results && data.results[0] && data.results[0].content) {
                                         if (typeof data.results[0].content === "string") {
