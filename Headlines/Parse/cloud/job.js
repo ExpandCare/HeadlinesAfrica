@@ -281,7 +281,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',
-                        url: "https://api.import.io/store/data/46236694-c06c-4ccc-ae6d-eaeebbee4d40/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/data/3383eb41-558c-4f46-82d8-e12a67716e37/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
