@@ -1032,6 +1032,21 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Daily Guide',
         category: 'Business',
         country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/8be14aca-8165-4e2d-a22b-32bb023c28fa/_query?input/webpage/url=http%3A%2F%2Fwww.dailyguideghana.com%2Fcategory%2Fpolitical-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Daily Guide',
+        category: 'Politics',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/47fef2c8-3371-4bf0-b389-d34da0457cd6/_query?input/webpage/url=http%3A%2F%2Fwww.dailyguideghana.com%2Fcategory%2Fentertainment-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Daily Guide',
+        category: 'Blogs',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/35648233-7e1c-4317-8774-18132bd83e3e/_query?input/webpage/url=http%3A%2F%2Fwww.dailyguideghana.com%2Fcategory%2Fsports-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Daily Guide',
+        category: 'Sports',
+        country: 'Ghana'
     }];
 
     Parse.Cloud.useMasterKey();
