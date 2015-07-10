@@ -1052,6 +1052,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Daily Guide',
         category: 'Sports',
         country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/c4b83de8-a4b4-4df1-ad5a-fee4adef05d8/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Times Live',
+        category: 'Politics',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
