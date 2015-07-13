@@ -262,6 +262,9 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'Egypt Independent') {
                     actions.push(getEgyptIndependentPost(postsArr[i].get('link')));
+                }
+                if (options.source === 'Cameroon POSTline') {
+                    actions.push(getCameroonPostlinePost(postsArr[i].get('link')));
                 };
             }
 
@@ -823,6 +826,47 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getCameroonPostlinePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/6bd719b1-1276-4a0c-a679-32348762657f/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1176,6 +1220,21 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Egypt Independent',
         category: 'Technology',
         country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/3742bff9-dff7-4b83-8f47-21fa45df8e0b/_query?input/webpage/url=http%3A%2F%2Fwww.cameroonpostline.com%2Fcategory%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon POSTline',
+        category: 'Business',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/4404a8bd-5b9a-4462-9e27-d01928a597cf/_query?input/webpage/url=http%3A%2F%2Fwww.cameroonpostline.com%2Fcategory%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon POSTline',
+        category: 'Healthcare',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/9bb4ad6b-f5ca-47e5-8d79-4bcfbbc99690/_query?input/webpage/url=http%3A%2F%2Fwww.cameroonpostline.com%2Fcategory%2Fsport%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon POSTline',
+        category: 'Sports',
+        country: 'Cameroon'
     }];
 
     Parse.Cloud.useMasterKey();
