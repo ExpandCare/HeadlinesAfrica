@@ -1206,6 +1206,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Angola'
     }, {
+        url: "https://api.import.io/store/data/a12849ba-bdca-4df3-887f-9b64390366b4/_query?input/webpage/url=http%3A%2F%2Fwww.portalangop.co.ao%2Fangola%2Fen_us%2Fnoticias%2Fsaude.html&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Angop',
+        category: 'Healthcare',
+        country: 'Angola'
+    }, {
         url: "https://api.import.io/store/data/c1def6b1-5d24-4f4e-9cc7-3a0bb6dfd98b/_query?input/webpage/url=http%3A%2F%2Fwww.egyptindependent.com%2F%2Fsubchannel%2FLocal%2520press%2520review&_user=" + user + "&_apikey=" + apiKey,
         source: 'Egypt Independent',
         category: 'Business',
