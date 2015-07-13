@@ -1306,6 +1306,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'BDlive',
         category: 'Business',
         country: 'South Africa'
+    },{
+        url: "https://api.import.io/store/data/dc7aeb36-9ab9-4cde-8f40-f8f7e4597a07/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fnational%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'BDlive',
+        category: 'Healthcare',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
