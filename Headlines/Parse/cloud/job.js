@@ -265,6 +265,9 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'Cameroon POSTline') {
                     actions.push(getCameroonPostlinePost(postsArr[i].get('link')));
+                }
+                if (options.source === 'BDlive') {
+                    actions.push(getBDLivePost(postsArr[i].get('link')));
                 };
             }
 
@@ -867,6 +870,49 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getBDLivePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/2598d99a-5348-4e20-ba00-b9b83751b206/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1235,6 +1281,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Cameroon POSTline',
         category: 'Sports',
         country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/05863c9f-1a3d-4324-bdd3-b9ac94aca783/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'BDlive',
+        category: 'Business',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
