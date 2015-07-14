@@ -112,7 +112,14 @@
     NSString *titleImageCatalog = [[imageURL componentsSeparatedByString:@"/"] lastObject];
     titleImageCatalog = [imageURL stringByReplacingOccurrencesOfString:titleImageCatalog withString:@""];
     
-    if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && ![source isEqualToString:@"Times Live"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
+    if ([source isEqualToString:@"NBE"])
+    {
+        [changedContent replaceOccurrencesOfString:@"img src=\"/"
+                                        withString:@"img src=\"http://newbusinessethiopia.com/"
+                                           options:NSCaseInsensitiveSearch
+                                             range:NSMakeRange(0, changedContent.length)];
+    }
+    else if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && ![source isEqualToString:@"Times Live"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
     {
         if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:imageURL]])
         {
