@@ -272,6 +272,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Fin24') {
                     actions.push(getFin24Post(postsArr[i].get('link')));
                 }
+                if (options.source === 'Kenyan Post') {
+                    actions.push(getKenyaPostPost(postsArr[i].get('link')));
+                }
                 if (options.source === 'NBE') {
                     actions.push(getNBEPost(postsArr[i].get('link')));
                 };
@@ -293,6 +296,56 @@ function savePosts(response, options, cbNext) {
                     }
                 });
             })();
+
+            function getKenyaPostPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',
+                        url: "https://api.import.io/store/data/21b0d2f9-8eb1-4a14-a534-374cbe54eb4d/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+
+                                     //images
+                                     if (data.results && data.results[0] && data.results[0].image) {
+                                         if (typeof data.results[0].image === "string") {
+                                             postsArr[i].set("image", [data.results[0].image]);
+                                         } else {
+                                             postsArr[i].set("image", data.results[0].image);
+                                         }
+                                     }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
 
             function getNBEPost (url) {
             
@@ -1464,8 +1517,12 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'NBE',
         category: 'Blogs',
         country: 'Ethiopia'
-    }
-    ];
+    }, {
+        url: "https://api.import.io/store/data/f306bfaf-6a1f-4648-8efe-edd53e70e0fd/_query?input/webpage/url=http%3A%2F%2Fwww.kenyan-post.com%2Fsearch%2Flabel%2FPolitics%3Fmax-results%3D10&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Kenyan Post',
+        category: 'Politics',
+        country: 'Kenya'
+    }];
 
     Parse.Cloud.useMasterKey();
     var actions = [];
