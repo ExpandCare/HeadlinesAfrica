@@ -82,7 +82,15 @@
             
             if (images.count)
             {
-                thePost.imageURL = [[[images firstObject] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                if([[images firstObject] isKindOfClass:[NSArray class]])
+                {
+                    thePost.imageURL = [[[[images firstObject] firstObject] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                }
+                else
+                {
+                    thePost.imageURL = [[[images firstObject] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                }
+                
             }
             
             thePost.link = post.link;
