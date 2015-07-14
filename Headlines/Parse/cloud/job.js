@@ -268,7 +268,10 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'BDlive') {
                     actions.push(getBDLivePost(postsArr[i].get('link')));
-                };
+                }
+                if (options.source === 'NBE') {
+                    actions.push(getNBEPost(postsArr[i].get('link')));
+                };;
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -287,6 +290,56 @@ function savePosts(response, options, cbNext) {
                     }
                 });
             })();
+
+            function getNBEPost (url) {
+            
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',
+                        url: "https://api.import.io/store/data/e007045f-1a33-4d66-8980-0c8285d4c232/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+
+                                     //images
+                                     if (data.results && data.results[0] && data.results[0].image) {
+                                         if (typeof data.results[0].image === "string") {
+                                             postsArr[i].set("image", [data.results[0].image]);
+                                         } else {
+                                             postsArr[i].set("image", data.results[0].image);
+                                         }
+                                     }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
 
             function getVibeghanaPost(url) {
 
@@ -1311,16 +1364,31 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'BDlive',
         category: 'Business',
         country: 'South Africa'
-    },{
+    }, {
         url: "https://api.import.io/store/data/dc7aeb36-9ab9-4cde-8f40-f8f7e4597a07/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fnational%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'BDlive',
         category: 'Healthcare',
         country: 'South Africa'
-    },{
+    }, {
         url: "https://api.import.io/store/data/40ba7a8e-368f-4875-bb33-c441783390b0/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fnational%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'BDlive',
         category: 'Politics',
         country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/a4d20d04-7758-4808-ac94-42accbd19f63/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Ftravel&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/08e2a9a7-ab59-4471-9ace-42b559ab6d87/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Ffinance&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/9b1b2f58-05dc-48f2-a98f-be8721e6e3ec/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Ftrade&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
     }];
 
     Parse.Cloud.useMasterKey();
