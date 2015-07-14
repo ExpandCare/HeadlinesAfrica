@@ -281,6 +281,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'NBE') {
                     actions.push(getNBEPost(postsArr[i].get('link')));
                 };
+                if (options.source === 'IOL') {
+                    actions.push(getIOLPost(postsArr[i].get('link')));
+                };
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -1124,6 +1127,48 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getIOLPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/2d95d065-8591-494c-8a73-ec0dbd1748f2/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1607,6 +1652,26 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'The Star',
         category: 'Business',
         country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/71071b3a-db41-4c0c-aca6-d6d848054009/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Fsport%2Fmore-sport&_user=" + user + "&_apikey=" + apiKey,
+        source: 'IOL',
+        category: 'Sports',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/fe6bc2c9-f7df-4b12-bfb8-eb9bc79ef76f/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Ftonight%2Ftv-radio%2Flocal-news%3Fpage%3D1&_user=" + user + "&_apikey=" + apiKey,
+        source: 'IOL',
+        category: 'Blogs',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/1768aac7-5098-4768-b769-93153762adb4/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Fscitech&_user=" + user + "&_apikey=" + apiKey,
+        source: 'IOL',
+        category: 'Technology',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/9fa08ed2-63f2-4e7e-8502-1347e4dc7747/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Flifestyle&_user=" + user + "&_apikey=" + apiKey,
+        source: 'IOL',
+        category: 'Blogs',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
