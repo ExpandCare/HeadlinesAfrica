@@ -1439,7 +1439,13 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'NBE',
         category: 'Business',
         country: 'Ethiopia'
-    }];
+    }, {
+        url: "https://api.import.io/store/data/494d4c7b-1ca1-4ae2-a2d7-484bfb3dd64a/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Fcompanies%2Fretail&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }
+    ];
 
     Parse.Cloud.useMasterKey();
     var actions = [];
