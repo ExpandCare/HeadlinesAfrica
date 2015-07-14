@@ -1440,6 +1440,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Ethiopia'
     }, {
+        url: "https://api.import.io/store/data/494d4c7b-1ca1-4ae2-a2d7-484bfb3dd64a/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Fcompanies%2Fretail&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }, { 
         url: "https://api.import.io/store/data/e2753c13-493e-49ee-9711-d464edb24afe/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Fsociety%2Fcontent%2F14%2Fhealth&_user=" + user + "&_apikey=" + apiKey,
         source: 'NBE',
         category: 'Healthcare',
@@ -1459,7 +1464,8 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'NBE',
         category: 'Blogs',
         country: 'Ethiopia'
-    }];
+    }
+    ];
 
     Parse.Cloud.useMasterKey();
     var actions = [];
