@@ -275,9 +275,12 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Kenyan Post') {
                     actions.push(getKenyaPostPost(postsArr[i].get('link')));
                 }
-                if (options.source == 'The Star') {
+                if (options.source === 'The Star') {
                     actions.push(getTheStarPost(postsArr[i].get('link')));
-                };
+                }
+                if (options.source === 'Standard Digital') {
+                    actions.push(getStandardPost(postsArr[i].get('link')));
+                }
                 if (options.source === 'NBE') {
                     actions.push(getNBEPost(postsArr[i].get('link')));
                 };
@@ -299,6 +302,64 @@ function savePosts(response, options, cbNext) {
                     }
                 });
             })();
+
+            function getStandardPost(url) {
+                
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',
+                        url: "https://api.import.io/store/data/07ffc3fb-51cf-4a49-bc84-f1cb40c6648a/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+
+                                    //Author
+                                    if (data.results && data.results[0] && data.results[0].author) {
+
+                                        if (typeof data.results[0].author === "string") {
+                                            postsArr[i].set("author", data.results[0].author);
+                                        }
+                                    }
+
+                                     //images
+                                     if (data.results && data.results[0] && data.results[0].image) {
+                                         if (typeof data.results[0].image === "string") {
+                                             postsArr[i].set("image", [data.results[0].image]);
+                                         } else {
+                                             postsArr[i].set("image", data.results[0].image);
+                                         }
+                                     }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
 
             function getTheStarPost(url) {
                 return function(next) {
@@ -1606,6 +1667,16 @@ Parse.Cloud.job("updateAll", function(request, status) {
         url: "https://api.import.io/store/data/4718ecd0-6e3d-486a-9325-da01a9943018/_query?input/webpage/url=http%3A%2F%2Fwww.the-star.co.ke%2Fsections%2Feastern&_user=" + user + "&_apikey=" + apiKey,
         source: 'The Star',
         category: 'Business',
+        country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/b8bce319-e308-44ec-8117-cee5bb425cdc/_query?input/webpage/url=http%3A%2F%2Fwww.standardmedia.co.ke%2Fbusiness%2Fcategory%2Folder%2F19%2Fbusiness-news&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Standard Digital',
+        category: 'Business',
+        country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/3f380ec0-2fee-43b1-95ab-b5052b042ded/_query?input/webpage/url=http%3A%2F%2Fwww.standardmedia.co.ke%2Fbusiness%2Fcategory%2Folder%2F42%2Fsci-tech&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Standard Digital',
+        category: 'Technology',
         country: 'Kenya'
     }];
 
