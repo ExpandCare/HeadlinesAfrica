@@ -1469,6 +1469,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Fin24',
         category: 'Business',
         country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/9fc3138a-d778-48d2-b72c-a93fe0d9d7ae/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Ftech&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Technology',
+        country: 'South Africa'
     }
     ];
 
