@@ -1301,6 +1301,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'BDlive',
         category: 'Healthcare',
         country: 'South Africa'
+    },{
+        url: "https://api.import.io/store/data/40ba7a8e-368f-4875-bb33-c441783390b0/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fnational%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'BDlive',
+        category: 'Politics',
+        country: 'South Africa'
     }];
 
     Parse.Cloud.useMasterKey();
