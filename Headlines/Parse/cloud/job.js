@@ -1389,6 +1389,26 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'NBE',
         category: 'Business',
         country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/e2753c13-493e-49ee-9711-d464edb24afe/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Fsociety%2Fcontent%2F14%2Fhealth&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Healthcare',
+        country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/b935b2d1-969c-4131-b94f-384d4c04dbf3/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Fgovernance&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Politics',
+        country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/62355a50-5a12-4814-a831-d92d307d980f/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Ftechnology&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Technology',
+        country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/1e5d5f1f-1d79-496f-af37-96114cb7b468/_query?input/webpage/url=http%3A%2F%2Fnewbusinessethiopia.com%2Findex.php%2Fsociety%2Fcontent%2F19%2Fentertainment&_user=" + user + "&_apikey=" + apiKey,
+        source: 'NBE',
+        category: 'Blogs',
+        country: 'Ethiopia'
     }];
 
     Parse.Cloud.useMasterKey();
