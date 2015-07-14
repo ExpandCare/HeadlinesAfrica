@@ -1464,6 +1464,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'NBE',
         category: 'Blogs',
         country: 'Ethiopia'
+    }, {
+        url: "https://api.import.io/store/data/e6bc9b44-6907-44e5-a2be-794965443a2d/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Fcompanies%2Ftravelandleisure&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
     }
     ];
 
