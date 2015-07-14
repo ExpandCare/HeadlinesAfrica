@@ -1518,6 +1518,16 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Blogs',
         country: 'Ethiopia'
     }, {
+        url: "https://api.import.io/store/data/e6bc9b44-6907-44e5-a2be-794965443a2d/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Fcompanies%2Ftravelandleisure&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        url: "https://api.import.io/store/data/9fc3138a-d778-48d2-b72c-a93fe0d9d7ae/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Ftech&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Technology',
+        country: 'South Africa'
+    }, {
         url: "https://api.import.io/store/data/f306bfaf-6a1f-4648-8efe-edd53e70e0fd/_query?input/webpage/url=http%3A%2F%2Fwww.kenyan-post.com%2Fsearch%2Flabel%2FPolitics%3Fmax-results%3D10&_user=" + user + "&_apikey=" + apiKey,
         source: 'Kenyan Post',
         category: 'Politics',
