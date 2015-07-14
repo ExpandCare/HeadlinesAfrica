@@ -268,6 +268,9 @@ function savePosts(response, options, cbNext) {
                 }
                 if (options.source === 'BDlive') {
                     actions.push(getBDLivePost(postsArr[i].get('link')));
+                }
+                if (options.source === 'Fin24') {
+                    actions.push(getFin24Post(postsArr[i].get('link')));
                 };
             }
 
@@ -913,6 +916,48 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getFin24Post(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/f27a9afa-ae29-403c-87e9-01056a50d0e3/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1320,6 +1365,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         url: "https://api.import.io/store/data/40ba7a8e-368f-4875-bb33-c441783390b0/_query?input/webpage/url=http%3A%2F%2Fwww.bdlive.co.za%2Fnational%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'BDlive',
         category: 'Politics',
+        country: 'South Africa'
+    },{
+        url: "https://api.import.io/store/data/3ce28d3b-2ff4-402d-be6c-eaf451c30ca9/_query?input/webpage/url=http%3A%2F%2Fwww.fin24.com%2Feconomy&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Fin24',
+        category: 'Business',
         country: 'South Africa'
     }];
 
