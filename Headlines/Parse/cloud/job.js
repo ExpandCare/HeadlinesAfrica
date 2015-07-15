@@ -287,6 +287,9 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'IOL') {
                     actions.push(getIOLPost(postsArr[i].get('link')));
                 };
+                if (options.source === 'Ahram Online') {
+                    actions.push(getAhramOnlinePost(postsArr[i].get('link')));
+                };
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -1230,6 +1233,49 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getAhramOnlinePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/c6249f6b-bef7-4add-a286-02599f1cfd0c/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                            console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1743,6 +1789,26 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Standard Digital',
         category: 'Technology',
         country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/37ca9bc4-9201-4236-9709-a63b61da3344/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F6%2FSports%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Sports',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/f112c23a-2340-4863-ba94-8108fd431751/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F7%2FLife--Style%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/671891a2-f53f-41be-baac-104abdad4602/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F5%2FArts--Culture%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/9d2629b2-c541-4cea-8a50-d126005c8320/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllCategory%2F1%2F64%2FEgypt%2FPolitics-%2F6.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Politics',
+        country: 'Egypt'
     }];
 
     Parse.Cloud.useMasterKey();
