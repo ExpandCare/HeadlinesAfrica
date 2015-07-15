@@ -535,7 +535,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',
-                        url: "https://api.import.io/store/data/4528ae28-ba20-4dbb-941f-9c2ffe20d291/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/data/15638383-f437-49a6-8ec6-248ca8bcc71c/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -552,14 +552,14 @@ function savePosts(response, options, cbNext) {
                                         }
                                     }
 
-                                    // //images
-                                    // if (data.results && data.results[0] && data.results[0].image) {
-                                    //     if (typeof data.results[0].image === "string") {
-                                    //         postsArr[i].set("image", [data.results[0].image]);
-                                    //     } else {
-                                    //         postsArr[i].set("image", data.results[0].image);
-                                    //     }
-                                    // }
+                                     //images
+                                     if (data.results && data.results[0] && data.results[0].image) {
+                                         if (typeof data.results[0].image === "string") {
+                                             postsArr[i].set("image", [data.results[0].image]);
+                                         } else {
+                                             postsArr[i].set("image", data.results[0].image);
+                                         }
+                                     }
                                 }
                             }
 
