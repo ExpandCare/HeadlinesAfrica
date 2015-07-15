@@ -221,8 +221,7 @@ function savePosts(response, options, cbNext) {
 
         _(acts).reduceRight(_.wrap, function() {
             // console.log('checking complete');
-            console.log('Count of new posts = ' + checkedPosts.length);
-            console.log('New posts = ' + JSON.stringify(checkedPosts));
+           // console.log('Count of new posts = ' + checkedPosts.length);
 
             postsArr = checkedPosts;
 
@@ -910,7 +909,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -953,7 +952,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -995,7 +994,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                          //  console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1037,7 +1036,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1080,7 +1079,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                          //  console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1121,7 +1120,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1164,7 +1163,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1206,7 +1205,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1235,12 +1234,10 @@ function savePosts(response, options, cbNext) {
 
             function getAhramOnlinePost(url) {
 
-                url = url.replace("/AllPortal", "");
-
                 return function(next) {
                     var body = JSON.stringify({
                         "input": {
-                            "webpage/url": url
+                            "webpage/url": url.replace("/AllPortal", "")
                         }
                     });
 
@@ -1250,7 +1247,7 @@ function savePosts(response, options, cbNext) {
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
-                            console.log(data);
+                           // console.log(data);
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
@@ -1287,7 +1284,7 @@ function getPostsList(options) {
         Parse.Cloud.httpRequest({
             url: options.url,
             success: function(httpResponse) {
-                console.log(options.source + ' ' + options.category);
+               // console.log(options.source + ' ' + options.category);
                 savePosts(httpResponse.text, {
                     category: options.category,
                     source: options.source,
@@ -1796,23 +1793,22 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Ahram Online',
         category: 'Sports',
         country: 'Egypt'
-     }
-     //, {
-    //     url: "https://api.import.io/store/data/f112c23a-2340-4863-ba94-8108fd431751/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F7%2FLife--Style%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
-    //     source: 'Ahram Online',
-    //     category: 'Blogs',
-    //     country: 'Egypt'
-    // }, {
-    //     url: "https://api.import.io/store/data/671891a2-f53f-41be-baac-104abdad4602/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F5%2FArts--Culture%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
-    //     source: 'Ahram Online',
-    //     category: 'Blogs',
-    //     country: 'Egypt'
-    // }, {
-    //     url: "https://api.import.io/store/data/9d2629b2-c541-4cea-8a50-d126005c8320/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllCategory%2F1%2F64%2FEgypt%2FPolitics-%2F6.aspx&_user=" + user + "&_apikey=" + apiKey,
-    //     source: 'Ahram Online',
-    //     category: 'Politics',
-    //     country: 'Egypt'
-   // }
+     }, {
+        url: "https://api.import.io/store/data/f112c23a-2340-4863-ba94-8108fd431751/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F7%2FLife--Style%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/671891a2-f53f-41be-baac-104abdad4602/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F5%2FArts--Culture%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/9d2629b2-c541-4cea-8a50-d126005c8320/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllCategory%2F1%2F64%2FEgypt%2FPolitics-%2F6.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Politics',
+        country: 'Egypt'
+    }
     ];
 
     Parse.Cloud.useMasterKey();

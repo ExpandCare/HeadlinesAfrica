@@ -117,6 +117,11 @@
                                        options:NSCaseInsensitiveSearch
                                          range:NSMakeRange(0, changedContent.length)];
     
+    [changedContent replaceOccurrencesOfString:@"Short link:"
+                                    withString:@""
+                                       options:NSCaseInsensitiveSearch
+                                         range:NSMakeRange(0, changedContent.length)];
+    
     if ([source isEqualToString:@"NBE"])
     {
         [changedContent replaceOccurrencesOfString:@"img src=\"/"
