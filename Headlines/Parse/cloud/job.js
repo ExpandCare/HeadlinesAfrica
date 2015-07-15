@@ -652,14 +652,14 @@ function savePosts(response, options, cbNext) {
                                         }
                                     }
 
-                                    //images
-                                    if (data.results && data.results[0] && data.results[0].image) {
-                                        if (typeof data.results[0].image === "string") {
-                                            postsArr[i].set("image", [data.results[0].image]);
-                                        } else {
-                                            postsArr[i].set("image", data.results[0].image);
-                                        }
-                                    }
+                                    // //images
+                                    // if (data.results && data.results[0] && data.results[0].image) {
+                                    //     if (typeof data.results[0].image === "string") {
+                                    //         postsArr[i].set("image", [data.results[0].image]);
+                                    //     } else {
+                                    //         postsArr[i].set("image", data.results[0].image);
+                                    //     }
+                                    // }
                                 }
                             }
 

@@ -93,6 +93,11 @@
                 
             }
             
+            if ([thePost.imageURL rangeOfString:@"dailyguideghana.com"].location != NSNotFound)
+            {
+                thePost.imageURL = nil;
+            }
+            
             thePost.link = post.link;
         }
         
