@@ -112,6 +112,11 @@
     NSString *titleImageCatalog = [[imageURL componentsSeparatedByString:@"/"] lastObject];
     titleImageCatalog = [imageURL stringByReplacingOccurrencesOfString:titleImageCatalog withString:@""];
     
+    [changedContent replaceOccurrencesOfString:@" comments</p>"
+                                    withString:@"</p>"
+                                       options:NSCaseInsensitiveSearch
+                                         range:NSMakeRange(0, changedContent.length)];
+    
     if ([source isEqualToString:@"NBE"])
     {
         [changedContent replaceOccurrencesOfString:@"img src=\"/"
