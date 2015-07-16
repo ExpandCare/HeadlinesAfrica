@@ -308,13 +308,15 @@
     
     if (skip)
     {
-        query.skip = self.resultController.fetchedObjects.count;
+        Post *p = [Post MR_findFirstWithPredicate:[NSPredicate predicateWithValue:YES] sortedBy:@"createdAt" ascending:YES];
+        [query whereKey:@"createdAt" lessThan:p.createdAt];
+        //query.skip = self.resultController.fetchedObjects.count;
     }
     
     __weak HLNewsViewController *controller = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-        if (objects.count < LOAD_NEWS_COUNT)
+        if (objects.count < LOAD_NEWS_COUNT && skip)
         {
             controller.downloadedAllNews = YES;
         }

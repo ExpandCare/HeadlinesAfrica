@@ -22,6 +22,9 @@
     //self.titleLabel.minimumScaleFactor = 0.5;
     //self.titleLabel.adjustsFontSizeToFitWidth = YES;
     
+    self.authorLabel.adjustsFontSizeToFitWidth = YES;
+    self.dateLabel.adjustsFontSizeToFitWidth = YES;
+    
     self.postImageView.clipsToBounds = YES;
     
     [self loadBanners];

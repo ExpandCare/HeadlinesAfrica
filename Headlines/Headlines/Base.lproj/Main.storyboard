@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lKe-zV-VCx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lKe-zV-VCx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--News View Controller-->
@@ -69,7 +70,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="5AX-B5-cAF">
-                                                    <rect key="frame" x="120" y="73" width="92" height="23"/>
+                                                    <rect key="frame" x="120" y="73" width="102" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="gyL-QN-LJv"/>
                                                     </constraints>
@@ -84,7 +85,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="YS4-OV-nfQ">
-                                                    <rect key="frame" x="220" y="73" width="92" height="23"/>
+                                                    <rect key="frame" x="230" y="73" width="82" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="ZdV-lH-e2l"/>
                                                     </constraints>
@@ -110,7 +111,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="UWL-Za-ys2" secondAttribute="bottom" constant="6" id="kbw-po-0bM"/>
                                                 <constraint firstItem="2lb-o5-WNj" firstAttribute="top" secondItem="C9B-4k-p8I" secondAttribute="top" constant="8" id="noz-My-iMw"/>
                                                 <constraint firstAttribute="trailing" secondItem="2lb-o5-WNj" secondAttribute="trailing" constant="8" id="qGV-Ne-3K6"/>
-                                                <constraint firstItem="YS4-OV-nfQ" firstAttribute="width" secondItem="5AX-B5-cAF" secondAttribute="width" id="qbT-A1-Mh0"/>
+                                                <constraint firstItem="YS4-OV-nfQ" firstAttribute="width" secondItem="5AX-B5-cAF" secondAttribute="width" multiplier="0.8" id="qbT-A1-Mh0"/>
                                                 <constraint firstItem="YS4-OV-nfQ" firstAttribute="centerY" secondItem="5AX-B5-cAF" secondAttribute="centerY" id="wCa-ma-IGy"/>
                                                 <constraint firstAttribute="trailing" secondItem="YS4-OV-nfQ" secondAttribute="trailing" constant="8" id="zeq-Z3-DQK"/>
                                             </constraints>
@@ -130,7 +131,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="FMn-Ve-23M">
-                                                    <rect key="frame" x="123" y="76" width="91" height="23"/>
+                                                    <rect key="frame" x="123" y="76" width="101" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="Ouk-di-e2J"/>
                                                     </constraints>
@@ -145,7 +146,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="KPK-JU-iiI">
-                                                    <rect key="frame" x="222" y="76" width="90" height="23"/>
+                                                    <rect key="frame" x="232" y="76" width="80" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="2y7-e1-jDS"/>
                                                     </constraints>
@@ -176,7 +177,7 @@
                                                 <constraint firstItem="Nqp-2f-Mxp" firstAttribute="top" secondItem="u7G-da-SJP" secondAttribute="top" constant="6" id="VMN-3c-ILB"/>
                                                 <constraint firstItem="imH-5v-58u" firstAttribute="top" secondItem="u7G-da-SJP" secondAttribute="top" constant="8" id="Vbg-Zw-6HE"/>
                                                 <constraint firstItem="Yyf-er-B2V" firstAttribute="leading" secondItem="u7G-da-SJP" secondAttribute="leading" id="daA-wd-mh8"/>
-                                                <constraint firstItem="KPK-JU-iiI" firstAttribute="width" secondItem="FMn-Ve-23M" secondAttribute="width" id="fIL-q1-izy"/>
+                                                <constraint firstItem="KPK-JU-iiI" firstAttribute="width" secondItem="FMn-Ve-23M" secondAttribute="width" multiplier="0.8" id="fIL-q1-izy"/>
                                                 <constraint firstItem="KPK-JU-iiI" firstAttribute="top" secondItem="imH-5v-58u" secondAttribute="bottom" id="fjc-XL-zgy"/>
                                                 <constraint firstAttribute="trailing" secondItem="KPK-JU-iiI" secondAttribute="trailing" constant="8" id="gMF-7z-kAK"/>
                                                 <constraint firstItem="imH-5v-58u" firstAttribute="leading" secondItem="Nqp-2f-Mxp" secondAttribute="trailing" constant="12" id="j7F-vM-s9O"/>
@@ -202,7 +203,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="auE-HM-ll0">
-                                                    <rect key="frame" x="114" y="67" width="95" height="23"/>
+                                                    <rect key="frame" x="114" y="67" width="106" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="Fg0-vJ-fvi"/>
                                                     </constraints>
@@ -217,7 +218,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="Mjc-XK-onR">
-                                                    <rect key="frame" x="217" y="67" width="95" height="23"/>
+                                                    <rect key="frame" x="228" y="67" width="84" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="cZY-ll-6MR"/>
                                                     </constraints>
@@ -240,7 +241,7 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Mjc-XK-onR" firstAttribute="width" secondItem="auE-HM-ll0" secondAttribute="width" id="5ig-3w-5Qd"/>
+                                                <constraint firstItem="Mjc-XK-onR" firstAttribute="width" secondItem="auE-HM-ll0" secondAttribute="width" multiplier="0.8" id="5ig-3w-5Qd"/>
                                                 <constraint firstItem="Mjc-XK-onR" firstAttribute="leading" secondItem="auE-HM-ll0" secondAttribute="trailing" constant="8" id="8St-8Z-Dhp"/>
                                                 <constraint firstItem="Mjc-XK-onR" firstAttribute="top" secondItem="hwm-Wu-BQS" secondAttribute="bottom" id="9mH-bP-GIT"/>
                                                 <constraint firstItem="hwm-Wu-BQS" firstAttribute="top" secondItem="YpE-o7-8iD" secondAttribute="top" constant="8" id="FNi-ls-sMx"/>
