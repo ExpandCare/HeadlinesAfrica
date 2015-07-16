@@ -19,12 +19,14 @@
 #import <SAMHUDView/SAMHUDView.h>
 #import "NSCache+Fix.h"
 #import "NSUserDefaults+Countries.h"
+#import "NoResultsCell.h"
 
 #define CELL_ID_TOP @"CELL_ID_TOP"
 #define CELL_ID_REGULAR @"CELL_ID_REGULAR"
 #define CELL_ID_REGULAR_SMALL @"CELL_ID_REGULAR_AD_SMALL"
 #define CELL_ID_REGULAR_BIG @"CELL_ID_REGULAR_AD_BIG"
 #define CELL_ID_HEADER @"CELL_ID_HEADER"
+#define CELL_NO_RESULTS @"CELL_NO_RESULTS"
 
 #define CELL_HEIGHT_TOP CGRectGetWidth(self.view.bounds)
 #define CELL_HEIGHT_REGULAR 100
@@ -100,6 +102,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TopPostCell class])
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:CELL_ID_TOP];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([NoResultsCell class])
+                                               bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:CELL_NO_RESULTS];
+    
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SimplePostCell class])
 //                                               bundle:[NSBundle mainBundle]]
 //         forCellReuseIdentifier:CELL_ID_REGULAR];
@@ -503,7 +510,7 @@
         }
     }
     
-    return self.resultController.fetchedObjects.count;
+    return self.resultController.fetchedObjects.count == 0 ? 1 : self.resultController.fetchedObjects.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -588,6 +595,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.resultController.fetchedObjects.count == 0)
+    {
+        NoResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_NO_RESULTS forIndexPath:indexPath];
+        return cell;
+    }
+    
     if (indexPath.section == 0)
     {
         HLHeaderViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:CELL_ID_HEADER forIndexPath:indexPath];

@@ -16,6 +16,9 @@
 #import "HLSearchTextField.h"
 #import "DAKeyboardControl.h"
 #import "AppDelegate.h"
+#import "NoResultsCell.h"
+
+#define CELL_NO_RESULTS @"CELL_NO_RESULTS"
 
 static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellIdentifier";
 
@@ -38,6 +41,10 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([NoResultsCell class])
+                                               bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:CELL_NO_RESULTS];
     
     [[self.searchTextField valueForKey:@"textInputTraits"] setValue:[UIColor whiteColor] forKey:@"insertionPointColor"];
     
@@ -193,11 +200,17 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchResults.count;
+    return self.searchResults.count == 0 ? 1 : self.searchResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.searchResults.count == 0)
+    {
+        NoResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_NO_RESULTS forIndexPath:indexPath];
+        return cell;
+    }
+    
     SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:kSearchTableViewCellIdentifier];
     [cell configureCellWithTitle:((HLPost *)self.searchResults[indexPath.row]).title content:[((HLPost *)self.searchResults[indexPath.row]).content stringByConvertingHTMLToPlainText]];
     return cell;
@@ -206,6 +219,11 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.searchResults.count == 0)
+    {
+        return 200.0f;
+    }
+    
     static SearchCell *sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

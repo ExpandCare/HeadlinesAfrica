@@ -83,6 +83,8 @@
 		49FB5CC01AC5C4D1001CFE37 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */; };
 		597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 597E59681B4AB56000E8BD97 /* SearchCell.m */; };
 		59E85C341B4D5F5400AABF4F /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
+		59F4F3511B57FFDA00691205 /* NoResultsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F4F3501B57FFDA00691205 /* NoResultsCell.m */; };
+		59F4F3531B58004D00691205 /* NoResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59F4F3521B58004D00691205 /* NoResultsCell.xib */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +242,9 @@
 		597E59681B4AB56000E8BD97 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		59E85C321B4D5F5400AABF4F /* HLSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchField.h; path = Subclasses/HLSearchField.h; sourceTree = "<group>"; };
 		59E85C331B4D5F5400AABF4F /* HLSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchField.m; path = Subclasses/HLSearchField.m; sourceTree = "<group>"; };
+		59F4F34F1B57FFDA00691205 /* NoResultsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoResultsCell.h; path = Views/Cells/NoResultsCell.h; sourceTree = "<group>"; };
+		59F4F3501B57FFDA00691205 /* NoResultsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoResultsCell.m; path = Views/Cells/NoResultsCell.m; sourceTree = "<group>"; };
+		59F4F3521B58004D00691205 /* NoResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoResultsCell.xib; path = Views/Cells/NoResultsCell.xib; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -451,6 +456,9 @@
 				497035C31AD68F4A00878EE1 /* HLHeaderViewCell.m */,
 				49EB86C81B4AB6A700B21806 /* HLCountryCell.h */,
 				49EB86C91B4AB6A700B21806 /* HLCountryCell.m */,
+				59F4F34F1B57FFDA00691205 /* NoResultsCell.h */,
+				59F4F3501B57FFDA00691205 /* NoResultsCell.m */,
+				59F4F3521B58004D00691205 /* NoResultsCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -701,6 +709,7 @@
 				49C22CB51AB028CA00BCEFAF /* Main.storyboard in Resources */,
 				49D441E51ADFAFEB0091C401 /* BigBannerPostCell.xib in Resources */,
 				49015F1E1AC9A125002CC1D7 /* FindCoordinates.js in Resources */,
+				59F4F3531B58004D00691205 /* NoResultsCell.xib in Resources */,
 				499946681AB8765C0042A5E8 /* HelveticaNeueLTW1G-MdCn.otf in Resources */,
 				49C418501AC2AFBB0051164C /* template.html in Resources */,
 				49C22CF01AB1DEE900BCEFAF /* CategoryCell.xib in Resources */,
@@ -828,6 +837,7 @@
 				49FB5CBD1AC5C328001CFE37 /* HLCommentsViewController.m in Sources */,
 				499946571AB6FF1D0042A5E8 /* HLNavigationController.m in Sources */,
 				49D441E31ADFA7600091C401 /* BigBannerPostCell.m in Sources */,
+				59F4F3511B57FFDA00691205 /* NoResultsCell.m in Sources */,
 				49C22CE81AB1CCF000BCEFAF /* HLPostDetailViewController.m in Sources */,
 				497A276D1ABACF3C0063ACB8 /* Post+Additions.m in Sources */,
 				49EB86C41B4AA26A00B21806 /* HLButton.m in Sources */,
