@@ -160,15 +160,20 @@ Parse.Cloud.define("searchPost", function(request, response)
            
            var uniqueIds = [];
            var uniquePosts = [];
-           console.log('POSTS ='.concat(posts));
+           
            for(var i = 0; i < posts.length; i++)
            {
                var post = posts[i];
-               if(!_.contains(uniqueIds, post.id))
+
+               if(post !== null && typeof post === 'object')
                {
-                   uniquePosts.push(post);
-                   uniqueIds.push(post.id);
+                  if(!_.contains(uniqueIds, post.id))
+                  {
+                     uniquePosts.push(post);
+                     uniqueIds.push(post.id);
+                  }
                }
+
            }
 
            uniquePosts = uniquePosts.slice(skip, skip + limit);
