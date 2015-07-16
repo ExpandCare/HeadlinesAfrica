@@ -488,14 +488,25 @@
         [request.URL.scheme isEqualToString:@"sms"] ||
         [request.URL.scheme isEqualToString:@"mailto"])
     {
-        [[UIApplication sharedApplication] openURL:request.URL];
+        
+        NSString *urlString = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"mailto:" withString:@"mailto:?to="];
+        
+        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        }
+        
         return NO;
     }
     if ([request.URL.scheme isEqualToString:@"tel"])
     {
         if (![NSObject hasCellular])
         {
-            [[UIApplication sharedApplication] openURL:request.URL];
+            if([[UIApplication sharedApplication] canOpenURL:request.URL])
+            {
+                [[UIApplication sharedApplication] openURL:request.URL];
+            }
+            
             return NO;
         }
         
