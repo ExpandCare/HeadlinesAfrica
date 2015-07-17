@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lKe-zV-VCx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lKe-zV-VCx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -275,6 +275,16 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="MxP-9v-nfU"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd3-Lf-r2R">
+                                <rect key="frame" x="85" y="340" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="C7J-1o-zoQ"/>
+                                    <constraint firstAttribute="width" constant="150" id="cBT-py-V9N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSX-EC-94t">
                                 <rect key="frame" x="0.0" y="643" width="320" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -288,8 +298,10 @@
                             <constraint firstItem="wSX-EC-94t" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="GPA-3Q-wdN"/>
                             <constraint firstItem="3jd-Zy-cvj" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Kxi-MK-Vog"/>
                             <constraint firstAttribute="bottom" secondItem="3jd-Zy-cvj" secondAttribute="bottom" id="QCE-SG-GqU"/>
+                            <constraint firstItem="dd3-Lf-r2R" firstAttribute="centerX" secondItem="3jd-Zy-cvj" secondAttribute="centerX" id="UAx-x4-BO1"/>
                             <constraint firstAttribute="trailing" secondItem="wSX-EC-94t" secondAttribute="trailing" id="YAy-nT-wrv"/>
                             <constraint firstItem="3jd-Zy-cvj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="j4a-f8-eih"/>
+                            <constraint firstItem="dd3-Lf-r2R" firstAttribute="centerY" secondItem="3jd-Zy-cvj" secondAttribute="centerY" id="tTF-eS-hAc"/>
                             <constraint firstAttribute="bottom" secondItem="wSX-EC-94t" secondAttribute="bottom" constant="57" id="tTo-oq-GwO"/>
                             <constraint firstAttribute="trailing" secondItem="3jd-Zy-cvj" secondAttribute="trailing" id="xF9-Kl-dyC"/>
                         </constraints>
@@ -303,6 +315,7 @@
                         <outlet property="navBackgroundBottomConstraint" destination="tTo-oq-GwO" id="zVf-k1-1fQ"/>
                         <outlet property="navBackgroundHeightConstraint" destination="vHd-U1-gO9" id="Nyg-3E-VZB"/>
                         <outlet property="navbarBackgroundView" destination="wSX-EC-94t" id="EFQ-WV-dtU"/>
+                        <outlet property="noResultsLbl" destination="dd3-Lf-r2R" id="PtJ-tC-BFY"/>
                         <outlet property="tableView" destination="3jd-Zy-cvj" id="pqv-eu-Q4F"/>
                         <outlet property="tableViewBottomConstraint" destination="j4a-f8-eih" id="tEI-Op-lfP"/>
                         <outlet property="tableViewTopConstraint" destination="Kxi-MK-Vog" id="l0d-Of-wxR"/>
@@ -956,11 +969,23 @@
                                     <outlet property="delegate" destination="ASi-bJ-zyM" id="S7V-PN-6Pk"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgo-HT-iPI">
+                                <rect key="frame" x="85" y="249" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="LB1-yA-s4g"/>
+                                    <constraint firstAttribute="height" constant="21" id="OkK-te-SUf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RGV-nY-r5K" firstAttribute="leading" secondItem="yXB-Yf-zXp" secondAttribute="leading" id="2jF-6E-6T3"/>
+                            <constraint firstItem="RGV-nY-r5K" firstAttribute="centerX" secondItem="cgo-HT-iPI" secondAttribute="centerX" id="9GO-MB-Mka"/>
                             <constraint firstAttribute="trailing" secondItem="RGV-nY-r5K" secondAttribute="trailing" id="T8W-11-cSE"/>
+                            <constraint firstItem="RGV-nY-r5K" firstAttribute="centerY" secondItem="cgo-HT-iPI" secondAttribute="centerY" id="cr9-EI-Kwq"/>
                             <constraint firstItem="RGV-nY-r5K" firstAttribute="top" secondItem="UK0-Ik-19j" secondAttribute="bottom" constant="-64" id="ltu-ew-KGf"/>
                             <constraint firstItem="aPs-2a-wqV" firstAttribute="top" secondItem="RGV-nY-r5K" secondAttribute="bottom" id="n7q-2j-fmf"/>
                         </constraints>
@@ -999,6 +1024,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="noResultsLbl" destination="cgo-HT-iPI" id="Aga-I4-yl1"/>
                         <outlet property="searchTextField" destination="jyk-sX-Lnr" id="VXi-ap-0Zf"/>
                         <outlet property="searchView" destination="W47-Xn-iSx" id="qlG-yf-RuK"/>
                         <outlet property="tableView" destination="RGV-nY-r5K" id="TeP-hY-rCE"/>

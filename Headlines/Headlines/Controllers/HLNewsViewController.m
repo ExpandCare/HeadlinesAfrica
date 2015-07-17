@@ -19,7 +19,6 @@
 #import <SAMHUDView/SAMHUDView.h>
 #import "NSCache+Fix.h"
 #import "NSUserDefaults+Countries.h"
-#import "NoResultsCell.h"
 
 #define CELL_ID_TOP @"CELL_ID_TOP"
 #define CELL_ID_REGULAR @"CELL_ID_REGULAR"
@@ -50,6 +49,7 @@
 
 @property (nonatomic) BOOL downloadedAllNews;
 @property (nonatomic) BOOL downloading;
+@property (nonatomic, weak) IBOutlet UILabel *noResultsLbl;
 
 @end
 
@@ -103,9 +103,6 @@
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:CELL_ID_TOP];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([NoResultsCell class])
-                                               bundle:[NSBundle mainBundle]]
-         forCellReuseIdentifier:CELL_NO_RESULTS];
     
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SimplePostCell class])
 //                                               bundle:[NSBundle mainBundle]]
@@ -137,6 +134,7 @@
     [self.tableView reloadData];
     
     [self checkArticleIdToPushTo];
+    [self hideShowNoResultsLbl];
 }
 
 - (void)didBecomeActive:(NSNotification*)note
@@ -270,6 +268,19 @@
                                   animated:YES];
 }
 
+- (void)hideShowNoResultsLbl
+{
+    if([self.tableView numberOfRowsInSection:1] > 0)
+    {
+        self.noResultsLbl.hidden = YES;
+    }
+    else if(self.category)
+    {
+        self.noResultsLbl.hidden = NO;
+    }
+}
+
+
 #pragma mark - News
 
 - (void)fetchAndLoadNewsWithSkipping:(BOOL)skip
@@ -372,8 +383,9 @@
             
         case NSFetchedResultsChangeInsert:
             
+           
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:nIP]
-                             withRowAnimation:UITableViewRowAnimationFade];
+                                 withRowAnimation:UITableViewRowAnimationFade];
             
             if (newIndexPath.row == 0 && self.tableView.contentOffset.y < CGRectGetHeight(self.view.bounds))
             {
@@ -404,6 +416,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    [self hideShowNoResultsLbl];
 }
 
 - (NSFetchedResultsController *)resultController
@@ -510,7 +523,7 @@
         }
     }
     
-    return self.resultController.fetchedObjects.count == 0 ? 1 : self.resultController.fetchedObjects.count;
+    return self.resultController.fetchedObjects.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -595,12 +608,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.resultController.fetchedObjects.count == 0)
-    {
-        NoResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_NO_RESULTS forIndexPath:indexPath];
-        return cell;
-    }
-    
     if (indexPath.section == 0)
     {
         HLHeaderViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:CELL_ID_HEADER forIndexPath:indexPath];

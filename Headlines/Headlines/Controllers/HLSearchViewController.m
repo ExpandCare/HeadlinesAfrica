@@ -16,7 +16,6 @@
 #import "HLSearchTextField.h"
 #import "DAKeyboardControl.h"
 #import "AppDelegate.h"
-#import "NoResultsCell.h"
 
 #define CELL_NO_RESULTS @"CELL_NO_RESULTS"
 
@@ -31,6 +30,7 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 @property (nonatomic, strong) IBOutlet UIView *searchView;
 @property (nonatomic, weak) IBOutlet UITextField *searchTextField;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewBottomSpacingConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *noResultsLbl;
 
 @end
 
@@ -41,10 +41,6 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([NoResultsCell class])
-                                               bundle:[NSBundle mainBundle]]
-         forCellReuseIdentifier:CELL_NO_RESULTS];
     
     [[self.searchTextField valueForKey:@"textInputTraits"] setValue:[UIColor whiteColor] forKey:@"insertionPointColor"];
     
@@ -106,6 +102,18 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 
 #pragma mark - Private
 
+- (void)hideShowNoResultsLbl
+{
+    if(self.searchResults.count > 0)
+    {
+        self.noResultsLbl.hidden = YES;
+    }
+    else
+    {
+        self.noResultsLbl.hidden = NO;
+    }
+}
+
 - (void)cancelSearchAction
 {
     self.title = NSLocalizedString(@"search results", nil);
@@ -150,6 +158,7 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
          {
              weakSelf.searchResults = [NSArray arrayWithArray:object[@"posts"]];
              [weakSelf.tableView reloadData];
+             [weakSelf hideShowNoResultsLbl];
              [weakSelf.hud completeAndDismissWithTitle:NSLocalizedString(@"Success", nil)];
          }
          else
@@ -200,16 +209,11 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchResults.count == 0 ? 1 : self.searchResults.count;
+    return self.searchResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.searchResults.count == 0)
-    {
-        NoResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_NO_RESULTS forIndexPath:indexPath];
-        return cell;
-    }
     
     SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:kSearchTableViewCellIdentifier];
     [cell configureCellWithTitle:((HLPost *)self.searchResults[indexPath.row]).title content:[((HLPost *)self.searchResults[indexPath.row]).content stringByConvertingHTMLToPlainText]];
