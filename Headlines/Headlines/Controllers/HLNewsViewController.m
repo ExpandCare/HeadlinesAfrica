@@ -321,7 +321,7 @@
     
     if ([NSUserDefaults enabledCountries])
     {
-        [query whereKey:@"country" containedIn:[NSUserDefaults enabledCountries]];
+        [query whereKey:@"country" containedIn:[[NSUserDefaults enabledCountries] arrayByAddingObject:GOAL_DEFAUL_COUNTRY]];
     }
     
     if (skip)
@@ -485,6 +485,8 @@
     
     if (predicates.count > 0)
     {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"country == %@", GOAL_DEFAUL_COUNTRY]];
+        
         countryPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
         
         if (predicate)

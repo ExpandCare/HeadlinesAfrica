@@ -14,7 +14,7 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import <Parse/PFTwitterUtils.h>
+#import <ParseTwitterUtils.h>
 
 #ifndef DEBUG
 #define NSLog(...)
