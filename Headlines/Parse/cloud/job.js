@@ -1317,7 +1317,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         url: "https://api.import.io/store/data/ddbe78d5-0529-43d7-a570-2a6ec07927cc/_query?input/webpage/url=http%3A%2F%2Fwww.goal.com%2Fen%2Fnews%2Farchive%2F1%3FICID%3DOP&_user=" + user + "&_apikey=" + apiKey,
         source: 'Goal',
         category: 'Sports',
-        country: 'Nigeria'
+        country: 'Euro Soccer'
     }, {
         url: "https://api.import.io/store/data/fe91f34b-2ea0-4a8c-afe7-727a73800935/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vibeghana',

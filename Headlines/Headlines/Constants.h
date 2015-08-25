@@ -20,6 +20,8 @@
 #define BANNER_HEIGHT 50
 #define BIG_BANNER_HEIGHT 100
 
+#define GOAL_DEFAUL_COUNTRY @"Euro Soccer"
+
 #pragma mark - Storyboard IS's
 extern NSString * const kStoryboardIDNewsController;
 extern NSString * const kStoryboardIDWebController;
