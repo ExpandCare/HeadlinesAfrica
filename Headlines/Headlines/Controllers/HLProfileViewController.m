@@ -84,4 +84,9 @@
     [self performSegueWithIdentifier:@"toChangePasswordScreen" sender:self];
 }
 
+- (IBAction)inviteFriendsButtonPressed:(id)sender
+{
+    [self performSegueWithIdentifier:@"toInviteFriendsScreen" sender:self];
+}
+
 @end

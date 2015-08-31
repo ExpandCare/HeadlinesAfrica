@@ -27,6 +27,8 @@ extern NSString * const kStoryboardIDNewsController;
 extern NSString * const kStoryboardIDWebController;
 extern NSString * const kStoryboardIDLinkedInLoginController;
 
+extern NSString * const kContactCellIdentifier;
+
 #pragma mark - LinkedIn
 extern NSString * const kLinkedInApiKey;
 extern NSString * const kLinkedInSecret;

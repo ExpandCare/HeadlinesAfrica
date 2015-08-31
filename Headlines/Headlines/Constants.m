@@ -9,7 +9,9 @@
 #pragma mark - StroryboardID's
 NSString * const kStoryboardIDNewsController = @"newsControllerID";
 NSString * const kStoryboardIDWebController = @"WebViewControllerID";
-NSString * const kStoryboardIDLinkedInLoginController = @"LinkedInLoginController";;
+NSString * const kStoryboardIDLinkedInLoginController = @"LinkedInLoginController";
+
+NSString * const kContactCellIdentifier = @"contactCellIdentifier";
 
 #pragma mark - LinkedIn
 NSString * const kLinkedInApiKey = @"78rm1g6m4y4m4i";
