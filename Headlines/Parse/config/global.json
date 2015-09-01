@@ -7,8 +7,11 @@
       "applicationId": "7iYJMHDqqHJ2xmIiimYjDSBOeia4IcKz6cUJluqB",
       "masterKey": "TOu0CmMteZMRrqrbSt0oDNbqWAcnUX6IGjz2uS5C"
     },
+    "Headlines Africa Dev": {
+      "applicationId": "p8rrpMQXg6sEysabNDfbfRxaPmpzFrrBRO3TaWoH"
+    },
     "_default": {
-      "link": "Headlines"
+      "link": "Headlines Africa Dev"
     }
   }
 }

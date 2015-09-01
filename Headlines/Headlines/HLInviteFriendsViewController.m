@@ -104,11 +104,8 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
              
              if(!error)
              {
-                 if(((NSArray *)object).count)
-                 {
-                     [weakSelf checkAlreadyRegisteredContacts:object];
-                     [weakSelf.tableView reloadData];
-                 }
+                [weakSelf checkAlreadyRegisteredContacts:object];
+                [weakSelf.tableView reloadData];
              }
             
         }];
