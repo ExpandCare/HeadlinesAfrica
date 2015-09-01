@@ -82,6 +82,10 @@
 		49FB5CBD1AC5C328001CFE37 /* HLCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBC1AC5C328001CFE37 /* HLCommentsViewController.m */; };
 		49FB5CC01AC5C4D1001CFE37 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */; };
 		597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 597E59681B4AB56000E8BD97 /* SearchCell.m */; };
+		59856E111B94442B0023E144 /* HLInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E101B94442B0023E144 /* HLInviteFriendsViewController.m */; };
+		59856E151B9449890023E144 /* ExistingUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E141B9449890023E144 /* ExistingUserCell.m */; };
+		59856E181B944E030023E144 /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E171B944E030023E144 /* ContactCell.m */; };
+		59856E1A1B9490E10023E144 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59856E191B9490E10023E144 /* MessageUI.framework */; };
 		59E85C341B4D5F5400AABF4F /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -238,6 +242,13 @@
 		4C72B6F1508031ACBADC7039 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		597E59671B4AB56000E8BD97 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		597E59681B4AB56000E8BD97 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		59856E0F1B94442B0023E144 /* HLInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLInviteFriendsViewController.h; sourceTree = "<group>"; };
+		59856E101B94442B0023E144 /* HLInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLInviteFriendsViewController.m; sourceTree = "<group>"; };
+		59856E131B9449890023E144 /* ExistingUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingUserCell.h; sourceTree = "<group>"; };
+		59856E141B9449890023E144 /* ExistingUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingUserCell.m; sourceTree = "<group>"; };
+		59856E161B944E030023E144 /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
+		59856E171B944E030023E144 /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
+		59856E191B9490E10023E144 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		59E85C321B4D5F5400AABF4F /* HLSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchField.h; path = Subclasses/HLSearchField.h; sourceTree = "<group>"; };
 		59E85C331B4D5F5400AABF4F /* HLSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchField.m; path = Subclasses/HLSearchField.m; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59856E1A1B9490E10023E144 /* MessageUI.framework in Frameworks */,
 				497A27741ABC19180063ACB8 /* QuartzCore.framework in Frameworks */,
 				8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */,
 			);
@@ -270,6 +282,8 @@
 				49C22CE41AB1CAAA00BCEFAF /* HLProfileViewController.m */,
 				49784EC41ACD3A4D00ECDE26 /* HLChangePasswordViewController.h */,
 				49784EC51ACD3A4D00ECDE26 /* HLChangePasswordViewController.m */,
+				59856E0F1B94442B0023E144 /* HLInviteFriendsViewController.h */,
+				59856E101B94442B0023E144 /* HLInviteFriendsViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -428,6 +442,7 @@
 		49C22CD01AB030FE00BCEFAF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				59856E121B94490F0023E144 /* InviteFriends */,
 				49C22D021AB2DE3200BCEFAF /* LoginRegistration */,
 				597E59671B4AB56000E8BD97 /* SearchCell.h */,
 				597E59681B4AB56000E8BD97 /* SearchCell.m */,
@@ -595,6 +610,17 @@
 			name = Comment;
 			sourceTree = "<group>";
 		};
+		59856E121B94490F0023E144 /* InviteFriends */ = {
+			isa = PBXGroup;
+			children = (
+				59856E131B9449890023E144 /* ExistingUserCell.h */,
+				59856E141B9449890023E144 /* ExistingUserCell.m */,
+				59856E161B944E030023E144 /* ContactCell.h */,
+				59856E171B944E030023E144 /* ContactCell.m */,
+			);
+			name = InviteFriends;
+			sourceTree = "<group>";
+		};
 		A807CB12FF651B2B8C22D566 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +633,7 @@
 		B924CE8ADCEED61BDFA4C115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59856E191B9490E10023E144 /* MessageUI.framework */,
 				497A27731ABC19180063ACB8 /* QuartzCore.framework */,
 				31BCB6C5122C89BB95EC89B5 /* libPods.a */,
 			);
@@ -811,6 +838,7 @@
 				49A212F81ACB033000CE8204 /* Post.m in Sources */,
 				49784EC61ACD3A4D00ECDE26 /* HLChangePasswordViewController.m in Sources */,
 				494230BF1AB9BEAE00DE722F /* NSString+EmailValidation.m in Sources */,
+				59856E151B9449890023E144 /* ExistingUserCell.m in Sources */,
 				49C22CEF1AB1DEE900BCEFAF /* CategoryCell.m in Sources */,
 				49C22CF31AB1EDAA00BCEFAF /* HLTabBarViewController.m in Sources */,
 				597E59691B4AB56000E8BD97 /* SearchCell.m in Sources */,
@@ -840,10 +868,12 @@
 				49DAC6951AD2C8F900ADC969 /* SBDoubleSidedLayer.m in Sources */,
 				49A212F51ACAE47700CE8204 /* HLLike.m in Sources */,
 				49C22CAF1AB028CA00BCEFAF /* AppDelegate.m in Sources */,
+				59856E181B944E030023E144 /* ContactCell.m in Sources */,
 				49C22CAC1AB028CA00BCEFAF /* main.m in Sources */,
 				49C22CE51AB1CAAA00BCEFAF /* HLProfileViewController.m in Sources */,
 				49D441E01ADFA6A60091C401 /* SmallBannerPostCell.m in Sources */,
 				49A212FB1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m in Sources */,
+				59856E111B94442B0023E144 /* HLInviteFriendsViewController.m in Sources */,
 				49C22CEA1AB1D32700BCEFAF /* Constants.m in Sources */,
 				499749931B4C05C300C2093F /* HLRegion.m in Sources */,
 				49CC83861AC078390067A2FB /* HLWebViewController.m in Sources */,

@@ -103,13 +103,10 @@
         
     } completion:^(BOOL success, NSError *error) {
         
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            
-            if (completionCopy)
-            {
-                completionCopy(success, error);
-            }
-        }];
+        if (completionCopy)
+        {
+            completionCopy(success, error);
+        }
     }];
 }
 
