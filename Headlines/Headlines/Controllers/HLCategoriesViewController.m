@@ -288,6 +288,8 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     if (predicates.count > 0)
     {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"country == %@", GOAL_DEFAUL_COUNTRY]];
+        
         countryPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
         
         NSCompoundPredicate *completePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[categoryPredicate, countryPredicate]];
