@@ -24,7 +24,7 @@
 {
     NSRange urlLocation = [self rangeOfString:@"?"];
     
-    if ([self rangeOfString:@"vibeghana"].location != NSNotFound)
+    if ([self rangeOfString:@"vibeghana"].location != NSNotFound || [self rangeOfString:@"moroccoworldnews"].location != NSNotFound)
     {
         return self;
     }

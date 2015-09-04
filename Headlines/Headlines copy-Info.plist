@@ -5,17 +5,19 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Headlines</string>
+	<string>HeadlinesDev</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.HeadlinesAfrica.headlines</string>
+	<string>com.HeadlinesAfrica.headlinesDev</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -25,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb789836434443533</string>
+				<string>fb1478644765765399</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,16 +35,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>http://com.headlines.cl</string>
+				<string>http://com.headlinesdev.cl</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>.0.1058</string>
+	<string>1.0.0.1036</string>
 	<key>FacebookAppID</key>
-	<string>789836434443533</string>
+	<string>1478644765765399</string>
 	<key>FacebookDisplayName</key>
-	<string>Headlines</string>
+	<string>HeadlinesDev</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

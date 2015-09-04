@@ -37,3 +37,21 @@ NSString * const kNotificationFilterChanged = @"kNotificationFilterChanged";
 NSString * const kDefaultsUserKeyPassword = @"kPFUserKeyPassword";
 NSString * const kDefaultsNeedToUpdate = @"kNeedToUpdate";
 NSString * const kDefaultsEnabledCountries = @"kDefaultsEnabledCountries";
+
+#ifdef DEVTARGET
+NSString * const kParseAppID                            = @"p8rrpMQXg6sEysabNDfbfRxaPmpzFrrBRO3TaWoH";
+NSString * const kParseClientKey                        = @"ZClqTF0b2sFxsIB5ZopM8Z6vI3cqvZg0KyHoyIwT";
+
+//Twitter
+NSString * const kTwitterConsumerKey = @"Ht4cBklqQAbVb2JlDy7ih3tFn";
+NSString * const kTwitterConsumerSecret = @"DPTwWFf3jh6LKuiuWelxcyP1bexmyUDG83Wpglvoi9FevSuIGx";
+
+#elif PRODTARGET
+NSString * const kParseAppID                            = @"7iYJMHDqqHJ2xmIiimYjDSBOeia4IcKz6cUJluqB";
+NSString * const kParseClientKey                        = @"pMRiYDDR4uyWV8o6ZMonubGRxZhBQ6UbCqGIUzIk";
+
+//Twitter
+NSString * const kTwitterConsumerKey = @"QmspYnu7HSPGVjqxn35si7aCK";
+NSString * const kTwitterConsumerSecret = @"gkKWvLpgJvww3IWX3cGWpM8TGVGx8OotKBpWIfOmtRgKUUelS2";
+
+#endif

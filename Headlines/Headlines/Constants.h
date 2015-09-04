@@ -22,6 +22,8 @@
 
 #define GOAL_DEFAUL_COUNTRY @"Euro Soccer"
 
+
+
 #pragma mark - Storyboard IS's
 extern NSString * const kStoryboardIDNewsController;
 extern NSString * const kStoryboardIDWebController;
@@ -53,4 +55,14 @@ extern NSString * const kNotificationFilterChanged;
 extern NSString * const kDefaultsUserKeyPassword;
 extern NSString * const kDefaultsNeedToUpdate;
 extern NSString * const kDefaultsEnabledCountries;
+
+#pragma mark - Parse
+
+NSString * const kParseAppID;
+NSString * const kParseClientKey;
+
+#pragma mark - Twitter
+
+NSString * const kTwitterConsumerKey;
+NSString * const kTwitterConsumerSecret;
 

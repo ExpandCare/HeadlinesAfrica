@@ -216,6 +216,21 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Ahram Online') {
                     actions.push(getAhramOnlinePost(postsArr[i].get('link')));
                 };
+                if (options.source === 'SDE') {
+                    actions.push(getSDEPost(postsArr[i].get('link')));
+                };
+                if (options.source === 'Standart Media') {
+                    actions.push(getStandartMediaPost(postsArr[i].get('link')));
+                };
+                if (options.source === 'Cameroon Online') {
+                    actions.push(getCameroonOnlinePost(postsArr[i].get('link')));
+                };
+                if (options.source === 'All Ghana News') {
+                    actions.push(getAllGhanaNewsPost(postsArr[i].get('link')));
+                };
+                if (options.source === 'Morocco World News') {
+                    actions.push(getMoroccoWorldNewsPost(postsArr[i].get('link')));
+                };
             }
 
             _(actions).reduceRight(_.wrap, function() {
@@ -697,7 +712,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',
-                        url: "https://api.import.io/store/data/da68010f-c52d-4272-a02f-ab0ec3b4c5b6/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/data/3ee5c573-beae-4d38-bb95-0823dcdf9d97/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -1198,6 +1213,216 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getSDEPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/b76809ff-cd8f-4993-a28b-1fa2ca34a74f/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getStandartMediaPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/a98bcc89-60ee-4fa7-a12f-555430f080ce/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getCameroonOnlinePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/4fed2b6d-b5cd-42b9-9eb7-735c9146bda5/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getAllGhanaNewsPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/88b168d9-c494-45a2-8c37-9b245f578af6/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getMoroccoWorldNewsPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/10709c90-0bf9-4a6b-b82d-a21cf5bb77cb/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1573,6 +1798,101 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Ahram Online',
         category: 'Politics',
         country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/a911c3f6-f849-4158-b1e6-80a00140b6b8/_query?input/webpage/url=http%3A%2F%2Fwww.sde.co.ke%2Fcategory%2Folder%2F106%2Flocal-news&_user=" + user + "&_apikey=" + apiKey,
+        source: 'SDE',
+        category: 'Blogs',
+        country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/71d69541-deb4-4996-8acf-b2d3fbefa043/_query?input/webpage/url=http%3A%2F%2Fwww.standardmedia.co.ke%2Fbusiness%2Fcategory%2Folder%2F4%2Fbusiness&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Standart Media',
+        category: 'Business',
+        country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/bd99ea81-32c5-4b03-9773-5e28a2b44815/_query?input/webpage/url=http%3A%2F%2Fwww.standardmedia.co.ke%2Fhealth%2Fcategory%2Folder%2F41%2Fhealth&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Standart Media',
+        category: 'Healthcare',
+        country: 'Kenya'
+    }, {
+        url: "https://api.import.io/store/data/6b60757a-402f-4ac1-b925-fd167bf6f2b4/_query?input/webpage/url=http%3A%2F%2Fwww.cameroononline.org%2Fsports-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon Online',
+        category: 'Sports',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/635f1c45-3e44-423f-b015-2be0be9173a4/_query?input/webpage/url=http%3A%2F%2Fwww.cameroononline.org%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon Online',
+        category: 'Technology',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/67e64fcc-5eb4-4bae-8a78-513207016e25/_query?input/webpage/url=http%3A%2F%2Fwww.cameroononline.org%2Fpolitic-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon Online',
+        category: 'Politics',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/bb271a94-a2b7-4306-9035-82350d55be49/_query?input/webpage/url=http%3A%2F%2Fwww.cameroononline.org%2Fsociety-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Cameroon Online',
+        category: 'Blogs',
+        country: 'Cameroon'
+    }, {
+        url: "https://api.import.io/store/data/75e6824d-c478-4a56-ab93-1415c871394f/_query?input/webpage/url=http%3A%2F%2Fenglish.ahram.org.eg%2FAllPortal%2F3%2FBusiness%2F0.aspx&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Ahram Online',
+        category: 'Business',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/ea80c63c-965e-4058-8858-4a89b49bd137/_query?input/webpage/url=http%3A%2F%2Fwww.allghananews.com%2Fpolitics&_user=" + user + "&_apikey=" + apiKey,
+        source: 'All Ghana News',
+        category: 'Politics',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/cd5d9dde-a108-40fa-80af-54e2c3c85d3d/_query?input/webpage/url=http%3A%2F%2Fwww.allghananews.com%2Fbusiness-and-economy&_user=" + user + "&_apikey=" + apiKey,
+        source: 'All Ghana News',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/1e3a4282-ff66-4154-a7e0-0b1e601b1dd6/_query?input/webpage/url=http%3A%2F%2Fwww.allghananews.com%2Fhealth-lifestyle&_user=" + user + "&_apikey=" + apiKey,
+        source: 'All Ghana News',
+        category: 'Healthcare',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/c4212b9c-436a-45c0-ba63-8c7832aaf3be/_query?input/webpage/url=http%3A%2F%2Fwww.allghananews.com%2Fsports&_user=" + user + "&_apikey=" + apiKey,
+        source: 'All Ghana News',
+        category: 'Sports',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/c56a8168-ff09-4469-8db3-13b65d4eb37e/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fentertainment%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Vibeghana',
+        category: 'Blogs',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/ac83198e-b128-4a8f-b904-ced94f3d75be/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Fsports%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Sports',
+        country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/f6463856-9409-484c-a163-560545bc78bd/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Fsociety%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Healthcare',
+        country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/5a8f9724-75d4-48f6-aabe-f7b21fa78c46/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Feconomy%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Business',
+        country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/9ff45296-1b12-4742-83b9-6eea275d20b2/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Fculture%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Blogs',
+        country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/e9ab49c0-c006-42ce-a960-8660d44e79c1/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Fopinion%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Politics',
+        country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/63ee7206-b2c5-4882-8074-82ee03a38946/_query?input/webpage/url=http%3A%2F%2Fwww.moroccoworldnews.com%2Fcategory%2Feducation%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Morocco World News',
+        category: 'Technology',
+        country: 'Morocco'
     }
     ];
 

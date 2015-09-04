@@ -17,9 +17,7 @@
 
 NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
 
-//Twitter
-NSString * const kTwitterConsumerKey = @"QmspYnu7HSPGVjqxn35si7aCK";
-NSString * const kTwitterConsumerSecret = @"gkKWvLpgJvww3IWX3cGWpM8TGVGx8OotKBpWIfOmtRgKUUelS2";
+
 
 @interface AppDelegate () <UIAlertViewDelegate>
 
@@ -67,8 +65,8 @@ NSString * const kTwitterConsumerSecret = @"gkKWvLpgJvww3IWX3cGWpM8TGVGx8OotKBpW
     [ParseCrashReporting enable];
     
     // Initialize Parse.
-    [Parse setApplicationId:@"7iYJMHDqqHJ2xmIiimYjDSBOeia4IcKz6cUJluqB"
-                  clientKey:@"pMRiYDDR4uyWV8o6ZMonubGRxZhBQ6UbCqGIUzIk"];
+    [Parse setApplicationId:kParseAppID
+                  clientKey:kParseClientKey];
     
 //    // [Optional] Track statistics around application opens.
 //    [PFAnalytics trackAppOpenedWithLaunchOptionsInBackground:launchOptions block:^(BOOL succeeded, NSError *PF_NULLABLE_S error){

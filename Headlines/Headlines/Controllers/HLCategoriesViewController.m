@@ -118,7 +118,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                countries:[HLCountry countriesWithNames:@[@"Angola",
                                                                          @"Cameroon"]]],
                 [HLRegion regionWithName:@"Nothern Africa"
-                               countries:[HLCountry countriesWithNames:@[@"Algeria",
+                               countries:[HLCountry countriesWithNames:@[@"Morocco",
                                                                          @"Egypt"]]],
                 [HLRegion regionWithName:@"Southern Africa"
                                countries:[HLCountry countriesWithNames:@[@"South Africa"]]],

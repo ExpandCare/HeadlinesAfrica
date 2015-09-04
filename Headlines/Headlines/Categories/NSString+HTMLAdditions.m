@@ -129,6 +129,18 @@
                                            options:NSCaseInsensitiveSearch
                                              range:NSMakeRange(0, changedContent.length)];
     }
+    if ([source isEqualToString:@"SDE"])
+    {
+        [changedContent replaceOccurrencesOfString:@"src=\"/sdemedia"
+                                        withString:@"src=\"http://www.sde.co.ke/sdemedia"
+                                           options:NSCaseInsensitiveSearch
+                                             range:NSMakeRange(0, changedContent.length)];
+        
+        [changedContent replaceOccurrencesOfString:@"src=\"//"
+                                        withString:@"src=\"http://"
+                                           options:NSCaseInsensitiveSearch
+                                             range:NSMakeRange(0, changedContent.length)];
+    }
     else if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && ![source isEqualToString:@"Times Live"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
     {
         if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:imageURL]])
