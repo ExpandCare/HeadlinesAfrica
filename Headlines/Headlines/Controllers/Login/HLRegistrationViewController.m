@@ -15,6 +15,7 @@
 #import <SAMHUDView.h>
 #import "AppDelegate.h"
 #import "NSString+EmailValidation.h"
+#import "ParseTwitterUtils/PF_Twitter.h"
 
 #define CELL_ID_TEXT_FIELD @"textFieldCellID"
 #define CELL_ID_FACEBOOK @"facebookCellID"

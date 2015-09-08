@@ -719,23 +719,18 @@ function savePosts(response, options, cbNext) {
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
-                                    //Content
-                                    if (data.results && data.results[0].content) {
 
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
                                         if (typeof data.results[0].content === "string") {
                                             postsArr[i].set("content", data.results[0].content);
-                                        } else {
+                                        } else {//                                          
                                             postsArr[i].set("content", data.results[0].content.join(''));
                                         }
                                     }
                                     //images
-                                    if (data.results && data.results[0].image) {
-                                        if (typeof data.results[0].image === "string") {
-                                            postsArr[i].set("image", [data.results[0].image]);
-                                        } else {
-                                            postsArr[i].set("image", data.results[0].image);
-                                        }
-                                    }
+                                   
                                 }
                             }
 

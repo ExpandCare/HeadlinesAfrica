@@ -1,11 +1,11 @@
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
-pod 'Parse', '~> 1.6'
-pod 'ParseCrashReporting', '~> 1.7'
+pod 'Parse'
+pod 'ParseCrashReporting'
 pod 'SAMHUDView', '~> 0.1'
 pod 'Facebook-iOS-SDK', '~> 3.23'
-pod 'ParseFacebookUtils', '~> 1.6'
+pod 'ParseFacebookUtils'
 pod 'Reachability', '~> 3.2'
 pod 'SDWebImage', '~> 3.7'
 pod 'MagicalRecord', '~> 2.2'
@@ -17,4 +17,5 @@ pod 'UIImage-Categories', '~> 1.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
 pod 'TestFairy'
 pod 'DAKeyboardControl'
-pod 'ParseTwitterUtils', '~> 1.8'
+pod 'ParseTwitterUtils'
+pod 'Helpshift'

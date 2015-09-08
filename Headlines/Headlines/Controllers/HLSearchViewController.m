@@ -88,7 +88,7 @@ static NSString * const kSearchTableViewCellIdentifier = @"searchTableViewCellId
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    self.tableViewBottomSpacingConstraint.constant = 0;
     [self.view removeKeyboardControl];
 }
 

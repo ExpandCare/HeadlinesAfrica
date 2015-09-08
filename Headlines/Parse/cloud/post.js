@@ -116,97 +116,128 @@ Parse.Cloud.define("searchPost", function(request, response)
       response.success(respDict);
    }
    else
-   {
+   {     
       var queries = [];
 
-    for(var i = 0; i < tokens.length; i++)
-    {
-      var token = tokens[i];
-      var subQuery = new Parse.Query(SearchPost);
-      subQuery.contains("content", " ".concat(token).concat(" "));
-      queries.push(subQuery);
+      for(var i = 0; i < tokens.length; i++)
+      {
+        var token = tokens[i];
+        var subQuery = new Parse.Query(SearchPost);
+        subQuery.contains("content", " ".concat(token).concat(" "));
+        subQuery.contains("content", token);
+        queries.push(subQuery);
+      }
+
+      var contentQuery = Parse.Query.or.apply(Parse.Query, queries);
+      contentQuery.include("post");
+      contentQuery.limit(500);
+      contentQuery.descending("createdAt");
+      contentQuery.skip(0);
+
+      var searchPosts = [];
+
+   getPosts(contentQuery, searchPosts,  {
+        success: function(resultPosts)
+        {
+            if(skip < 0) 
+            {
+              response.error("Incorrect skip parameter");
+            }
+            else
+            {
+
+              var posts = [];
+              for(var i = 0; i < resultPosts.length; i++)
+              {
+                 var post = resultPosts[i].get("post");
+                 var tokensNumber = numberOfTokensInPost(resultPosts[i].get("content"), tokens);
+                 
+                 var isFoundPost = new Boolean(false);
+                 
+                 for(var j = 0; j < posts.length; j++)
+                 {
+
+                   var addedDict = posts[j];
+                   var addedPost = addedDict['post'];
+                   if(post && addedPost && addedPost.id == post.id)
+                   {
+                     addedDict["tokensNumber"] = addedDict["tokensNumber"] + tokensNumber;
+                     posts[j] = addedDict;
+                     isFoundPost = true;
+                     break;
+                   }
+
+                 }
+
+                 if(isFoundPost == false && post && post.get('title'))
+                 {
+                    
+                    var postDict = new Object();
+                    postDict["post"] = post;
+                    postDict["tokensNumber"] = tokensNumber;
+                    posts.push(postDict);
+                 }
+
+                 
+              }
+           
+              posts.sort(compare);
+              posts = _.pluck(posts, "post");
+            
+              posts = posts.slice(skip, skip + limit);
+ 
+              var responseDict = new Object();
+              responseDict["posts"]   = posts;
+              responseDict["keyword"] = request.params.keyword;
+              responseDict["count"]   = posts.length;
+              responseDict["limit"]   = limit;
+              responseDict["skip"]    = skip;
+
+              response.success(responseDict);
+            }
+        },
+        error: function(error) 
+        {
+            if(error.code == 154)
+            {
+               response.error("Search phrase is too long. Please, reduce the number of words.");
+            }
+            else
+            {
+               response.error(error);
+            } 
+        }
+    });
 
    }
+   
 
-   var contentQuery = Parse.Query.or.apply(Parse.Query, queries);
-   contentQuery.include("post");
-   contentQuery.limit(1000);
+});
 
-   contentQuery.find(
-   {
+function getPosts(query, posts, response)
+{
+  query.find(
+  {
      success: function(results) 
      {
-       if(skip < 0) 
+       if(results.length > 0 && query._skip < 1500)
        {
-          response.error("Incorrect skip parameter");
+         console.log('SKIP = '.concat(query._skip));
+         posts.push.apply(posts, results);
+         query.skip(query._skip + query._limit);
+         getPosts(query, posts, response);
        }
        else
        {
-          var posts = [];
-          for(var i = 0; i < results.length; i++)
-          {
-              var post = results[i].get("post");
-              var tokensNumber = numberOfTokensInPost(results[i].get("content"), tokens);
-        
-              var postDict = new Object();
-              postDict["post"] = post;
-              postDict["tokensNumber"] = tokensNumber;
-
-              posts.push(postDict);
-          }
-           
-           posts.sort(compare);
-           posts = _.pluck(posts, "post");
-           
-           var uniqueIds = [];
-           var uniquePosts = [];
-           
-           for(var i = 0; i < posts.length; i++)
-           {
-               var post = posts[i];
-
-               if(post !== null && typeof post === 'object')
-               {
-                  if(!_.contains(uniqueIds, post.id))
-                  {
-                     uniquePosts.push(post);
-                     uniqueIds.push(post.id);
-                  }
-               }
-
-           }
-
-           uniquePosts = uniquePosts.slice(skip, skip + limit);
-
-           var responseDict = new Object();
-           responseDict["posts"]   = uniquePosts;
-           responseDict["keyword"] = request.params.keyword;
-           responseDict["count"]   = uniquePosts.length;
-           responseDict["limit"]   = limit;
-           responseDict["skip"]    = skip;
-
-           response.success(responseDict);
-          }
-       
+         response.success(posts);
+       }
      },
      error: function(error) 
      {
-        if(error.code == 154)
-        {
-          response.error("Search phrase is too long. Please, reduce the number of words.");
-        }
-        else
-        {
-          response.error(error);
-        }
-       
+        response.error(error);
      }
-   });
-   }
-
-
-
-});
+  });
+}
 
 Parse.Cloud.afterSave("Post", function(request, response)
 {
@@ -274,7 +305,7 @@ function numberOfTokensInPost(post, tokens)
   {
      var token = tokens[i];
 
-     if(post.indexOf(" ".concat(token).concat(" ")) != -1)
+     if(post.indexOf(token) != -1)
      {
        tokensNumber++;
      }

@@ -127,7 +127,8 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     [TestFairy begin:@"f27b0eb034db2c4a7e184f00b4eb348224bcda07"];
     
     [self loadBanners];
-        
+    
+    
     return YES;
 }
 
