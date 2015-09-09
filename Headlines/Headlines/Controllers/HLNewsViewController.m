@@ -27,7 +27,7 @@
 #define CELL_ID_HEADER @"CELL_ID_HEADER"
 #define CELL_NO_RESULTS @"CELL_NO_RESULTS"
 
-#define CELL_HEIGHT_TOP CGRectGetWidth(self.view.bounds)
+#define CELL_HEIGHT_TOP (CGRectGetWidth(self.view.bounds) * 1.14)
 #define CELL_HEIGHT_REGULAR 100
 
 #define LOAD_NEWS_COUNT 100

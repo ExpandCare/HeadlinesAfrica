@@ -242,6 +242,12 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         query = [PFQuery queryWithClassName:NSStringFromClass([Post class]) predicate:predicate];
     }
     
+    if ([NSUserDefaults enabledCountries])
+    {
+        [query whereKey:@"country" containedIn:[[NSUserDefaults enabledCountries] arrayByAddingObject:GOAL_DEFAUL_COUNTRY]];
+    }
+
+    
     query.limit = 100;
     [query orderByDescending:@"createdAt"];
     
@@ -780,7 +786,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     
     if (filterUpdated)
     {
-        [self reloadImages];
+        [self fetchAndLoadNewsForCategory:nil];
     }
 }
 

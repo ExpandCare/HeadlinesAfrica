@@ -7,7 +7,6 @@
 #import "HLProfileViewController.h"
 #import "UIFont+Consended.h"
 #import <Parse/Parse.h>
-#import <PFFacebookUtils.h>
 
 @interface HLProfileViewController ()
 
@@ -15,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *inviteContactsBtn;
 
 @end
 
@@ -23,6 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.inviteContactsBtn.layer.cornerRadius = 9.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -34,9 +36,6 @@
     
     [self.logoutButton.titleLabel setFont:[UIFont mediumConsendedWithSize:20]];
     //[self.logoutButton setTitleEdgeInsets:UIEdgeInsetsMake(3, 0, -3, 0)];
-    
-    self.usernameLabel.font = [UIFont consendedWithSize:29];
-    self.emailLabel.font = [UIFont consendedWithSize:20];
     
     if ([PFUser currentUser])
     {
@@ -56,37 +55,15 @@
 
 #pragma mark - Actions
 
-- (IBAction)logoutButtonPressed:(id)sender
-{
-    NSHTTPCookieStorage *cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *inCookiesApi = [cookies cookies];
-    
-    for(NSHTTPCookie *cookie in inCookiesApi)
-    {
-        [cookies deleteCookie:cookie];
-    }
-
-    if(FBSession.activeSession.isOpen)
-    {
-        [FBSession.activeSession closeAndClearTokenInformation];
-        [FBSession.activeSession close];
-        [FBSession setActiveSession:nil];
-        NSLog(@"session close");
-    }
-    
-    [PFUser logOut];
-    
-    [self performSegueWithIdentifier:@"backToStart" sender:self];
-}
-
-- (IBAction)changePasswordButtonPressed:(id)sender
-{
-    [self performSegueWithIdentifier:@"toChangePasswordScreen" sender:self];
-}
 
 - (IBAction)inviteFriendsButtonPressed:(id)sender
 {
     [self performSegueWithIdentifier:@"toInviteFriendsScreen" sender:self];
+}
+
+- (IBAction)settingsButtonPressed:(id)sender
+{
+    [self performSegueWithIdentifier:@"presentSettingsViewControllerSegue" sender:self];
 }
 
 @end

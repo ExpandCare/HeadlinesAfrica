@@ -10,23 +10,21 @@
 
 - (void)awakeFromNib
 {
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"Featuring:\n"
-                                      "Vanguard\n"
-                                      "Punch\n"
-                                      "This Day Live\n"
-                                      "Bella Naija\n"
-                                      "Linda Ikeji\n"
-                                      "& more...\n"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"Africa's #1\n"
+                                      "news platform"];
     
     [str addAttribute:NSFontAttributeName
-                value:[UIFont boldSystemFontOfSize:20]
+                value:[UIFont boldSystemFontOfSize:13]
                 range:NSMakeRange(0, str.length)];
     [str addAttribute:NSForegroundColorAttributeName
-                value:[UIColor colorWithRed:0.55 green:0.55 blue:0.55 alpha:1]
+                value:[UIColor colorWithRed:0.5 green:0.5 blue:0.52 alpha:1]
                 range:NSMakeRange(0, str.length)];
+    [str addAttribute:NSFontAttributeName
+                value:[UIFont boldSystemFontOfSize:16]
+                range:NSMakeRange(0, @"Africa's #1".length)];
     [str addAttribute:NSForegroundColorAttributeName
-                value:[UIColor colorWithRed:0.73 green:0.73 blue:0.73 alpha:1]
-                range:NSMakeRange(0, @"Featuring:".length)];
+                value:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1]
+                range:NSMakeRange(0, @"Africa's #1".length)];
     
     self.textView.attributedText = str;
     

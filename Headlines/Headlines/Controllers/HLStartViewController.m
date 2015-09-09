@@ -47,15 +47,15 @@
     //[self.haveAnAccountLabel setTextColor:[UIColor colorWithRed:0.62 green:0.62 blue:0.62 alpha:1]];
     self.loginHereButton.titleLabel.font = [UIFont consendedWithSize:19];
     
-    if (!gradientLayer)
-    {
-        self.viewforGradient.backgroundColor = [UIColor clearColor];
-        gradientLayer = [CAGradientLayer layer];
-        gradientLayer.frame = self.view.bounds;
-        gradientLayer.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7] CGColor], nil];
-        
-        [self.viewforGradient.layer insertSublayer:gradientLayer atIndex:0];
-    }
+//    if (!gradientLayer)
+//    {
+//        self.viewforGradient.backgroundColor = [UIColor clearColor];
+//        gradientLayer = [CAGradientLayer layer];
+//        gradientLayer.frame = self.view.bounds;
+//        gradientLayer.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7] CGColor], nil];
+//        
+//        [self.viewforGradient.layer insertSublayer:gradientLayer atIndex:0];
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

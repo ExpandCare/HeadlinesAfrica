@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, CellID) {
     
     self.title = @"Change password";
     
-    [self configureBackButtonWhite:YES];
+    [self configureBackButtonWhite:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillAppear:)
@@ -53,8 +53,6 @@ typedef NS_ENUM(NSUInteger, CellID) {
                                              selector:@selector(keyboardWillDissapear)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    
-    [((HLNavigationController *)self.navigationController) setBlueColor];
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 10)];
     self.tableView.tableHeaderView = header;
@@ -255,6 +253,7 @@ typedef NS_ENUM(NSUInteger, CellID) {
 
 #pragma mark - Actions
 
+
 - (void)donePressed:(UIButton *)sender
 {
     if (!IS_INTERNET_CONNECTED)
@@ -366,7 +365,7 @@ typedef NS_ENUM(NSUInteger, CellID) {
 
 - (void)backButtonPressed:(UIButton *)backButton
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

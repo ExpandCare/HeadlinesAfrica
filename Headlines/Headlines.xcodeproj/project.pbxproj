@@ -167,6 +167,9 @@
 		59856E151B9449890023E144 /* ExistingUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E141B9449890023E144 /* ExistingUserCell.m */; };
 		59856E181B944E030023E144 /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E171B944E030023E144 /* ContactCell.m */; };
 		59856E1A1B9490E10023E144 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59856E191B9490E10023E144 /* MessageUI.framework */; };
+		59879E371BA066B3007642BD /* HLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E361BA066B3007642BD /* HLSettingsViewController.m */; };
+		59879E3A1BA06D32007642BD /* HLSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E391BA06D32007642BD /* HLSettingsCell.m */; };
+		59879E3B1BA06D32007642BD /* HLSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E391BA06D32007642BD /* HLSettingsCell.m */; };
 		59E85C341B4D5F5400AABF4F /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -352,6 +355,10 @@
 		59856E161B944E030023E144 /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
 		59856E171B944E030023E144 /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
 		59856E191B9490E10023E144 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		59879E351BA066B3007642BD /* HLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSettingsViewController.h; sourceTree = "<group>"; };
+		59879E361BA066B3007642BD /* HLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingsViewController.m; sourceTree = "<group>"; };
+		59879E381BA06D32007642BD /* HLSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSettingsCell.h; sourceTree = "<group>"; };
+		59879E391BA06D32007642BD /* HLSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingsCell.m; sourceTree = "<group>"; };
 		59E85C321B4D5F5400AABF4F /* HLSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchField.h; path = Subclasses/HLSearchField.h; sourceTree = "<group>"; };
 		59E85C331B4D5F5400AABF4F /* HLSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchField.m; path = Subclasses/HLSearchField.m; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -404,6 +411,8 @@
 				49784EC51ACD3A4D00ECDE26 /* HLChangePasswordViewController.m */,
 				59856E0F1B94442B0023E144 /* HLInviteFriendsViewController.h */,
 				59856E101B94442B0023E144 /* HLInviteFriendsViewController.m */,
+				59879E351BA066B3007642BD /* HLSettingsViewController.h */,
+				59879E361BA066B3007642BD /* HLSettingsViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -592,6 +601,8 @@
 				497035C31AD68F4A00878EE1 /* HLHeaderViewCell.m */,
 				49EB86C81B4AB6A700B21806 /* HLCountryCell.h */,
 				49EB86C91B4AB6A700B21806 /* HLCountryCell.m */,
+				59879E381BA06D32007642BD /* HLSettingsCell.h */,
+				59879E391BA06D32007642BD /* HLSettingsCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1123,6 +1134,7 @@
 				49C22D051AB2DE7C00BCEFAF /* LoginWithFacebookCell.m in Sources */,
 				49C22CDF1AB1C4CA00BCEFAF /* HLNewsViewController.m in Sources */,
 				49EB0D1C1B4D565E00667F74 /* NSUserDefaults+Countries.m in Sources */,
+				59879E371BA066B3007642BD /* HLSettingsViewController.m in Sources */,
 				49CC83831AC05A2F0067A2FB /* HLLinkedInActivity.m in Sources */,
 				497035C41AD68F4A00878EE1 /* HLHeaderViewCell.m in Sources */,
 				49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */,
@@ -1170,6 +1182,7 @@
 				49C22CEA1AB1D32700BCEFAF /* Constants.m in Sources */,
 				499749931B4C05C300C2093F /* HLRegion.m in Sources */,
 				49CC83861AC078390067A2FB /* HLWebViewController.m in Sources */,
+				59879E3A1BA06D32007642BD /* HLSettingsCell.m in Sources */,
 				4999465A1AB723820042A5E8 /* HLStatusBarView.m in Sources */,
 				49C4184A1AC1D02F0051164C /* NSDate+Extentions.m in Sources */,
 				49C22D111AB2FCF700BCEFAF /* HLTextField.m in Sources */,
@@ -1193,6 +1206,7 @@
 				596C89901B9718C3009A9E3C /* HLSearchField.m in Sources */,
 				596C89911B9718C3009A9E3C /* NSObject+Celullar.m in Sources */,
 				596C89921B9718C3009A9E3C /* UIFont+Consended.m in Sources */,
+				59879E3B1BA06D32007642BD /* HLSettingsCell.m in Sources */,
 				596C89931B9718C3009A9E3C /* HLViewController.m in Sources */,
 				596C89941B9718C3009A9E3C /* ForgotPasswordCell.m in Sources */,
 				596C89951B9718C3009A9E3C /* Comment+Additions.m in Sources */,
