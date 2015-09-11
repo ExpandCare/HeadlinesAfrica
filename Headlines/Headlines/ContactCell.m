@@ -4,6 +4,7 @@
 
 
 #import "ContactCell.h"
+#import "UIImage+Extentions.h"
 
 @interface ContactCell()
 
@@ -18,6 +19,17 @@
     [super prepareForReuse];
     
     self.inviteBtn.hidden = NO;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self.inviteBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:0.55 green:0.78 blue:0.29 alpha:1]] forState:UIControlStateNormal];
+    self.inviteBtn.layer.cornerRadius = 9.0f;
+    [self.inviteBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0f]];
+    self.inviteBtn.titleEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+    self.inviteBtn.clipsToBounds = YES;
 }
 
 #pragma mark - Public

@@ -42,10 +42,10 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
 {
     [super viewDidLoad];
     
-    self.title = @"Invite Friends";
+    self.title = @"Find people to invite";
     
-    [self configureBackButtonWhite:YES];
-    [((HLNavigationController *)self.navigationController) setBlueColor];
+    [self configureBackButtonWhite:NO];
+    [((HLNavigationController *)self.navigationController) setWhiteColor];
     
     __weak typeof(self) weakSelf = self;
     
@@ -271,19 +271,54 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if(self.isLoadingContacts)
     {
         return nil;
     }
     
-    if(section == HLInviteFriendTableViewSectionTypeContacts)
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
+    [headerView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.9f]];
+    
+    if (section == HLInviteFriendTableViewSectionTypeContacts)
     {
-        return @"Invite Contacts";
+        UILabel *titleLbl = [[UILabel alloc] init];
+        titleLbl.text = @"Invite Contacts";
+        [titleLbl setTextColor:[UIColor colorWithRed:0.08 green:0.66 blue:0.93 alpha:1]];
+        [titleLbl setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0f]];
+        titleLbl.frame = CGRectMake(18, 0, 300, 30);
+        [headerView addSubview:titleLbl];
     }
     
+    return headerView;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(self.isLoadingContacts)
+    {
+        return 0;
+    }
+    
+    if (section == HLInviteFriendTableViewSectionTypeContacts)
+    {
+        return 30;
+    }
+    
+    return 0;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -312,6 +347,7 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
 
 #pragma mark - UIActionSheet delegate methods
 
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == actionSheet.cancelButtonIndex)
@@ -334,7 +370,7 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
             [controller.navigationBar setTintColor:[UIColor whiteColor]];
             
             [controller setSubject:@"Join me in Headlines"];
-            [controller setMessageBody:@"I use Headlines. You should try it." isHTML:NO];
+            [controller setMessageBody:INVITE_MESSAGE_HTML isHTML:YES];
             [controller setToRecipients:[NSArray arrayWithObjects:self.invitingContactDict[@"email"], nil]];
             
             [self presentViewController:controller animated:YES completion:^
@@ -349,8 +385,6 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
     }
     else if (buttonIndex == HLInviteContactButtonTypeViaSMS)
     {
-        NSLog(@"PHONE = %@", self.invitingContactDict[@"phone"]);
-        
         if ([MFMessageComposeViewController canSendText])
         {
             [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]];
@@ -362,10 +396,12 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
             [messageComposer.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
             [messageComposer.navigationBar setTintColor:[UIColor whiteColor]];
             
-            NSString *message = @"I use Headlines. You should try it.";
+            NSString *message = INVITE_MESSAGE;
             messageComposer.recipients = [NSArray arrayWithObjects:self.invitingContactDict[@"phone"], nil];
             [messageComposer setBody:message];
             messageComposer.messageComposeDelegate = self;
+            
+            [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
             
             [self presentViewController:messageComposer animated:YES completion:^
              {

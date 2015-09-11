@@ -10,10 +10,8 @@
 
 @interface HLProfileViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
-@property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *inviteContactsBtn;
 
 @end
@@ -24,19 +22,16 @@
 {
     [super viewDidLoad];
     
+    [self.inviteContactsBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0f]];
+    self.inviteContactsBtn.titleEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
     self.inviteContactsBtn.layer.cornerRadius = 9.0f;
+    
+    [self.emailLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0f]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.logoutButton setTitleColor:[UIColor colorWithRed:1 green:0.44 blue:0.45 alpha:1] forState:UIControlStateNormal];
-    
-    self.logoutButton.layer.borderWidth = 2;
-    self.logoutButton.layer.borderColor = self.logoutButton.titleLabel.textColor.CGColor;
-    
-    [self.logoutButton.titleLabel setFont:[UIFont mediumConsendedWithSize:20]];
-    //[self.logoutButton setTitleEdgeInsets:UIEdgeInsetsMake(3, 0, -3, 0)];
-    
+        
     if ([PFUser currentUser])
     {
         self.usernameLabel.text = [PFUser currentUser][kPFUserKeyDisplayName];
@@ -50,7 +45,7 @@
         }
     }
     
-    self.changePasswordButton.hidden = (BOOL)![[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsUserKeyPassword] length];
+  //  self.changePasswordButton.hidden = (BOOL)![[[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsUserKeyPassword] length];
 }
 
 #pragma mark - Actions

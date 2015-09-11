@@ -259,6 +259,16 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
         [self.bigBanner loadRequest:[GADRequest request]];
         self.bigBanner.autoloadEnabled = NO;
     }
+    
+    if (!self.rectangleBanner)
+    {
+        self.rectangleBanner = [[GADBannerView alloc] initWithAdSize:GADAdSizeFullWidthPortraitWithHeight(250)];
+        
+        self.rectangleBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.rectangleBanner.rootViewController = [self window].rootViewController;
+        [self.rectangleBanner loadRequest:[GADRequest request]];
+        self.rectangleBanner.autoloadEnabled = NO;
+    }
 }
 
 - (BOOL)application:(UIApplication *)application

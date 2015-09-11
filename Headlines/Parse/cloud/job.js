@@ -232,9 +232,10 @@ function savePosts(response, options, cbNext) {
                     actions.push(getMoroccoWorldNewsPost(postsArr[i].get('link')));
                 };
             }
-
+//a
             _(actions).reduceRight(_.wrap, function() {
                 postsArr = checkPosts(postsArr, ['content']);
+                console.log('COUNT POSTS ='.concat(postsArr.length));
                 Parse.Object.saveAll(postsArr, {
                     success: function(objs) {
                         cbNext();

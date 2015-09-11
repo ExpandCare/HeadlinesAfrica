@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *haveAnAccountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIView *viewforGradient;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoTopSpacingConstraint;
 
 @end
 
@@ -28,6 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(IS_IPHONE_4 || IS_IPHONE_5)
+    {
+        self.logoTopSpacingConstraint.constant = 15.0f;
+    }
     
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundImageView.image = [UIImage imageNamed:@"newBackground"];

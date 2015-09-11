@@ -119,7 +119,7 @@
 {
     [super viewDidLoad];
     
-    if (!SMALL_BANNER || !BIG_BANNER)
+    if (!SMALL_BANNER || !RECTANGLE_BANNER)
     {
         [((AppDelegate *)[UIApplication sharedApplication].delegate) loadBanners];
     }
@@ -134,6 +134,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [RECTANGLE_BANNER loadRequest:[GADRequest request]];
     
     self.commentsButton.enabled = YES;
     
@@ -285,7 +287,7 @@
     {
         if (![view isKindOfClass:[UIImageView class]])
         {
-            if (BIG_BANNER.superview == self.webView.scrollView)
+            if (RECTANGLE_BANNER.superview == self.webView.scrollView)
             {
                 return;
             }
@@ -295,9 +297,9 @@
             //frame.size.height += 60;
             //view.frame = frame;
             
-            [self.webView.scrollView addSubview:BIG_BANNER];
+            [self.webView.scrollView addSubview:RECTANGLE_BANNER];
          
-            [self addBanner:BIG_BANNER
+            [self addBanner:RECTANGLE_BANNER
                 toSuperView:self.webView.scrollView
                 contentView:view
                      bottom:YES];
@@ -310,7 +312,7 @@
         }
     }
     
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(60, 0, 60 + BIG_BANNER_HEIGHT, 0);
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(60, 0, 60 + RECTANGLE_BANNER_HEIGHT, 0);
 }
 
 - (void)addBanner:(GADBannerView *)banner toSuperView:(UIView *)parentView contentView:(UIView *)contentView bottom:(BOOL)bottom

@@ -7,6 +7,7 @@
 #import "HLNavigationController.h"
 #import "HLSettingsCell.h"
 #import <PFFacebookUtils.h>
+#import "Helpshift.h"
 
 typedef NS_ENUM(NSInteger, HLSettingsCellType)
 {
@@ -60,6 +61,17 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -71,6 +83,10 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
     else if (indexPath.row == HLSettingsCellTypePassword)
     {
         [self changePasswordAction];
+    }
+    else if (indexPath.row == HLSettingsCellTypeHelp)
+    {
+        [self feedbackAction];
     }
 }
 
@@ -102,6 +118,12 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
 - (void)changePasswordAction
 {
     [self performSegueWithIdentifier:@"toChangePasswordScreen" sender:self];
+}
+
+- (void)feedbackAction
+{
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[Helpshift sharedInstance] showFAQs:self withOptions:nil];
 }
 
 

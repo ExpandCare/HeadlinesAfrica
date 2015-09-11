@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define INVITE_MESSAGE @"I use Headlines. You should try it. http://apple.co/1JZLr3T"
+#define INVITE_MESSAGE_HTML @"I use <a href='http://apple.co/1JZLr3T'>Headlines</a>. You should try it."
+
 #define HEADLINES_BLUE [UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]
 #define HEADLINES_BLUE_NEW [UIColor colorWithRed:0.03 green:0.58 blue:0.82 alpha:1]
 #define HEADLINES_FONT @"HelveticaNeue-CondensedBold"
@@ -19,10 +22,14 @@
 #define BIG_BANNER_CELL_INDEX 15
 #define BANNER_HEIGHT 50
 #define BIG_BANNER_HEIGHT 100
+#define RECTANGLE_BANNER_HEIGHT 250
 
 #define GOAL_DEFAUL_COUNTRY @"Euro Soccer"
 
-
+#define IS_IPHONE_4 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)480) < DBL_EPSILON)
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
+#define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
 
 #pragma mark - Storyboard IS's
 extern NSString * const kStoryboardIDNewsController;

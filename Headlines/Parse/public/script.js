@@ -3,13 +3,19 @@ $(function() {
 		tableEl = $('#table_wrapper'),
 		appId = "7iYJMHDqqHJ2xmIiimYjDSBOeia4IcKz6cUJluqB",
 		RestApiKey = "UpccrCqCbkry2HUgy6HNEMC1za1O1KLQocAqAACM";
+    
+    if(document.URL == "http://headlinesdev.parseapp.com/")
+    {
+    	appId = "p8rrpMQXg6sEysabNDfbfRxaPmpzFrrBRO3TaWoH";
+    	RestApiKey = "vmbezk4jqXHkGDqd04jnBx2mRUmMdQMKbIEkTQkF";
+    }
+
 
 	$('#signOut').hide();
 	$('#send').on('click', signIn);	
 	$('#signOut').on('click', signOut);
 	switchPages();
 	tableInit();
-
 	function tableInit() {
 
 		var table = $('#dateTable').DataTable({
