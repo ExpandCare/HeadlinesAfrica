@@ -1107,16 +1107,16 @@
                                     <constraint firstAttribute="height" constant="112" id="tlz-g7-yf2"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-jZ-VMu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-jZ-VMu">
                                 <rect key="frame" x="16" y="322" width="288" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="yCA-SA-9qF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@mail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSg-75-AZY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@mail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rSg-75-AZY">
                                 <rect key="frame" x="16" y="369" width="288" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="bc6-ph-uoV"/>
@@ -1525,7 +1525,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewLogo" translatesAutoresizingMaskIntoConstraints="NO" id="I53-c8-itT">
-                                <rect key="frame" x="85" y="70" width="150" height="118"/>
+                                <rect key="frame" x="85" y="65" width="150" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="11A-YR-R37"/>
                                     <constraint firstAttribute="width" secondItem="I53-c8-itT" secondAttribute="height" multiplier="119:94" id="Hwp-2A-PN9"/>
@@ -1573,8 +1573,8 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="-1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headlines" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ny-hQ-cbq">
-                                <rect key="frame" x="78" y="196" width="165" height="41"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headlines" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ny-hQ-cbq">
+                                <rect key="frame" x="78" y="191" width="165" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="22h-aY-gUX"/>
                                     <constraint firstAttribute="height" constant="41" id="ccv-xv-jS7"/>
@@ -1590,7 +1590,7 @@
                         <constraints>
                             <constraint firstItem="T2e-DP-awr" firstAttribute="top" secondItem="tk5-rI-rw4" secondAttribute="bottom" id="0Ne-wX-plL"/>
                             <constraint firstAttribute="trailing" secondItem="tk5-rI-rw4" secondAttribute="trailing" id="3yM-Mb-dMu"/>
-                            <constraint firstItem="I53-c8-itT" firstAttribute="top" secondItem="zob-tj-F2q" secondAttribute="bottom" constant="50" id="4xa-oe-9On"/>
+                            <constraint firstItem="I53-c8-itT" firstAttribute="top" secondItem="zob-tj-F2q" secondAttribute="bottom" constant="45" id="4xa-oe-9On"/>
                             <constraint firstAttribute="centerX" secondItem="8I1-8k-jWe" secondAttribute="centerX" id="6DE-BG-zzA"/>
                             <constraint firstItem="T2e-DP-awr" firstAttribute="top" secondItem="8I1-8k-jWe" secondAttribute="bottom" constant="34" id="6M8-fe-2vb"/>
                             <constraint firstAttribute="centerX" secondItem="BFn-S0-nCw" secondAttribute="centerX" id="8yb-lB-l8G"/>

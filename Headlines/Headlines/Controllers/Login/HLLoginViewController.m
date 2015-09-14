@@ -420,7 +420,15 @@ typedef NS_ENUM(NSUInteger, CellID) {
                 {
                     NSDictionary *userData = (NSDictionary *)result;
                     
-                    user.username = user.email = userData[@"email"];
+                    if(userData[@"email"])
+                    {
+                        user.username = user.email = userData[@"email"];
+                    }
+                    else
+                    {
+                        user.username = user.email = [NSString stringWithFormat:@"%@@facebook.com", userData[@"id"]];
+                    }
+                    
                     user[kPFUserKeyDisplayName] = userData[@"name"];
                     
                     [user save];

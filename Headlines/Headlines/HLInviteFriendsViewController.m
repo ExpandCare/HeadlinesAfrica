@@ -183,6 +183,8 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
         CFRelease(emails);
     }
     
+    self.contactsDataSource = [[self.contactsDataSource sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy];
+    
 }
 
 - (void)checkAlreadyRegisteredContacts:(NSArray *)users

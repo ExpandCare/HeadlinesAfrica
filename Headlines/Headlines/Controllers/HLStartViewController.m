@@ -32,7 +32,7 @@
     
     if(IS_IPHONE_4 || IS_IPHONE_5)
     {
-        self.logoTopSpacingConstraint.constant = 15.0f;
+        self.logoTopSpacingConstraint.constant = 10.0f;
     }
     
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;

@@ -59,6 +59,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isDownloading;
 @property (strong, nonatomic) NSMutableDictionary *usedURLs;
+@property (strong, nonatomic) NSMutableDictionary *reloadedCategories;
 @property (weak, nonatomic) IBOutlet UIButton *topicsButton;
 @property (weak, nonatomic) IBOutlet UIButton *countriesButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *countriesCollectionView;
@@ -83,6 +84,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     [super viewDidLoad];
     
     self.usedURLs = [NSMutableDictionary new];
+    self.reloadedCategories = [NSMutableDictionary new];
     
     self.collectionView.tag = CollectionViewTagCategories;
     self.countriesCollectionView.tag = CollectionViewTagCountries;
@@ -172,7 +174,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
          }
          
      }];
-
+    
     UIEdgeInsets insets = UIEdgeInsetsZero;
     insets.top = 15;
     
@@ -193,7 +195,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 {
     [super viewWillDisappear:animated];
     
-     [self.view removeKeyboardControl];
+    [self.view removeKeyboardControl];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kNotificationDownloadedPosts
@@ -217,6 +219,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     filterUpdated = YES;
     
     [self.usedURLs removeAllObjects];
+    [self.reloadedCategories removeAllObjects];
     [self prepareImagesArray];
 }
 
@@ -246,7 +249,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
     {
         [query whereKey:@"country" containedIn:[[NSUserDefaults enabledCountries] arrayByAddingObject:GOAL_DEFAUL_COUNTRY]];
     }
-
+    
     
     query.limit = 100;
     [query orderByDescending:@"createdAt"];
@@ -257,6 +260,11 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         [Post createOrUpdatePostsInBackground:objects completion:^(BOOL success, NSError *error) {
             
             [controller.refreshControl endRefreshing];
+            
+            if(category)
+            {
+                controller.reloadedCategories[category] = @(1);
+            }
             
             controller.isDownloading = NO;
             
@@ -319,13 +327,11 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                                     sortedBy:@"createdAt"
                                                    ascending:NO];
         
+        
         NSString *key = [NSString stringWithFormat:@"%li", (long)i];
         
-        if (!featuredPost && !self.usedURLs[key])
+        if (!featuredPost && !self.reloadedCategories[categoryName])
         {
-            self.usedURLs[key] = @"";
-            [self showImageAtIndex:i animated:YES];
-            
             [self fetchAndLoadNewsForCategory:categories[i]];
             continue;
         }
@@ -342,7 +348,14 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
             continue;
         }
         
+        if([self.usedURLs[key] isEqualToString:@""])
+        {
+            continue;
+        }
+        
         __weak typeof(self) controller = self;
+        
+        
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:featuredPost.imageURL.URLWithoutQueryParameters]
                                                               options:(SDWebImageDownloaderContinueInBackground|SDWebImageDownloaderUseNSURLCache)
                                                              progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -368,16 +381,17 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                                                     
                                                                     controller.usedURLs[key] = @"";
                                                                     
-                                                                    if (images[i])
-                                                                    {
-                                                                        //[controller showImageAtIndex:i animated:YES];
-                                                                    }
+                                                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                                        
+                                                                        [controller showImageAtIndex:i animated:YES];
+                                                                    });
                                                                     
                                                                     NSLog(@"%@", error);
                                                                 }
                                                             }];
-
-
+        
+        
+        
     }
 }
 
@@ -493,7 +507,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize cellSize;
-   
+    
     // Countries
     if (collectionView.tag == CollectionViewTagCountries)
     {
@@ -547,7 +561,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         HLCountryCell *theCell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID_COUNTRY
                                                                            forIndexPath:indexPath];
         
-
+        
         if (indexPath.section == regions.count)
         {
             theCell.hidden = YES;
@@ -597,7 +611,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                 }
             }
         }
-
+        
         theCell.userInteractionEnabled = YES;
         
         return theCell;
@@ -758,7 +772,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
             if (region.selected)
             {
                 region.selected = NO;
-
+                
                 [self.countriesCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:indexPath.section]]];
             }
         }
