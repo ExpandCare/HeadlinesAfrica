@@ -173,6 +173,13 @@
 		59879E371BA066B3007642BD /* HLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E361BA066B3007642BD /* HLSettingsViewController.m */; };
 		59879E3A1BA06D32007642BD /* HLSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E391BA06D32007642BD /* HLSettingsCell.m */; };
 		59879E3B1BA06D32007642BD /* HLSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E391BA06D32007642BD /* HLSettingsCell.m */; };
+		59A5BE051BA842B900E68171 /* HLTermsAndPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A5BE041BA842B900E68171 /* HLTermsAndPrivacyViewController.m */; };
+		59A5BE071BA8449E00E68171 /* TermsOfService.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE061BA8449E00E68171 /* TermsOfService.html */; };
+		59A5BE081BA8449E00E68171 /* TermsOfService.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE061BA8449E00E68171 /* TermsOfService.html */; };
+		59A5BE0A1BA848F300E68171 /* PrivacyStatement.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE091BA848F300E68171 /* PrivacyStatement.html */; };
+		59A5BE0B1BA848F300E68171 /* PrivacyStatement.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE091BA848F300E68171 /* PrivacyStatement.html */; };
+		59A5BE0D1BA84A3F00E68171 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE0C1BA84A3F00E68171 /* AboutUs.html */; };
+		59A5BE0E1BA84A3F00E68171 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE0C1BA84A3F00E68171 /* AboutUs.html */; };
 		59E85C341B4D5F5400AABF4F /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -364,6 +371,11 @@
 		59879E361BA066B3007642BD /* HLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingsViewController.m; sourceTree = "<group>"; };
 		59879E381BA06D32007642BD /* HLSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSettingsCell.h; sourceTree = "<group>"; };
 		59879E391BA06D32007642BD /* HLSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingsCell.m; sourceTree = "<group>"; };
+		59A5BE031BA842B900E68171 /* HLTermsAndPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTermsAndPrivacyViewController.h; sourceTree = "<group>"; };
+		59A5BE041BA842B900E68171 /* HLTermsAndPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTermsAndPrivacyViewController.m; sourceTree = "<group>"; };
+		59A5BE061BA8449E00E68171 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
+		59A5BE091BA848F300E68171 /* PrivacyStatement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyStatement.html; sourceTree = "<group>"; };
+		59A5BE0C1BA84A3F00E68171 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
 		59E85C321B4D5F5400AABF4F /* HLSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchField.h; path = Subclasses/HLSearchField.h; sourceTree = "<group>"; };
 		59E85C331B4D5F5400AABF4F /* HLSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchField.m; path = Subclasses/HLSearchField.m; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -418,6 +430,8 @@
 				59856E101B94442B0023E144 /* HLInviteFriendsViewController.m */,
 				59879E351BA066B3007642BD /* HLSettingsViewController.h */,
 				59879E361BA066B3007642BD /* HLSettingsViewController.m */,
+				59A5BE031BA842B900E68171 /* HLTermsAndPrivacyViewController.h */,
+				59A5BE041BA842B900E68171 /* HLTermsAndPrivacyViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -520,6 +534,9 @@
 			isa = PBXGroup;
 			children = (
 				499749941B4C05CA00C2093F /* Countries */,
+				59A5BE061BA8449E00E68171 /* TermsOfService.html */,
+				59A5BE091BA848F300E68171 /* PrivacyStatement.html */,
+				59A5BE0C1BA84A3F00E68171 /* AboutUs.html */,
 				49C4184F1AC2AFBB0051164C /* template.html */,
 				49015F1D1AC9A125002CC1D7 /* FindCoordinates.js */,
 				49DAC68C1AD2C8F900ADC969 /* Ticker */,
@@ -952,13 +969,16 @@
 			files = (
 				49C22CB51AB028CA00BCEFAF /* Main.storyboard in Resources */,
 				49D441E51ADFAFEB0091C401 /* BigBannerPostCell.xib in Resources */,
+				59A5BE0D1BA84A3F00E68171 /* AboutUs.html in Resources */,
 				49015F1E1AC9A125002CC1D7 /* FindCoordinates.js in Resources */,
+				59A5BE071BA8449E00E68171 /* TermsOfService.html in Resources */,
 				499946681AB8765C0042A5E8 /* HelveticaNeueLTW1G-MdCn.otf in Resources */,
 				49C418501AC2AFBB0051164C /* template.html in Resources */,
 				49C22CF01AB1DEE900BCEFAF /* CategoryCell.xib in Resources */,
 				49C22CD51AB0322800BCEFAF /* TopPostCell.xib in Resources */,
 				49C22CBA1AB028CA00BCEFAF /* LaunchScreen.xib in Resources */,
 				49C22CDA1AB0340600BCEFAF /* SimplePostCell.xib in Resources */,
+				59A5BE0A1BA848F300E68171 /* PrivacyStatement.html in Resources */,
 				49C22CB71AB028CA00BCEFAF /* Images.xcassets in Resources */,
 				4999466A1AB876DF0042A5E8 /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				4999466C1AB877110042A5E8 /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
@@ -979,13 +999,16 @@
 			files = (
 				596C89D31B9718C3009A9E3C /* Main.storyboard in Resources */,
 				596C89D41B9718C3009A9E3C /* BigBannerPostCell.xib in Resources */,
+				59A5BE0E1BA84A3F00E68171 /* AboutUs.html in Resources */,
 				596C89D51B9718C3009A9E3C /* FindCoordinates.js in Resources */,
+				59A5BE081BA8449E00E68171 /* TermsOfService.html in Resources */,
 				596C89D61B9718C3009A9E3C /* HelveticaNeueLTW1G-MdCn.otf in Resources */,
 				596C89D71B9718C3009A9E3C /* template.html in Resources */,
 				596C89D81B9718C3009A9E3C /* CategoryCell.xib in Resources */,
 				596C89D91B9718C3009A9E3C /* TopPostCell.xib in Resources */,
 				596C89DA1B9718C3009A9E3C /* LaunchScreen.xib in Resources */,
 				596C89DB1B9718C3009A9E3C /* SimplePostCell.xib in Resources */,
+				59A5BE0B1BA848F300E68171 /* PrivacyStatement.html in Resources */,
 				596C89DC1B9718C3009A9E3C /* Images.xcassets in Resources */,
 				596C89DD1B9718C3009A9E3C /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				596C89DE1B9718C3009A9E3C /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
@@ -1183,6 +1206,7 @@
 				49C22CAC1AB028CA00BCEFAF /* main.m in Sources */,
 				49C22CE51AB1CAAA00BCEFAF /* HLProfileViewController.m in Sources */,
 				49D441E01ADFA6A60091C401 /* SmallBannerPostCell.m in Sources */,
+				59A5BE051BA842B900E68171 /* HLTermsAndPrivacyViewController.m in Sources */,
 				593A55D51BA191FE00A56393 /* UIImage+Extentions.m in Sources */,
 				49A212FB1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m in Sources */,
 				59856E111B94442B0023E144 /* HLInviteFriendsViewController.m in Sources */,

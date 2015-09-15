@@ -107,6 +107,6 @@
     </objects>
     <resources>
         <image name="4_first_item_arrow" width="24" height="15"/>
-        <image name="NewLogo" width="90" height="90"/>
+        <image name="NewLogo" width="341" height="341"/>
     </resources>
 </document>

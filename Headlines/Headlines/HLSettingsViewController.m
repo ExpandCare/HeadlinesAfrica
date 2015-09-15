@@ -8,18 +8,23 @@
 #import "HLSettingsCell.h"
 #import <PFFacebookUtils.h>
 #import "Helpshift.h"
+#import "HLTermsAndPrivacyViewController.h"
 
 typedef NS_ENUM(NSInteger, HLSettingsCellType)
 {
     HLSettingsCellTypeAbout    = 0,
     HLSettingsCellTypeHelp     = 1,
-    HLSettingsCellTypePassword = 2,
-    HLSettingsCellTypeLogout   = 3
+    HLSettingsCellTypePrivacy  = 2,
+    HLSettingsCellTypeTerms    = 3,
+    HLSettingsCellTypePassword = 4,
+    HLSettingsCellTypeLogout   = 5
 };
 
 NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
 
 @interface HLSettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, assign) HLContentType selectedContentType;
 
 @end
 
@@ -34,7 +39,7 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,6 +53,14 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
     else if (indexPath.row == HLSettingsCellTypeHelp)
     {
         [cell configureWithColor:HLSettingsCellTextColorBlack text:@"Help & Feedback" accessoryView:YES];
+    }
+    else if (indexPath.row == HLSettingsCellTypePrivacy)
+    {
+        [cell configureWithColor:HLSettingsCellTextColorBlack text:@"Privacy Statement" accessoryView:YES];
+    }
+    else if (indexPath.row == HLSettingsCellTypeTerms)
+    {
+        [cell configureWithColor:HLSettingsCellTextColorBlack text:@"Terms of Service" accessoryView:YES];
     }
     else if (indexPath.row == HLSettingsCellTypePassword)
     {
@@ -88,6 +101,21 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
     {
         [self feedbackAction];
     }
+    else if (indexPath.row == HLSettingsCellTypePrivacy)
+    {
+        self.selectedContentType = HLContentTypePrivacy;
+        [self performSegueWithIdentifier:@"pushTermsAndPrivacyViewControllerSegue" sender:self];
+    }
+    else if (indexPath.row == HLSettingsCellTypeTerms)
+    {
+        self.selectedContentType = HLContentTypeTerms;
+        [self performSegueWithIdentifier:@"pushTermsAndPrivacyViewControllerSegue" sender:self];
+    }
+    else if (indexPath.row == HLSettingsCellTypeAbout)
+    {
+        self.selectedContentType = HLContentTypeAboutUs;
+        [self performSegueWithIdentifier:@"pushTermsAndPrivacyViewControllerSegue" sender:self];
+    }
 }
 
 #pragma mark - Private
@@ -126,6 +154,15 @@ NSString * const kSettingsCellIdentifier = @"settingsCellIdentifier";
     [[Helpshift sharedInstance] showFAQs:self withOptions:nil];
 }
 
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"pushTermsAndPrivacyViewControllerSegue"])
+    {
+        ((HLTermsAndPrivacyViewController *)segue.destinationViewController).currentContentType = self.selectedContentType;
+    }
+}
 
 #pragma mark - Life Cycle
 

@@ -1391,6 +1391,7 @@
                     <connections>
                         <segue destination="frB-Bt-c8y" kind="unwind" identifier="backToStart" unwindAction="unwindTo:" id="hCO-o2-aCZ"/>
                         <segue destination="eGs-BZ-GbV" kind="push" identifier="toChangePasswordScreen" id="ERS-eH-8cV"/>
+                        <segue destination="i4w-Jz-IWi" kind="push" identifier="pushTermsAndPrivacyViewControllerSegue" id="Yzj-6E-0HK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dW-Nf-RYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1504,6 +1505,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBI-A1-Sz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2101" y="2535"/>
+        </scene>
+        <!--Terms And Privacy View Controller-->
+        <scene sceneID="F87-mp-Wbl">
+            <objects>
+                <viewController id="i4w-Jz-IWi" customClass="HLTermsAndPrivacyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GnL-W3-hdA"/>
+                        <viewControllerLayoutGuide type="bottom" id="nql-xV-TK9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wMX-qi-tPK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1H2-V3-JdX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="i4w-Jz-IWi" id="9oW-1H-43H"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1H2-V3-JdX" secondAttribute="trailing" id="a6s-zL-O9w"/>
+                            <constraint firstItem="1H2-V3-JdX" firstAttribute="leading" secondItem="wMX-qi-tPK" secondAttribute="leading" id="kZC-Me-aw3"/>
+                            <constraint firstItem="1H2-V3-JdX" firstAttribute="top" secondItem="GnL-W3-hdA" secondAttribute="bottom" constant="-64" id="olK-oB-Vf6"/>
+                            <constraint firstItem="nql-xV-TK9" firstAttribute="top" secondItem="1H2-V3-JdX" secondAttribute="bottom" id="ydj-gT-GB3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pac-VT-oUM"/>
+                    <connections>
+                        <outlet property="webView" destination="1H2-V3-JdX" id="4YJ-Fy-Nxc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJJ-D0-r0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2101" y="3231"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="aBl-OJ-cIx">
@@ -2093,7 +2131,7 @@
     </scenes>
     <resources>
         <image name="FB_button" width="357" height="45"/>
-        <image name="NewLogo" width="90" height="90"/>
+        <image name="NewLogo" width="150" height="150"/>
         <image name="_0007_bt_open_next" width="13" height="21"/>
         <image name="cntr" width="375" height="667"/>
         <image name="ic_comment" width="24" height="24"/>
