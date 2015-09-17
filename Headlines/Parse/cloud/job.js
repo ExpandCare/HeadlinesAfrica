@@ -231,11 +231,20 @@ function savePosts(response, options, cbNext) {
                 if (options.source === 'Morocco World News') {
                     actions.push(getMoroccoWorldNewsPost(postsArr[i].get('link')));
                 };
+                if (options.source === 'Daily News Egypt') {
+                    actions.push(getDailyNewsEgyptPost(postsArr[i].get('link')));
+                };
+                if (options.source === 'Graphic Online') {
+                    actions.push(getGraphicOnlinePost(postsArr[i].get('link')));
+                };
+                if (options.source === 'The Chronicle') {
+                    actions.push(getChroniclePost(postsArr[i].get('link')));
+                };
+                
             }
 //a
             _(actions).reduceRight(_.wrap, function() {
                 postsArr = checkPosts(postsArr, ['content']);
-                console.log('COUNT POSTS ='.concat(postsArr.length));
                 Parse.Object.saveAll(postsArr, {
                     success: function(objs) {
                         cbNext();
@@ -1419,6 +1428,133 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getDailyNewsEgyptPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/25ff552d-f1bb-4e98-8576-9d4610074d70/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getGraphicOnlinePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/0c9b87f2-946b-4994-8a74-6ce597a9c658/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
+            function getChroniclePost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/4d00a87d-b3fe-4f52-9d78-6158cd1e4059/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                           // console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
         })();
     }
 }
@@ -1889,6 +2025,26 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'Morocco World News',
         category: 'Technology',
         country: 'Morocco'
+    }, {
+        url: "https://api.import.io/store/data/3669236d-6f4b-44f5-8a3f-b8e533f7176b/_query?input/webpage/url=http%3A%2F%2Fwww.dailynewsegypt.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Daily News Egypt',
+        category: 'Politics',
+        country: 'Egypt'
+    }, {
+        url: "https://api.import.io/store/data/fe5d7f67-1987-4fcd-92e7-b3b7844961ac/_query?input/webpage/url=http%3A%2F%2Fgraphic.com.gh%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Graphic Online',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/6aec683a-cccc-48c1-b434-b99132ccc2b4/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'The Chronicle',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        url: "https://api.import.io/store/data/dcbf7c37-8a81-4de8-ab1e-cd965d67ce86/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fmore%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,
+        source: 'The Chronicle',
+        category: 'Healthcare',
+        country: 'Ghana'
     }
     ];
 

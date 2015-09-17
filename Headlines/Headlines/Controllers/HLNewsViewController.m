@@ -50,6 +50,7 @@
 @property (nonatomic) BOOL downloadedAllNews;
 @property (nonatomic) BOOL downloading;
 @property (nonatomic, weak) IBOutlet UILabel *noResultsLbl;
+@property (nonatomic, strong) NSDate *earliestNewsDate;
 
 @end
 
@@ -80,6 +81,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.earliestNewsDate = [NSDate distantPast];
     
     [SDWebImageManager.sharedManager.imageCache setValue:nil forKey:@"memCache"];
     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
@@ -210,6 +213,7 @@
     
     if ([NSUserDefaults countryPostsUpdateNeeded])
     {
+        self.earliestNewsDate = [NSDate distantPast];
         self.resultController.fetchRequest.predicate = [self thePredicate];
         [self.resultController performFetch:nil];
         [self.tableView reloadData];
@@ -319,20 +323,28 @@
     [query orderByDescending:@"createdAt"];
     query.limit = LOAD_NEWS_COUNT;
     
-    if ([NSUserDefaults enabledCountries])
+    if ([NSUserDefaults enabledCountries].count)
     {
         [query whereKey:@"country" containedIn:[[NSUserDefaults enabledCountries] arrayByAddingObject:GOAL_DEFAUL_COUNTRY]];
     }
     
     if (skip)
     {
-        Post *p = [Post MR_findFirstWithPredicate:[NSPredicate predicateWithValue:YES] sortedBy:@"createdAt" ascending:YES];
+        
+        Post *p = [[self.resultController.fetchedObjects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]]] firstObject];
         [query whereKey:@"createdAt" lessThan:p.createdAt];
         //query.skip = self.resultController.fetchedObjects.count;
     }
     
+     self.earliestNewsDate = [NSDate distantPast];
+    
     __weak HLNewsViewController *controller = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if(objects.count)
+        {
+             controller.earliestNewsDate = ((PFObject *)[[objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]]] firstObject]).createdAt;
+        }
         
         if (objects.count < LOAD_NEWS_COUNT && skip)
         {
@@ -352,8 +364,9 @@
                 NSLog(@"Error: %@", error);
             }
             
-            //[controller.resultController performFetch:nil];
-            //[controller.tableView reloadData];
+            controller.resultController.fetchRequest.predicate = [controller thePredicate];
+            [controller.resultController performFetch:nil];
+            [controller.tableView reloadData];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadedPosts
                                                                 object:nil];
@@ -461,7 +474,7 @@
 
 - (NSPredicate *)thePredicate
 {
-    NSPredicate *predicate = nil;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt >= %@", self.earliestNewsDate];
     
     if (self.category)
     {
@@ -471,7 +484,7 @@
         }
         else
         {
-            predicate = [NSPredicate predicateWithFormat:@"category == %@", self.category];
+            predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, [NSPredicate predicateWithFormat:@"category == %@", self.category]]];
         }
     }
     
@@ -617,7 +630,7 @@
         return headerCell;
     }
     
-    if (indexPath.row == self.resultController.fetchedObjects.count - 1 && !self.downloading && !self.downloadedAllNews)
+    if ((indexPath.row == self.resultController.fetchedObjects.count - 1 && !self.downloading && !self.downloadedAllNews))
     {
         [self fetchAndLoadNewsWithSkipping:YES];
     }

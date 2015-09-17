@@ -18,6 +18,7 @@
                           country:(NSString *)country
                              date:(NSString *)dateString
                          imageURL:(NSString *)imageURL
+                         category:(NSString *)category
 {
     if ([author isEqualToString:source])
     {
@@ -159,6 +160,43 @@
     if ([source isEqualToString:@"Daily Guide"])
     {
         result = [result stringByReplacingOccurrencesOfString:@"$('[itemprop=articleBody] ad').hide();" withString:@"$('[itemprop=articleBody] ad').hide();\nvar images = document.getElementsByTagName('img');while(images.length > 0) {images[0].parentNode.removeChild(images[0]);}"];
+    }
+    
+    if([source isEqualToString:@"The Chronicle"])
+    {
+        NSUInteger cnt = 0, length = [result length];
+        NSRange range = NSMakeRange(0, length);
+        NSRange firstRange;
+        
+        while(range.location != NSNotFound)
+        {
+            range = [result rangeOfString: @"<strong><a" options:0 range:range];
+            
+            if(range.location != NSNotFound)
+            {
+                if(!cnt)
+                {
+                    firstRange = range;
+                }
+                
+                range = NSMakeRange(range.location + range.length, length - (range.location + range.length));
+                cnt++;
+            }
+        }
+        
+        if(cnt > 1)
+        {
+            length = [result length];
+            NSRange range = NSMakeRange(0, length);
+            range = [result rangeOfString: @"</strong>" options:0 range:range];
+            
+            if(range.location != NSNotFound)
+            {
+                NSString *firstPartStr = [NSString stringWithFormat:@"%@<br>", [result substringWithRange:NSMakeRange(0, firstRange.location)]];
+                NSString *secondPartStr = [result substringWithRange:NSMakeRange(range.location + range.length, length - (range.location + range.length))];
+                result = [NSString stringWithFormat:@"%@%@", firstPartStr,  secondPartStr];
+            }
+        }
     }
     
     return result;

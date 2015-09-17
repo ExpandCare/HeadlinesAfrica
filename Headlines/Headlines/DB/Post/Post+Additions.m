@@ -98,6 +98,22 @@
                 thePost.imageURL = nil;
             }
             
+            if([thePost.source isEqualToString:@"Cameroon Online"])
+            {
+                if([thePost.category isEqualToString:@"Blogs"])
+                {
+                    thePost.imageURL = [NSString stringWithFormat:@"file://%@", [[NSBundle mainBundle] pathForResource:@"images-17" ofType:@"jpeg"]];
+                }
+                else if ([thePost.category isEqualToString:@"Technology"])
+                {
+                    thePost.imageURL = [NSString stringWithFormat:@"file://%@", [[NSBundle mainBundle] pathForResource:@"images-16" ofType:@"jpeg"]];
+                }
+                else if ([thePost.category isEqualToString:@"Politics"])
+                {
+                    thePost.imageURL = [NSString stringWithFormat:@"file://%@", [[NSBundle mainBundle] pathForResource:@"images-18" ofType:@"jpeg"]];
+                }
+            }
+            
             thePost.link = post.link;
         }
         

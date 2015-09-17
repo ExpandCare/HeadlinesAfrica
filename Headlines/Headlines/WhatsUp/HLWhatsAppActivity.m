@@ -44,6 +44,9 @@
     return [[UIApplication sharedApplication] canOpenURL:whatsappURL];
 }
 
+
+- (id) activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController { return @""; }
+
 - (void)performActivity
 {
     NSMutableString *text = nil;
@@ -72,8 +75,11 @@
     }
     
     NSString *message = [NSString stringWithFormat:@"whatsapp://send?text=%@", [text encodedString]];
-    NSURL *whatsappURL = [NSURL URLWithString:message];
     
+    message = [message stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
+    
+    NSURL *whatsappURL = [NSURL URLWithString:message];
+   
     if ([[UIApplication sharedApplication] canOpenURL: whatsappURL])
     {
         [[UIApplication sharedApplication] openURL: whatsappURL];

@@ -245,7 +245,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         query = [PFQuery queryWithClassName:NSStringFromClass([Post class]) predicate:predicate];
     }
     
-    if ([NSUserDefaults enabledCountries])
+    if ([NSUserDefaults enabledCountries].count)
     {
         [query whereKey:@"country" containedIn:[[NSUserDefaults enabledCountries] arrayByAddingObject:GOAL_DEFAUL_COUNTRY]];
     }

@@ -14,6 +14,7 @@
                            source:(NSString *)source
                           country:(NSString *)country
                              date:(NSString *)dateString
-                         imageURL:(NSString *)imageURL;
+                         imageURL:(NSString *)imageURL
+                         category:(NSString *)category;
 
 @end

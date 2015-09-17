@@ -15,6 +15,8 @@
 #define SHOW_INTERNET_FAILED_ALERT [[[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Connection failed", nil) message: NSLocalizedString(@"Please check your internet connection or try again later.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
 #define SHOW_ALERT_WITH_TITLE_AND_MESSAGE(alertTitle, alertMessage)  [[[UIAlertView alloc] initWithTitle: alertTitle message: alertMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
 
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

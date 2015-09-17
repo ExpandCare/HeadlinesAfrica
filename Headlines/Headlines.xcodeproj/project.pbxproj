@@ -84,6 +84,14 @@
 		591C1EBD1BA3181200599E20 /* HLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E361BA066B3007642BD /* HLSettingsViewController.m */; };
 		593A55D51BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
 		593A55D61BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
+		596196181BA9BF1200C3312D /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196151BA9BF1200C3312D /* images-16.jpeg */; };
+		596196191BA9BF1200C3312D /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196151BA9BF1200C3312D /* images-16.jpeg */; };
+		5961961A1BA9BF1200C3312D /* images-18.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196161BA9BF1200C3312D /* images-18.jpeg */; };
+		5961961B1BA9BF1200C3312D /* images-18.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196161BA9BF1200C3312D /* images-18.jpeg */; };
+		5961961C1BA9BF1200C3312D /* images-17.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196171BA9BF1200C3312D /* images-17.jpeg */; };
+		5961961D1BA9BF1200C3312D /* images-17.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196171BA9BF1200C3312D /* images-17.jpeg */; };
+		5969D9A01BAB13A500E6929B /* UIActivityViewController+Exclude.m in Sources */ = {isa = PBXBuildFile; fileRef = 5969D99F1BAB13A500E6929B /* UIActivityViewController+Exclude.m */; };
+		5969D9A11BAB13A500E6929B /* UIActivityViewController+Exclude.m in Sources */ = {isa = PBXBuildFile; fileRef = 5969D99F1BAB13A500E6929B /* UIActivityViewController+Exclude.m */; };
 		596C898E1B9718C3009A9E3C /* HLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CB81AC5B3DE001CFE37 /* HLComment.m */; };
 		596C898F1B9718C3009A9E3C /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FB5CBF1AC5C4D1001CFE37 /* CommentCell.m */; };
 		596C89901B9718C3009A9E3C /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
@@ -343,6 +351,11 @@
 		4C72B6F1508031ACBADC7039 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		593A55D31BA191FD00A56393 /* UIImage+Extentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extentions.h"; sourceTree = "<group>"; };
 		593A55D41BA191FD00A56393 /* UIImage+Extentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extentions.m"; sourceTree = "<group>"; };
+		596196151BA9BF1200C3312D /* images-16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-16.jpeg"; sourceTree = "<group>"; };
+		596196161BA9BF1200C3312D /* images-18.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-18.jpeg"; sourceTree = "<group>"; };
+		596196171BA9BF1200C3312D /* images-17.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-17.jpeg"; sourceTree = "<group>"; };
+		5969D99E1BAB13A500E6929B /* UIActivityViewController+Exclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityViewController+Exclude.h"; sourceTree = "<group>"; };
+		5969D99F1BAB13A500E6929B /* UIActivityViewController+Exclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityViewController+Exclude.m"; sourceTree = "<group>"; };
 		596C89671B97185F009A9E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		596C89681B97185F009A9E3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		596C896A1B97185F009A9E3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -490,6 +503,8 @@
 				49EB0D1B1B4D565E00667F74 /* NSUserDefaults+Countries.m */,
 				593A55D31BA191FD00A56393 /* UIImage+Extentions.h */,
 				593A55D41BA191FD00A56393 /* UIImage+Extentions.m */,
+				5969D99E1BAB13A500E6929B /* UIActivityViewController+Exclude.h */,
+				5969D99F1BAB13A500E6929B /* UIActivityViewController+Exclude.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -563,6 +578,7 @@
 		49C22CA91AB028CA00BCEFAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5961961E1BA9C49900C3312D /* images */,
 				497A276F1ABAD48F0063ACB8 /* PrefixHeader.pch */,
 				499946661AB8765C0042A5E8 /* Consended */,
 				49C22CAA1AB028CA00BCEFAF /* Info.plist */,
@@ -771,6 +787,16 @@
 			name = Comment;
 			sourceTree = "<group>";
 		};
+		5961961E1BA9C49900C3312D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				596196151BA9BF1200C3312D /* images-16.jpeg */,
+				596196161BA9BF1200C3312D /* images-18.jpeg */,
+				596196171BA9BF1200C3312D /* images-17.jpeg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		596C89651B97185F009A9E3C /* HeadlinesDev */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +1000,8 @@
 				59A5BE071BA8449E00E68171 /* TermsOfService.html in Resources */,
 				499946681AB8765C0042A5E8 /* HelveticaNeueLTW1G-MdCn.otf in Resources */,
 				49C418501AC2AFBB0051164C /* template.html in Resources */,
+				596196181BA9BF1200C3312D /* images-16.jpeg in Resources */,
+				5961961C1BA9BF1200C3312D /* images-17.jpeg in Resources */,
 				49C22CF01AB1DEE900BCEFAF /* CategoryCell.xib in Resources */,
 				49C22CD51AB0322800BCEFAF /* TopPostCell.xib in Resources */,
 				49C22CBA1AB028CA00BCEFAF /* LaunchScreen.xib in Resources */,
@@ -982,6 +1010,7 @@
 				49C22CB71AB028CA00BCEFAF /* Images.xcassets in Resources */,
 				4999466A1AB876DF0042A5E8 /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				4999466C1AB877110042A5E8 /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
+				5961961A1BA9BF1200C3312D /* images-18.jpeg in Resources */,
 				49BAAA4A1ABC4156004C99AD /* ForgotPasswordCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1004,6 +1033,8 @@
 				59A5BE081BA8449E00E68171 /* TermsOfService.html in Resources */,
 				596C89D61B9718C3009A9E3C /* HelveticaNeueLTW1G-MdCn.otf in Resources */,
 				596C89D71B9718C3009A9E3C /* template.html in Resources */,
+				596196191BA9BF1200C3312D /* images-16.jpeg in Resources */,
+				5961961D1BA9BF1200C3312D /* images-17.jpeg in Resources */,
 				596C89D81B9718C3009A9E3C /* CategoryCell.xib in Resources */,
 				596C89D91B9718C3009A9E3C /* TopPostCell.xib in Resources */,
 				596C89DA1B9718C3009A9E3C /* LaunchScreen.xib in Resources */,
@@ -1012,6 +1043,7 @@
 				596C89DC1B9718C3009A9E3C /* Images.xcassets in Resources */,
 				596C89DD1B9718C3009A9E3C /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				596C89DE1B9718C3009A9E3C /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
+				5961961B1BA9BF1200C3312D /* images-18.jpeg in Resources */,
 				596C89DF1B9718C3009A9E3C /* ForgotPasswordCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1184,6 +1216,7 @@
 				49C418471AC1C7760051164C /* NSString+URLEncoding.m in Sources */,
 				497A27601ABACAAA0063ACB8 /* Model.xcdatamodeld in Sources */,
 				49C22CD91AB0340600BCEFAF /* SimplePostCell.m in Sources */,
+				5969D9A01BAB13A500E6929B /* UIActivityViewController+Exclude.m in Sources */,
 				49C22CE21AB1CA9800BCEFAF /* HLCategoriesViewController.m in Sources */,
 				49DAC6961AD2C8F900ADC969 /* SBGradientOverlayLayer.m in Sources */,
 				49C418441AC1C3DB0051164C /* HLWhatsAppActivity.m in Sources */,
@@ -1248,6 +1281,7 @@
 				596C899A1B9718C3009A9E3C /* HLNewsViewController.m in Sources */,
 				596C899B1B9718C3009A9E3C /* NSUserDefaults+Countries.m in Sources */,
 				596C899C1B9718C3009A9E3C /* HLLinkedInActivity.m in Sources */,
+				5969D9A11BAB13A500E6929B /* UIActivityViewController+Exclude.m in Sources */,
 				596C899D1B9718C3009A9E3C /* HLHeaderViewCell.m in Sources */,
 				596C899E1B9718C3009A9E3C /* UIView+SBExtras.m in Sources */,
 				596C899F1B9718C3009A9E3C /* SBTickerView.m in Sources */,

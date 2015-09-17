@@ -20,6 +20,7 @@
 #import "HLLike.h"
 #import "NSString+HTMLAdditions.h"
 #import <SAMHUDView/SAMHUDView.h>
+#import "UIActivityViewController+Exclude.h"
 
 #define IMG_MARKER @"^||^"
 
@@ -460,7 +461,8 @@
                                                  source:self.post.source
                                                 country:self.post.country
                                                    date:[self.post.createdAt formattedString]
-                                               imageURL:self.post.imageURL];
+                                               imageURL:self.post.imageURL
+                                               category:self.post.category ? self.post.category : self.post.source];
     
     [self.webView loadHTMLString:html baseURL:nil];
 }
@@ -694,9 +696,8 @@
 {
     HLLinkedInActivity *linkedInActivity = [HLLinkedInActivity new];
     HLWhatsAppActivity *whatsAppActivity = [HLWhatsAppActivity new];
-    
     NSString *shareMessage = [NSString stringWithFormat:@"Sent from Headlines Africa app:\n\n%@\n\n", self.post.title];
-    
+		
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[shareMessage, [NSURL URLWithString:self.post.link]] applicationActivities:@[linkedInActivity, whatsAppActivity]];
     
     __weak HLPostDetailViewController *controller = self;
@@ -715,9 +716,9 @@
         }];
     }
     else
-    {
+    {   
         [activityController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
-            
+                        
             if (completed)
             {
                 [controller incrementShares];
@@ -733,6 +734,7 @@
                        animated:YES
                      completion:nil];
 }
+
 
 - (void)backButtonPressed:(UIButton *)sender
 {

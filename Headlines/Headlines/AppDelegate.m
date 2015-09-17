@@ -34,6 +34,7 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     [Helpshift installForApiKey:@"cb6a152b8ef444615fc6a08955cdcc6b"
                      domainName:@"headlinesafrica.helpshift.com"
                           appID:@"headlinesafrica_platform_20150908152440670-ed4fb7f4ec263c8"];
@@ -132,7 +133,6 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     [TestFairy begin:@"f27b0eb034db2c4a7e184f00b4eb348224bcda07"];
     
     [self loadBanners];
-    
     return YES;
 }
 

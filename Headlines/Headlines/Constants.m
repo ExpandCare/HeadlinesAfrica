@@ -38,6 +38,12 @@ NSString * const kDefaultsUserKeyPassword = @"kPFUserKeyPassword";
 NSString * const kDefaultsNeedToUpdate = @"kNeedToUpdate";
 NSString * const kDefaultsEnabledCountries = @"kDefaultsEnabledCountries";
 
+#pragma mark - Static Images
+
+NSString * const kCamerronOnlineBlogsStaticImage = @"cameroonOnlineBlogs.jpg";
+NSString * const kCamerronOnlineTechStaticImage = @"cameroonOnlineTech.jpg";
+NSString * const kCamerronOnlinePoliticsStaticImage = @"cameroonOnlinePolitics.jpg";
+
 #ifdef DEVTARGET
 NSString * const kParseAppID                            = @"p8rrpMQXg6sEysabNDfbfRxaPmpzFrrBRO3TaWoH";
 NSString * const kParseClientKey                        = @"ZClqTF0b2sFxsIB5ZopM8Z6vI3cqvZg0KyHoyIwT";
