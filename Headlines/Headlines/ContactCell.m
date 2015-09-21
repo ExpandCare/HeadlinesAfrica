@@ -36,7 +36,15 @@
 - (void)configureCellWithContact:(NSDictionary *)person
 {
     self.contactNameLbl.text = person[@"name"];
-    self.contactEmailLbl.text = person[@"email"];
+    
+    if(person[@"email"])
+    {
+        self.contactEmailLbl.text = person[@"email"];
+    }
+    else if (person[@"phone"])
+    {
+        self.contactEmailLbl.text = person[@"phone"];
+    }
     
     if([person[@"isRegistered"] intValue] == 1)
     {

@@ -1581,6 +1581,11 @@ function getPostsList(options) {
 
 Parse.Cloud.job("updateAll", function(request, status) {
     var options = [{
+        url: "https://api.import.io/store/data/ddbe78d5-0529-43d7-a570-2a6ec07927cc/_query?input/webpage/url=http%3A%2F%2Fwww.goal.com%2Fen%2Fnews%2Farchive%2F1%3FICID%3DOP&_user=" + user + "&_apikey=" + apiKey,
+        source: 'Goal',
+        category: 'Sports',
+        country: 'Euro Soccer'
+    }, {
         url: "https://api.import.io/store/data/189a8329-a73e-4191-a6ea-60378c052659/_query?input/webpage/url=http%3A%2F%2Flindaikeji.blogspot.com%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Linda Ikeji',
         category: 'Blogs',
@@ -1670,11 +1675,6 @@ Parse.Cloud.job("updateAll", function(request, status) {
         source: 'This Day Live',
         category: 'Business',
         country: 'Nigeria'
-    }, {
-        url: "https://api.import.io/store/data/ddbe78d5-0529-43d7-a570-2a6ec07927cc/_query?input/webpage/url=http%3A%2F%2Fwww.goal.com%2Fen%2Fnews%2Farchive%2F1%3FICID%3DOP&_user=" + user + "&_apikey=" + apiKey,
-        source: 'Goal',
-        category: 'Sports',
-        country: 'Euro Soccer'
     }, {
         url: "https://api.import.io/store/data/fe91f34b-2ea0-4a8c-afe7-727a73800935/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fpolitics%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vibeghana',
@@ -2033,12 +2033,12 @@ Parse.Cloud.job("updateAll", function(request, status) {
     }, {
         url: "https://api.import.io/store/data/fe5d7f67-1987-4fcd-92e7-b3b7844961ac/_query?input/webpage/url=http%3A%2F%2Fgraphic.com.gh%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Graphic Online',
-        category: 'Business',
+        category: 'Technology',
         country: 'Ghana'
     }, {
         url: "https://api.import.io/store/data/6aec683a-cccc-48c1-b434-b99132ccc2b4/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'The Chronicle',
-        category: 'Business',
+        category: 'Technology',
         country: 'Ghana'
     }, {
         url: "https://api.import.io/store/data/dcbf7c37-8a81-4de8-ab1e-cd965d67ce86/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fmore%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,

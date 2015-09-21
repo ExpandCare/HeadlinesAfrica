@@ -92,6 +92,9 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
     {
         [weakSelf generateDataSourceForContactsTableFromContacts:CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBookRef))];
         
+        NSMutableArray *emailArr = [[weakSelf.contactsDataSource valueForKeyPath:@"email"] mutableCopy];
+        [emailArr removeObjectIdenticalTo:[NSNull null]];
+        
         NSDictionary *paramsDict = @{
                                      @"emails" : [weakSelf.contactsDataSource valueForKeyPath:@"email"]
                                     };
@@ -119,12 +122,38 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doubleTap)
+                                                 name:kNotificationDoubleTap
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Private
+
+- (void)doubleTap
+{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                              inSection:0]
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
+    
+}
 
 - (void)generateDataSourceForContactsTableFromContacts:(NSArray *)contacts
 {
@@ -141,46 +170,48 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
        [NSString stringWithFormat:@"%@ %@", lastName, firstName];
         
         ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+        NSMutableDictionary *contactDict = [NSMutableDictionary dictionary];
+        ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        int recordId = ABRecordGetRecordID(person);
+        NSMutableString *name = [NSMutableString stringWithString:lastName ? lastName : @""];
         
-        CFIndex numberOfEmails = ABMultiValueGetCount(emails);
-        
-        for(int j = 0; j < numberOfEmails; ++j)
+        if(firstName)
         {
-            NSMutableDictionary *contactDict = [NSMutableDictionary dictionary];
-            
-            NSString *email = CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, j));
-            int recordId = ABRecordGetRecordID(person);
-            
-            ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
-            
-            NSMutableString *name = [NSMutableString stringWithString:lastName ? lastName : @""];
-            
-            if(firstName)
+            if(name.length)
             {
-                if(name.length)
-                {
-                    [name appendString:@" "];
-                }
-                
-                [name appendFormat:@"%@", firstName];
+                [name appendString:@" "];
             }
             
-            contactDict = [@{
-                            @"name"         : name,
-                            @"email"        : email,
-                            @"contactId"    : @(recordId),
-                            @"isRegistered" : @(0)
-                           } mutableCopy];
-            
-            if(ABMultiValueGetCount(phones))
-            {
-                [contactDict setObject:CFBridgingRelease(ABMultiValueCopyValueAtIndex(phones, 0)) forKey:@"phone"];
-            }
-            
-            [self.contactsDataSource addObject:contactDict];
+            [name appendFormat:@"%@", firstName];
+        }
+        
+        contactDict = [@{
+                         @"name"         : name,
+                         @"contactId"    : @(recordId),
+                         @"isRegistered" : @(0)
+                         } mutableCopy];
+        
+        BOOL isCanBeInvited = NO;
+        
+        if(ABMultiValueGetCount(phones))
+        {
+            isCanBeInvited = YES;
+            [contactDict setObject:CFBridgingRelease(ABMultiValueCopyValueAtIndex(phones, 0)) forKey:@"phone"];
+        }
+        
+        if(ABMultiValueGetCount(emails))
+        {
+            isCanBeInvited = YES;
+            [contactDict setObject:CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, 0)) forKey:@"email"];
+        }
+        
+        if(isCanBeInvited)
+        {
+             [self.contactsDataSource addObject:contactDict];
         }
         
         CFRelease(emails);
+        CFRelease(phones);
     }
     
     self.contactsDataSource = [[self.contactsDataSource sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy];
@@ -335,11 +366,15 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
     NSArray *dataSource = [self.contactsDataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isRegistered == 0"]];
     self.invitingContactDict = dataSource[[self.tableView indexPathForCell:cell].row];
     
-    if(self.invitingContactDict[@"phone"])
+    if(self.invitingContactDict[@"phone"] && self.invitingContactDict[@"email"])
     {
         [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Invite via email", @"Invite via SMS", nil] showInView:self.view.window];
     }
-    else
+    else if(self.invitingContactDict[@"phone"])
+    {
+        [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Invite via SMS", nil] showInView:self.view.window];
+    }
+    else if (self.invitingContactDict[@"email"])
     {
         [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Invite via email", nil] showInView:self.view.window];
     }
@@ -357,64 +392,85 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
         return;
     }
     
-    if(buttonIndex == HLInviteContactButtonTypeViaEmail)
+    if(self.invitingContactDict[@"phone"] && self.invitingContactDict[@"email"])
     {
-        if ([MFMailComposeViewController canSendMail])
+        if(buttonIndex == HLInviteContactButtonTypeViaEmail)
         {
-            [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]];
-            
-            MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
-            controller.mailComposeDelegate = self;
-            
-            UIFont *font = [UIFont mediumConsendedWithSize:16];
-            NSDictionary *navbarTitleTextAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor]};
-            [controller.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-            [controller.navigationBar setTintColor:[UIColor whiteColor]];
-            
-            [controller setSubject:@"Join me in Headlines"];
-            [controller setMessageBody:INVITE_MESSAGE_HTML isHTML:YES];
-            [controller setToRecipients:[NSArray arrayWithObjects:self.invitingContactDict[@"email"], nil]];
-            
-            [self presentViewController:controller animated:YES completion:^
-            {
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-            }];
+            [self sendInvitationViaEmail];
         }
-        else
+        else if (buttonIndex == HLInviteContactButtonTypeViaSMS)
         {
-            SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"Unable to send email", @"Please, check your settings");
+            [self sendInvitationViaSMS];
         }
     }
-    else if (buttonIndex == HLInviteContactButtonTypeViaSMS)
+    else if (self.invitingContactDict[@"phone"])
     {
-        if ([MFMessageComposeViewController canSendText])
-        {
-            [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]];
-            
-            MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
-            
-            UIFont *font = [UIFont mediumConsendedWithSize:16];
-            NSDictionary *navbarTitleTextAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor]};
-            [messageComposer.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-            [messageComposer.navigationBar setTintColor:[UIColor whiteColor]];
-            
-            NSString *message = INVITE_MESSAGE;
-            messageComposer.recipients = [NSArray arrayWithObjects:self.invitingContactDict[@"phone"], nil];
-            [messageComposer setBody:message];
-            messageComposer.messageComposeDelegate = self;
-            
-            [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-            
-            [self presentViewController:messageComposer animated:YES completion:^
-             {
-                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-             }];
-        }
-        else
-        {
-            SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"Unable to send text message", @"Please, check your settings");
-        }
+        [self sendInvitationViaSMS];
+    }
+    else if (self.invitingContactDict[@"email"])
+    {
+        [self sendInvitationViaEmail];
+    }
+    
+}
+
+- (void)sendInvitationViaSMS
+{
+    if ([MFMessageComposeViewController canSendText])
+    {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]];
         
+        MFMessageComposeViewController *messageComposer = [[MFMessageComposeViewController alloc] init];
+        
+        UIFont *font = [UIFont mediumConsendedWithSize:16];
+        NSDictionary *navbarTitleTextAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor]};
+        [messageComposer.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+        [messageComposer.navigationBar setTintColor:[UIColor whiteColor]];
+        
+        NSString *message = INVITE_MESSAGE;
+        messageComposer.recipients = [NSArray arrayWithObjects:self.invitingContactDict[@"phone"], nil];
+        [messageComposer setBody:message];
+        messageComposer.messageComposeDelegate = self;
+        
+        [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        
+        [self presentViewController:messageComposer animated:YES completion:^
+         {
+             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+         }];
+    }
+    else
+    {
+        SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"Unable to send text message", @"Please, check your settings");
+    }
+}
+
+- (void)sendInvitationViaEmail
+{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]];
+        
+        MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+        controller.mailComposeDelegate = self;
+        
+        UIFont *font = [UIFont mediumConsendedWithSize:16];
+        NSDictionary *navbarTitleTextAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor]};
+        [controller.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+        [controller.navigationBar setTintColor:[UIColor whiteColor]];
+        
+        [controller setSubject:@"Join me in Headlines"];
+        [controller setMessageBody:INVITE_MESSAGE_HTML isHTML:YES];
+        [controller setToRecipients:[NSArray arrayWithObjects:self.invitingContactDict[@"email"], nil]];
+        
+        [self presentViewController:controller animated:YES completion:^
+         {
+             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+         }];
+    }
+    else
+    {
+        SHOW_ALERT_WITH_TITLE_AND_MESSAGE(@"Unable to send email", @"Please, check your settings");
     }
 }
 
