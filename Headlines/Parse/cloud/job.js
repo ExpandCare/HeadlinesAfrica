@@ -1991,6 +1991,11 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Sports',
         country: 'Ghana'
     }, {
+        url: "https://api.import.io/store/data/d66f08dc-7e07-458d-91f4-58ffeff47612/_query?input/webpage/url=http%3A%2F%2Fwww.allghananews.com%2Ftech-science&_user=" + user + "&_apikey=" + apiKey,
+        source: 'All Ghana News',
+        category: 'Technology',
+        country: 'Ghana'
+    }, {
         url: "https://api.import.io/store/data/c56a8168-ff09-4469-8db3-13b65d4eb37e/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fentertainment%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Vibeghana',
         category: 'Blogs',
@@ -2033,12 +2038,12 @@ Parse.Cloud.job("updateAll", function(request, status) {
     }, {
         url: "https://api.import.io/store/data/fe5d7f67-1987-4fcd-92e7-b3b7844961ac/_query?input/webpage/url=http%3A%2F%2Fgraphic.com.gh%2Fbusiness%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Graphic Online',
-        category: 'Technology',
+        category: 'Business',
         country: 'Ghana'
     }, {
         url: "https://api.import.io/store/data/6aec683a-cccc-48c1-b434-b99132ccc2b4/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'The Chronicle',
-        category: 'Technology',
+        category: 'Business',
         country: 'Ghana'
     }, {
         url: "https://api.import.io/store/data/dcbf7c37-8a81-4de8-ab1e-cd965d67ce86/_query?input/webpage/url=http%3A%2F%2Fthechronicle.com.gh%2Fcategory%2Fmore%2Fhealth%2F&_user=" + user + "&_apikey=" + apiKey,

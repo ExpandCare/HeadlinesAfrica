@@ -14,13 +14,13 @@
                                       "news platform"];
     
     [str addAttribute:NSFontAttributeName
-                value:[UIFont boldSystemFontOfSize:13]
+                value:[UIFont boldSystemFontOfSize:15]
                 range:NSMakeRange(0, str.length)];
     [str addAttribute:NSForegroundColorAttributeName
                 value:[UIColor colorWithRed:0.5 green:0.5 blue:0.52 alpha:1]
                 range:NSMakeRange(0, str.length)];
     [str addAttribute:NSFontAttributeName
-                value:[UIFont boldSystemFontOfSize:16]
+                value:[UIFont boldSystemFontOfSize:19]
                 range:NSMakeRange(0, @"Africa's #1".length)];
     [str addAttribute:NSForegroundColorAttributeName
                 value:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1]
