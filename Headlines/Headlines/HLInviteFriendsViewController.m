@@ -148,10 +148,20 @@ typedef NS_ENUM(NSInteger, HLInviteContactButtonType)
 
 - (void)doubleTap
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0
-                                                              inSection:0]
-                          atScrollPosition:UITableViewScrollPositionTop
-                                  animated:YES];
+    if([self.tableView numberOfRowsInSection:0])
+    {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                  inSection:0]
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:YES];
+    }
+    else if ([self.tableView numberOfRowsInSection:1])
+    {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                  inSection:1]
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:YES];
+    }
     
 }
 
