@@ -698,7 +698,7 @@
     HLWhatsAppActivity *whatsAppActivity = [HLWhatsAppActivity new];
     NSString *shareMessage = [NSString stringWithFormat:@"Sent from Headlines Africa app:\n\n%@\n\n", self.post.title];
 		
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[shareMessage, [NSURL URLWithString:self.post.link]] applicationActivities:@[linkedInActivity, whatsAppActivity]];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[shareMessage, [NSURL URLWithString:[self.post.link stringByReplacingOccurrencesOfString:@"/AllPortal" withString:@""]]] applicationActivities:@[linkedInActivity, whatsAppActivity]];
     
     __weak HLPostDetailViewController *controller = self;
     if ([UIDevice currentDevice].systemVersion.doubleValue < 8)
