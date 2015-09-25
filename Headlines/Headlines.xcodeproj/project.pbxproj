@@ -1596,7 +1596,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Headlines copy";
-				PROVISIONING_PROFILE = "15c5141a-9e15-4d5c-ae18-cc75d118248e";
+				PROVISIONING_PROFILE = "7fe0cb47-0b17-44ca-9611-4e9af47af7de";
 			};
 			name = Release;
 		};

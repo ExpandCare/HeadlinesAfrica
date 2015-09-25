@@ -178,7 +178,7 @@
 {
     [super viewDidAppear:animated];
     
-    //[self moveAdBaner]
+    //[self moveAdBaner];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -314,6 +314,7 @@
     }
     
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(60, 0, 60 + RECTANGLE_BANNER_HEIGHT, 0);
+    
 }
 
 - (void)addBanner:(GADBannerView *)banner toSuperView:(UIView *)parentView contentView:(UIView *)contentView bottom:(BOOL)bottom
