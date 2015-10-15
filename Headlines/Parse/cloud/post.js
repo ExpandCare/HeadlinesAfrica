@@ -339,3 +339,481 @@ function tokensFromString(contentString)
 
    return tokens;
 }
+
+var domain = 'sandboxb85831dca97e47ae9510e39032a837bc.mailgun.org',
+   apiKey = 'key-1466082c429d6cf9e8b7c4f5da6cb4b3';
+     
+   var Mailgun = require('mailgun');
+   Mailgun.initialize(domain, apiKey);
+ 
+Parse.Cloud.job("reviewResources", function(request, response)
+{
+ 
+    var resources = [{
+        source: 'Goal',
+        category: 'Sports',
+        country: 'Euro Soccer'
+    }, {
+        source: 'Linda Ikeji',
+        category: 'Blogs',
+        country: 'Nigeria'
+    }, {
+        source: 'Bella Naija',
+        category: 'Blogs',
+        country: 'Nigeria'
+    }, {
+        source: 'Punch',
+        category: 'News',
+        country: 'Nigeria'
+    }, {
+        source: 'Punch',
+        category: 'Politics',
+        country: 'Nigeria'
+    }, {
+        source: 'Punch',
+        category: 'Business',
+        country: 'Nigeria'
+    }, {
+        source: 'Punch',
+        category: 'Sports',
+        country: 'Nigeria'
+    }, {
+        source: 'Punch',
+        category: 'Healthcare',
+        country: 'Nigeria'
+    }, {
+        source: 'Vanguard',
+        category: 'News',
+        country: 'Nigeria'
+    }, {
+        source: 'Vanguard',
+        category: 'Business',
+        country: 'Nigeria'
+    }, {
+        source: 'Vanguard',
+        category: 'Sports',
+        country: 'Nigeria'
+    }, {
+        source: 'Vanguard',
+        category: 'Politics',
+        country: 'Nigeria'
+    }, {
+        source: 'Vanguard',
+        category: 'Technology',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'Healthcare',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'Healthcare',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'Politics',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'News',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'Sports',
+        country: 'Nigeria'
+    }, {
+        source: 'This Day Live',
+        category: 'Business',
+        country: 'Nigeria'
+    }, {
+        source: 'Vibeghana',
+        category: 'Politics',
+        country: 'Ghana'
+    }, {
+        source: 'Vibeghana',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        source: 'Vibeghana',
+        category: 'Healthcare',
+        country: 'Ghana'
+    }, {
+        source: 'Mail & Guardian',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        source: 'Times Live',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        source: 'Times Live',
+        category: 'Food',
+        country: 'South Africa'
+    }, {
+        source: 'Daily Guide',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        source: 'Daily Guide',
+        category: 'Politics',
+        country: 'Ghana'
+    }, {
+        source: 'Daily Guide',
+        category: 'Blogs',
+        country: 'Ghana'
+    }, {
+        source: 'Daily Guide',
+        category: 'Sports',
+        country: 'Ghana'
+    }, {
+        source: 'Times Live',
+        category: 'Politics',
+        country: 'South Africa'
+    }, {
+        source: 'Angop',
+        category: 'Business',
+        country: 'Angola'
+    }, {
+        source: 'Angop',
+        category: 'Healthcare',
+        country: 'Angola'
+    }, {
+        source: 'Angop',
+        category: 'Politics',
+        country: 'Angola'
+    }, {
+        source: 'Angop',
+        category: 'Blogs',
+        country: 'Angola'
+    }, {
+        source: 'Angop',
+        category: 'Sports',
+        country: 'Angola'
+    }, {
+        source: 'Angop',
+        category: 'Technology',
+        country: 'Angola'
+    }, {
+        source: 'Egypt Independent',
+        category: 'Business',
+        country: 'Egypt'
+    }, {
+        source: 'Egypt Independent',
+        category: 'Healthcare',
+        country: 'Egypt'
+    }, {
+        source: 'Egypt Independent',
+        category: 'Technology',
+        country: 'Egypt'
+    }, {
+        source: 'Cameroon POSTline',
+        category: 'Business',
+        country: 'Cameroon'
+    }, {
+        source: 'Cameroon POSTline',
+        category: 'Healthcare',
+        country: 'Cameroon'
+    }, {
+        source: 'Cameroon POSTline',
+        category: 'Sports',
+        country: 'Cameroon'
+    }, {
+        source: 'BDlive',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        source: 'BDlive',
+        category: 'Healthcare',
+        country: 'South Africa'
+    }, {
+        source: 'BDlive',
+        category: 'Politics',
+        country: 'South Africa'
+    },{
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
+    }, {
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
+    }, {
+        source: 'NBE',
+        category: 'Business',
+        country: 'Ethiopia'
+    }, {
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }, { 
+        source: 'NBE',
+        category: 'Healthcare',
+        country: 'Ethiopia'
+    }, {
+        source: 'NBE',
+        category: 'Politics',
+        country: 'Ethiopia'
+    }, {
+        source: 'NBE',
+        category: 'Technology',
+        country: 'Ethiopia'
+    }, {
+        source: 'NBE',
+        category: 'Blogs',
+        country: 'Ethiopia'
+    }, {
+        source: 'Fin24',
+        category: 'Business',
+        country: 'South Africa'
+    }, {
+        source: 'Fin24',
+        category: 'Technology',
+        country: 'South Africa'
+    }, {
+        source: 'Kenyan Post',
+        category: 'Politics',
+        country: 'Kenya'
+    }, {
+        source: 'The Star',
+        category: 'Blogs',
+        country: 'Kenya'
+    }, {
+        source: 'The Star',
+        category: 'Sports',
+        country: 'Kenya'
+    }, {
+        source: 'The Star',
+        category: 'Business',
+        country: 'Kenya'
+    }, {
+        source: 'IOL',
+        category: 'Sports',
+        country: 'South Africa'
+    }, {
+        source: 'IOL',
+        category: 'Blogs',
+        country: 'South Africa'
+    }, {
+        source: 'IOL',
+        category: 'Technology',
+        country: 'South Africa'
+    }, {
+        source: 'IOL',
+        category: 'Blogs',
+        country: 'South Africa'
+    },{
+        source: 'Standard Digital',
+        category: 'Business',
+        country: 'Kenya'
+    }, {
+        source: 'Standard Digital',
+        category: 'Technology',
+        country: 'Kenya'
+    }, {
+        source: 'Ahram Online',
+        category: 'Sports',
+        country: 'Egypt'
+     }, {
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        source: 'Ahram Online',
+        category: 'Blogs',
+        country: 'Egypt'
+    }, {
+        source: 'Ahram Online',
+        category: 'Politics',
+        country: 'Egypt'
+    }, {
+        source: 'SDE',
+        category: 'Blogs',
+        country: 'Kenya'
+    }, {
+        source: 'Standart Media',
+        category: 'Business',
+        country: 'Kenya'
+    }, {
+        source: 'Standart Media',
+        category: 'Healthcare',
+        country: 'Kenya'
+    }, {
+        source: 'Cameroon Online',
+        category: 'Sports',
+        country: 'Cameroon'
+    }, {
+        source: 'Cameroon Online',
+        category: 'Technology',
+        country: 'Cameroon'
+    }, {
+        source: 'Cameroon Online',
+        category: 'Politics',
+        country: 'Cameroon'
+    }, {
+        source: 'Cameroon Online',
+        category: 'Blogs',
+        country: 'Cameroon'
+    }, {
+        source: 'Ahram Online',
+        category: 'Business',
+        country: 'Egypt'
+    }, {
+        source: 'All Ghana News',
+        category: 'Politics',
+        country: 'Ghana'
+    }, {
+        source: 'All Ghana News',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        source: 'All Ghana News',
+        category: 'Healthcare',
+        country: 'Ghana'
+    }, {
+        source: 'All Ghana News',
+        category: 'Sports',
+        country: 'Ghana'
+    }, {
+        source: 'All Ghana News',
+        category: 'Technology',
+        country: 'Ghana'
+    }, {
+        source: 'Vibeghana',
+        category: 'Blogs',
+        country: 'Ghana'
+    }, {
+        source: 'Morocco World News',
+        category: 'Sports',
+        country: 'Morocco'
+    }, {
+        source: 'Morocco World News',
+        category: 'Healthcare',
+        country: 'Morocco'
+    }, {
+        source: 'Morocco World News',
+        category: 'Business',
+        country: 'Morocco'
+    }, {
+        source: 'Morocco World News',
+        category: 'Blogs',
+        country: 'Morocco'
+    }, {
+        source: 'Morocco World News',
+        category: 'Politics',
+        country: 'Morocco'
+    }, {
+        source: 'Morocco World News',
+        category: 'Technology',
+        country: 'Morocco'
+    }, {
+        source: 'Daily News Egypt',
+        category: 'Politics',
+        country: 'Egypt'
+    }, {
+        source: 'Graphic Online',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        source: 'The Chronicle',
+        category: 'Business',
+        country: 'Ghana'
+    }, {
+        source: 'The Chronicle',
+        category: 'Healthcare',
+        country: 'Ghana'
+    }
+    ];
+  
+    var i = 0;
+    var resultStr = "RESOURCES COUNT: ".concat(resources.length).concat("\n");
+    var currentDate = new Date();
+    for(var j = 0; j < resources.length; j++)
+    {
+      var resource = resources[j];
+      var Post = Parse.Object.extend("Post");
+      var contentQuery = new Parse.Query(Post);
+      contentQuery.equalTo("source", resource.source);
+      contentQuery.equalTo("category", resource.category);
+      contentQuery.equalTo("country", resource.country);
+      contentQuery.limit(1);
+      contentQuery.descending("createdAt");
+       
+      contentQuery.find(
+      {
+         success: function(results) 
+         {
+           if(results.length > 0)
+           {
+            var daysDiff = dayDiff(results[0].createdAt, currentDate);
+            resultStr = resultStr.concat(i).concat(":").concat(results[0].get("country")).concat("; ").concat(results[0].get("category")).concat("; ").concat(results[0].get("source")).concat("; days = ").concat(daysDiff);
+           }
+           else
+           {
+            resultStr = resultStr.concat(i).concat(":").concat(" NO POSTS");
+           }
+ 
+           resultStr = resultStr.concat("\n");
+             
+           ++i;
+ 
+           if(i == resources.length)
+           {
+              Mailgun.sendEmail({
+                            to: request.params.email,
+                            from: "Headlines@CloudCode.com",
+                            subject:  "Reviewed resources",
+                            text: resultStr
+                        }, {
+                            success: function(httpResponse) {
+                            },
+                            error: function(httpResponse) {
+                            }
+                        });
+             response.success();
+           }
+        
+         },
+         error: function(error) 
+         {
+           resultStr = resultStr.concat(i).concat(":").concat("ERROR:");
+           resultStr = resultStr.concat("\n");
+           ++i;
+ 
+           if(i == resources.length)
+           {
+              Mailgun.sendEmail({
+                            to: request.params.email,
+                            from: "Headlines@CloudCode.com",
+                            subject: "Reviewed resources",
+                            text: resultStr
+                        }, {
+                            success: function(httpResponse) {
+                            },
+                            error: function(httpResponse) {
+                            }
+                        });
+             response.success();
+           }
+         }
+      });
+ 
+ 
+    }
+ 
+     
+});
+ 
+function dayDiff(startdate, enddate) {
+  var dayCount = 0;
+ 
+  while(enddate >= startdate) {
+    dayCount++;
+    startdate.setDate(startdate.getDate() + 1);
+  }
+ 
+return dayCount; 
+}

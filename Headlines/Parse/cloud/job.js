@@ -483,7 +483,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',
-                        url: "https://api.import.io/store/data/15638383-f437-49a6-8ec6-248ca8bcc71c/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/data/6e26e31b-364b-4a70-bb51-e6f8bee8a2dc/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -500,14 +500,7 @@ function savePosts(response, options, cbNext) {
                                         }
                                     }
 
-                                     //images
-                                     if (data.results && data.results[0] && data.results[0].image) {
-                                         if (typeof data.results[0].image === "string") {
-                                             postsArr[i].set("image", [data.results[0].image]);
-                                         } else {
-                                             postsArr[i].set("image", data.results[0].image);
-                                         }
-                                     }
+
                                 }
                             }
 
@@ -1686,7 +1679,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Ghana'
     }, {
-        url: "https://api.import.io/store/data/d1ea65fc-edae-4eb6-9f78-914435c9c4aa/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fhealth%2Fpage%2F4%2F&_user=" + user + '&_apikey=' + apiKey,
+        url: "https://api.import.io/store/data/d1ea65fc-edae-4eb6-9f78-914435c9c4aa/_query?input/webpage/url=http%3A%2F%2Fvibeghana.com%2Fcategory%2Fhealth%2Fpage%2F1%2F&_user=" + user + '&_apikey=' + apiKey,
         source: 'Vibeghana',
         category: 'Healthcare',
         country: 'Ghana'
@@ -2235,3 +2228,4 @@ Parse.Cloud.define("like", function(request, response) {
 	}
 
 });
+
