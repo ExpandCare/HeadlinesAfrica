@@ -178,7 +178,16 @@ function savePosts(response, options, cbNext) {
                     actions.push(getMailAndGuardianPost(postsArr[i].get('link')));
                 }
                 if (options.source === 'Times Live') {
-                    actions.push(getLiveTimesPost(postsArr[i].get('link')));
+                  
+                    if(options.category === 'Food' || options.category === 'Business')
+                    {
+                        actions.push(getLiveTimesBusinessFoodPost(postsArr[i].get('link')));
+                    }
+                    else
+                    {
+                        actions.push(getLiveTimesPost(postsArr[i].get('link')));
+                    }
+                    
                 }
                 if (options.source === 'Angop') {
                     actions.push(getAngopPost(postsArr[i].get('link')));
@@ -957,6 +966,48 @@ function savePosts(response, options, cbNext) {
                 }
             }
 
+            function getLiveTimesBusinessFoodPost(url) {
+
+                return function(next) {
+                    var body = JSON.stringify({
+                        "input": {
+                            "webpage/url": url
+                        }
+                    });
+
+                    Parse.Cloud.httpRequest({
+                        method: 'POST',                        
+                        url: "https://api.import.io/store/data/9c7c8969-770b-4742-bfff-113fdcc5b09f/_query?_user=" + user + "&_apikey=" + apiKey,
+                        body: body,
+                        success: function(httpResponse) {
+                            var data = JSON.parse(httpResponse.text);
+                          //  console.log(data);
+
+                            for (var i = 0; i < postsArr.length; i++) {
+                                if (postsArr[i].get('link') === url) {
+                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
+                                    //Content
+                                    if (data.results && data.results[0] && data.results[0].content) {
+                                        if (typeof data.results[0].content === "string") {
+                                            postsArr[i].set("content", data.results[0].content);
+                                        } else {//                                          
+                                            postsArr[i].set("content", data.results[0].content.join(''));
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log("Success: " + httpResponse.text);
+                            next();
+                        },
+                        error: function(httpResponse) {
+                            console.log("Error: " + httpResponse.text);
+                            next();
+                        }
+                    });
+                }
+            }
+
             function getEgyptIndependentPost(url) {
 
                 return function(next) {
@@ -1173,7 +1224,7 @@ function savePosts(response, options, cbNext) {
                 return function(next) {
                     var body = JSON.stringify({
                         "input": {
-                            "webpage/url": url.replace("/AllPortal", "")
+                            "webpage/url": url.replace("/AllPortal", "").replace("/AllCategory/1/64", "")
                         }
                     });
 
@@ -1222,7 +1273,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',                        
-                        url: "https://api.import.io/store/data/b76809ff-cd8f-4993-a28b-1fa2ca34a74f/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/data/b21aebd7-1f92-4b60-aa2b-29acb3933a09/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -1230,7 +1281,6 @@ function savePosts(response, options, cbNext) {
 
                             for (var i = 0; i < postsArr.length; i++) {
                                 if (postsArr[i].get('link') === url) {
-                                    if (data.results && data.results[0] && data.results[0].author) postsArr[i].set("author", data.results[0].author);
                                     if (data.results && data.results[0] && data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
                                     //Content
                                     if (data.results && data.results[0] && data.results[0].content) {
@@ -1689,12 +1739,12 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/d6bfeb2e-2312-4afb-9fb4-0850f794dfd8/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fbusinesstimes%2F&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/data/d6bfeb2e-2312-4afb-9fb4-0850f794dfd8/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fsundaytimes%2Fbusinesstimes%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Times Live',
         category: 'Business',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/e110eaaf-d45a-4fe2-9ff6-e7e8c4d9ec66/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Flifestyle%2Ffood%2F&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/data/03b78dd0-cf6b-4631-ab78-38c51eef1996/_query?input/webpage/url=http%3A%2F%2Fwww.timeslive.co.za%2Fsundaytimes%2Ffood%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Times Live',
         category: 'Food',
         country: 'South Africa'

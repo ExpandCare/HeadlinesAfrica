@@ -123,6 +123,13 @@
                                        options:NSCaseInsensitiveSearch
                                          range:NSMakeRange(0, changedContent.length)];
     
+    
+    if([source isEqualToString:@"Ahram Online"])
+    {
+        [changedContent replaceOccurrencesOfString:@"<br /><br /> <br />" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, changedContent.length)];
+        [changedContent replaceOccurrencesOfString:@"<br /><br />" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, changedContent.length)];
+    }
+    
     if ([source isEqualToString:@"NBE"])
     {
         [changedContent replaceOccurrencesOfString:@"img src=\"/"
@@ -142,7 +149,7 @@
                                            options:NSCaseInsensitiveSearch
                                              range:NSMakeRange(0, changedContent.length)];
     }
-    else if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && ![source isEqualToString:@"Times Live"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
+    else if (titleImageCatalog.length && ![source isEqualToString:@"Vibeghana"] && [changedContent rangeOfString:titleImageCatalog].location == NSNotFound && imageURL.length)
     {
         if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:imageURL]])
         {
