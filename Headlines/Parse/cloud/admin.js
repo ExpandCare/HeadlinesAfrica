@@ -52,7 +52,7 @@ Parse.Cloud.define("getPosts", function(request, response) {
     var query = new Parse.Query(Post);
     var queryLength = new Parse.Query(Post);
     var params = ['title', 'category', 'source', 'link', 'content', 'author', 'createdAt'];
-
+    query.exists("content");
     // query.descending("createdAt");
     if(reqData.start) {
     	console.log("Start = " + reqData.start);    	
