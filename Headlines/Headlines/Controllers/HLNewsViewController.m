@@ -19,6 +19,7 @@
 #import <SAMHUDView/SAMHUDView.h>
 #import "NSCache+Fix.h"
 #import "NSUserDefaults+Countries.h"
+#import <Google/Analytics.h>
 
 #define CELL_ID_TOP @"CELL_ID_TOP"
 #define CELL_ID_REGULAR @"CELL_ID_REGULAR"
@@ -222,6 +223,12 @@
         
         [NSUserDefaults countryPostsUpdated];
     }
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Default view"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

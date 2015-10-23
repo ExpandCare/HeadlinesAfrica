@@ -188,6 +188,9 @@
 		59A5BE0B1BA848F300E68171 /* PrivacyStatement.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE091BA848F300E68171 /* PrivacyStatement.html */; };
 		59A5BE0D1BA84A3F00E68171 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE0C1BA84A3F00E68171 /* AboutUs.html */; };
 		59A5BE0E1BA84A3F00E68171 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 59A5BE0C1BA84A3F00E68171 /* AboutUs.html */; };
+		59E49DAB1BD79E96003F35BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E49DAA1BD79E96003F35BD /* GoogleService-Info.plist */; };
+		59E49DAC1BD79E96003F35BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E49DAA1BD79E96003F35BD /* GoogleService-Info.plist */; };
+		59E49DAE1BD7AF1F003F35BD /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E49DAD1BD7AF1F003F35BD /* iAd.framework */; };
 		59E85C341B4D5F5400AABF4F /* HLSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E85C331B4D5F5400AABF4F /* HLSearchField.m */; };
 		8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BCB6C5122C89BB95EC89B5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -389,6 +392,8 @@
 		59A5BE061BA8449E00E68171 /* TermsOfService.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfService.html; sourceTree = "<group>"; };
 		59A5BE091BA848F300E68171 /* PrivacyStatement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyStatement.html; sourceTree = "<group>"; };
 		59A5BE0C1BA84A3F00E68171 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
+		59E49DAA1BD79E96003F35BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59E49DAD1BD7AF1F003F35BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		59E85C321B4D5F5400AABF4F /* HLSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLSearchField.h; path = Subclasses/HLSearchField.h; sourceTree = "<group>"; };
 		59E85C331B4D5F5400AABF4F /* HLSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLSearchField.m; path = Subclasses/HLSearchField.m; sourceTree = "<group>"; };
 		C9C3685ED52C513C48CB78C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -399,6 +404,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E49DAE1BD7AF1F003F35BD /* iAd.framework in Frameworks */,
 				59856E1A1B9490E10023E144 /* MessageUI.framework in Frameworks */,
 				497A27741ABC19180063ACB8 /* QuartzCore.framework in Frameworks */,
 				8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */,
@@ -548,6 +554,7 @@
 		49C22CA81AB028CA00BCEFAF /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				59E49DAA1BD79E96003F35BD /* GoogleService-Info.plist */,
 				499749941B4C05CA00C2093F /* Countries */,
 				59A5BE061BA8449E00E68171 /* TermsOfService.html */,
 				59A5BE091BA848F300E68171 /* PrivacyStatement.html */,
@@ -861,6 +868,7 @@
 		B924CE8ADCEED61BDFA4C115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59E49DAD1BD7AF1F003F35BD /* iAd.framework */,
 				59856E191B9490E10023E144 /* MessageUI.framework */,
 				497A27731ABC19180063ACB8 /* QuartzCore.framework */,
 				31BCB6C5122C89BB95EC89B5 /* libPods.a */,
@@ -1010,6 +1018,7 @@
 				49C22CB71AB028CA00BCEFAF /* Images.xcassets in Resources */,
 				4999466A1AB876DF0042A5E8 /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				4999466C1AB877110042A5E8 /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
+				59E49DAB1BD79E96003F35BD /* GoogleService-Info.plist in Resources */,
 				5961961A1BA9BF1200C3312D /* images-18.jpeg in Resources */,
 				49BAAA4A1ABC4156004C99AD /* ForgotPasswordCell.xib in Resources */,
 			);
@@ -1043,6 +1052,7 @@
 				596C89DC1B9718C3009A9E3C /* Images.xcassets in Resources */,
 				596C89DD1B9718C3009A9E3C /* HelveticaNeueLTW1G-Cn.otf in Resources */,
 				596C89DE1B9718C3009A9E3C /* HelveticaNeueLTW1G-LtCn.otf in Resources */,
+				59E49DAC1BD79E96003F35BD /* GoogleService-Info.plist in Resources */,
 				5961961B1BA9BF1200C3312D /* images-18.jpeg in Resources */,
 				596C89DF1B9718C3009A9E3C /* ForgotPasswordCell.xib in Resources */,
 			);

@@ -35,12 +35,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>http://com.headlinesdev.cl</string>
+				<string>fbHeadlinesDeepLink</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.1199</string>
+	<string>1.0.0.1202</string>
 	<key>FacebookAppID</key>
 	<string>1478644765765399</string>
 	<key>FacebookDisplayName</key>

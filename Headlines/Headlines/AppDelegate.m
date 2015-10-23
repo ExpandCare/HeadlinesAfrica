@@ -12,9 +12,9 @@
 #import "HLWindow.h"
 #import <SAMHUDView/SAMHUDView.h>
 #import "Post+Additions.h"
-#import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <TestFairy/TestFairy.h>
 #import "Helpshift.h"
+#import <Google/Analytics.h>
 
 NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
 
@@ -109,24 +109,14 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     
 #pragma mark - Google Analitics
     
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Configure tracker from GoogleService-Info.plist.
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 20;
-    
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    
-    // Initialize tracker.
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:kGoogleAnalyticsKey];
-    
-    // Assumes a tracker has already been initialized with a property ID, otherwise
-    // getDefaultTracker returns nil.
-    //id tracker = [[GAI sharedInstance] defaultTracker];
-    
-    // Enable Advertising Features.
-    tracker.allowIDFACollection = YES;
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
     
 #pragma mark - TestFairy
     

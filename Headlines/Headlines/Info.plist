@@ -30,9 +30,17 @@
 				<string>fb119258685094554</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fbHeadlinesDeepLink</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.1725</string>
+	<string>1.0.0.1740</string>
 	<key>FacebookAppID</key>
 	<string>119258685094554</string>
 	<key>FacebookDisplayName</key>
