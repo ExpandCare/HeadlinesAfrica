@@ -8,6 +8,7 @@
 #import "HLStatusBarView.h"
 #import "UIFont+Consended.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 
 @interface HLStartViewController ()
 

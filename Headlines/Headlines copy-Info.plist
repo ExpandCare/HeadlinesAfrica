@@ -40,13 +40,18 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.1202</string>
+	<string>1.0.0.1204</string>
 	<key>FacebookAppID</key>
 	<string>1478644765765399</string>
 	<key>FacebookDisplayName</key>
 	<string>HeadlinesDev</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HelveticaNeueLTW1G-Cn.otf</string>

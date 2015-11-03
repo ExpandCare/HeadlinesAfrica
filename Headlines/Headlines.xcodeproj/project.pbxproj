@@ -84,6 +84,8 @@
 		591C1EBD1BA3181200599E20 /* HLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E361BA066B3007642BD /* HLSettingsViewController.m */; };
 		593A55D51BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
 		593A55D61BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
+		5952A19B1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */; };
+		5952A19C1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */; };
 		596196181BA9BF1200C3312D /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196151BA9BF1200C3312D /* images-16.jpeg */; };
 		596196191BA9BF1200C3312D /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196151BA9BF1200C3312D /* images-16.jpeg */; };
 		5961961A1BA9BF1200C3312D /* images-18.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196161BA9BF1200C3312D /* images-18.jpeg */; };
@@ -354,6 +356,9 @@
 		4C72B6F1508031ACBADC7039 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		593A55D31BA191FD00A56393 /* UIImage+Extentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extentions.h"; sourceTree = "<group>"; };
 		593A55D41BA191FD00A56393 /* UIImage+Extentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extentions.m"; sourceTree = "<group>"; };
+		5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdapterFacebook.a; sourceTree = "<group>"; };
+		5952A19D1BE3812A006C5FC8 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		5952A19E1BE3812A006C5FC8 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		596196151BA9BF1200C3312D /* images-16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-16.jpeg"; sourceTree = "<group>"; };
 		596196161BA9BF1200C3312D /* images-18.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-18.jpeg"; sourceTree = "<group>"; };
 		596196171BA9BF1200C3312D /* images-17.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-17.jpeg"; sourceTree = "<group>"; };
@@ -406,6 +411,7 @@
 			files = (
 				59E49DAE1BD7AF1F003F35BD /* iAd.framework in Frameworks */,
 				59856E1A1B9490E10023E144 /* MessageUI.framework in Frameworks */,
+				5952A19B1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */,
 				497A27741ABC19180063ACB8 /* QuartzCore.framework in Frameworks */,
 				8F2149953E069D6EE5C7B0D2 /* libPods.a in Frameworks */,
 			);
@@ -423,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596C89CF1B9718C3009A9E3C /* MessageUI.framework in Frameworks */,
+				5952A19C1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */,
 				596C89D01B9718C3009A9E3C /* QuartzCore.framework in Frameworks */,
 				596C89D11B9718C3009A9E3C /* libPods.a in Frameworks */,
 			);
@@ -555,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				59E49DAA1BD79E96003F35BD /* GoogleService-Info.plist */,
+				5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */,
 				499749941B4C05CA00C2093F /* Countries */,
 				59A5BE061BA8449E00E68171 /* TermsOfService.html */,
 				59A5BE091BA848F300E68171 /* PrivacyStatement.html */,
@@ -868,6 +876,8 @@
 		B924CE8ADCEED61BDFA4C115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5952A19D1BE3812A006C5FC8 /* EventKit.framework */,
+				5952A19E1BE3812A006C5FC8 /* EventKitUI.framework */,
 				59E49DAD1BD7AF1F003F35BD /* iAd.framework */,
 				59856E191B9490E10023E144 /* MessageUI.framework */,
 				497A27731ABC19180063ACB8 /* QuartzCore.framework */,
@@ -1492,6 +1502,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1502,6 +1513,142 @@
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Headlines",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Bolts\"",
+					"-l\"DAKeyboardControl\"",
+					"-l\"Facebook-iOS-SDK\"",
+					"-l\"GGLAnalytics\"",
+					"-l\"GGLCore\"",
+					"-l\"GSDK_Overload\"",
+					"-l\"GTMSessionFetcher_core\"",
+					"-l\"GTMSessionFetcher_full\"",
+					"-l\"GTMStackTrace\"",
+					"-l\"GTM_AddressBook\"",
+					"-l\"GTM_DebugUtils\"",
+					"-l\"GTM_GTMURLBuilder\"",
+					"-l\"GTM_KVO\"",
+					"-l\"GTM_NSData+zlib\"",
+					"-l\"GTM_NSDictionary+URLArguments\"",
+					"-l\"GTM_NSScannerJSON\"",
+					"-l\"GTM_NSStringHTML\"",
+					"-l\"GTM_NSStringXML\"",
+					"-l\"GTM_Regex\"",
+					"-l\"GTM_RoundedRectPath\"",
+					"-l\"GTM_StringEncoding\"",
+					"-l\"GTM_SystemVersion\"",
+					"-l\"GTM_UIFont+LineHeight\"",
+					"-l\"GTM_core\"",
+					"-l\"GTM_iPhone\"",
+					"-l\"GoogleAnalytics\"",
+					"-l\"Helpshift\"",
+					"-l\"KissXML\"",
+					"-l\"MWFeedParser\"",
+					"-l\"MagicalRecord\"",
+					"-l\"Parse\"",
+					"-l\"ParseCrashReporting\"",
+					"-l\"ParseCrashReportingLib\"",
+					"-l\"ParseFacebookUtils\"",
+					"-l\"ParseFacebookUtilsLib\"",
+					"-l\"ParseTwitterUtils\"",
+					"-l\"ParseTwitterUtilsLib\"",
+					"-l\"Reachability\"",
+					"-l\"SAMHUDView\"",
+					"-l\"SDWebImage\"",
+					"-l\"TestFairy\"",
+					"-l\"UIImage-Categories\"",
+					"-l\"hpple\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"stdc++.6\"",
+					"-l\"xml2\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AddressBook\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreMotion\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"EventKit\"",
+					"-framework",
+					"\"EventKitUI\"",
+					"-framework",
+					"\"FBAudienceNetwork\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleMobileAds\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"QuickLook\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"CoreMotion\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"SafariServices\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"WebKit\"",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ccd3d91-4a2f-42de-a741-bf51c024d55b";
 			};
@@ -1515,6 +1662,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1525,6 +1673,142 @@
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Headlines",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Bolts\"",
+					"-l\"DAKeyboardControl\"",
+					"-l\"Facebook-iOS-SDK\"",
+					"-l\"GGLAnalytics\"",
+					"-l\"GGLCore\"",
+					"-l\"GSDK_Overload\"",
+					"-l\"GTMSessionFetcher_core\"",
+					"-l\"GTMSessionFetcher_full\"",
+					"-l\"GTMStackTrace\"",
+					"-l\"GTM_AddressBook\"",
+					"-l\"GTM_DebugUtils\"",
+					"-l\"GTM_GTMURLBuilder\"",
+					"-l\"GTM_KVO\"",
+					"-l\"GTM_NSData+zlib\"",
+					"-l\"GTM_NSDictionary+URLArguments\"",
+					"-l\"GTM_NSScannerJSON\"",
+					"-l\"GTM_NSStringHTML\"",
+					"-l\"GTM_NSStringXML\"",
+					"-l\"GTM_Regex\"",
+					"-l\"GTM_RoundedRectPath\"",
+					"-l\"GTM_StringEncoding\"",
+					"-l\"GTM_SystemVersion\"",
+					"-l\"GTM_UIFont+LineHeight\"",
+					"-l\"GTM_core\"",
+					"-l\"GTM_iPhone\"",
+					"-l\"GoogleAnalytics\"",
+					"-l\"Helpshift\"",
+					"-l\"KissXML\"",
+					"-l\"MWFeedParser\"",
+					"-l\"MagicalRecord\"",
+					"-l\"Parse\"",
+					"-l\"ParseCrashReporting\"",
+					"-l\"ParseCrashReportingLib\"",
+					"-l\"ParseFacebookUtils\"",
+					"-l\"ParseFacebookUtilsLib\"",
+					"-l\"ParseTwitterUtils\"",
+					"-l\"ParseTwitterUtilsLib\"",
+					"-l\"Reachability\"",
+					"-l\"SAMHUDView\"",
+					"-l\"SDWebImage\"",
+					"-l\"TestFairy\"",
+					"-l\"UIImage-Categories\"",
+					"-l\"hpple\"",
+					"-l\"sqlite3\"",
+					"-l\"sqlite3.0\"",
+					"-l\"stdc++.6\"",
+					"-l\"xml2\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AddressBook\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreMotion\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"EventKit\"",
+					"-framework",
+					"\"EventKitUI\"",
+					"-framework",
+					"\"FBAudienceNetwork\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleMobileAds\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"QuickLook\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"CoreMotion\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"SafariServices\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"WebKit\"",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ccd3d91-4a2f-42de-a741-bf51c024d55b";
 			};
@@ -1582,6 +1866,11 @@
 				INFOPLIST_FILE = "Headlines copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Headlines",
+				);
 				PRODUCT_NAME = "Headlines copy";
 				PROVISIONING_PROFILE = "68a9a5e5-fd59-4437-8e10-1f8a9e52cf7e";
 			};
@@ -1605,6 +1894,11 @@
 				INFOPLIST_FILE = "Headlines copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Headlines",
+				);
 				PRODUCT_NAME = "Headlines copy";
 				PROVISIONING_PROFILE = "7fe0cb47-0b17-44ca-9611-4e9af47af7de";
 			};

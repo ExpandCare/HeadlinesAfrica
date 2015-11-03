@@ -136,7 +136,10 @@
 {
     [super viewWillAppear:animated];
     
-    [RECTANGLE_BANNER loadRequest:[GADRequest request]];
+    GADRequest *request = [GADRequest request];
+    //request.testDevices = @[kGADSimulatorID];
+    
+    [RECTANGLE_BANNER loadRequest:request];
     
     self.commentsButton.enabled = YES;
     

@@ -8,7 +8,7 @@
 
 #define INVITE_MESSAGE @"Hey! Download the Headlines Africa app to keep up with news from all regions of Africa. headlinesafrica.co"
 #define INVITE_MESSAGE_HTML @"Hey! Download the <a href='http://headlinesafrica.co'>Headlines Africa</a> app to keep up with news from all regions of Africa."
-#define APP_STORE_LINK @"https://goo.gl/gTmmjA"
+#define APP_STORE_LINK @"https://itunes.apple.com/us/app/headlines-africa/id1039259259?ls=1&mt=8"
 
 #define HEADLINES_BLUE [UIColor colorWithRed:0.02 green:0.62 blue:0.85 alpha:1]
 #define HEADLINES_BLUE_NEW [UIColor colorWithRed:0.03 green:0.58 blue:0.82 alpha:1]
@@ -79,4 +79,10 @@ extern NSString * const kTwitterConsumerSecret;
 extern NSString * const kCamerronOnlineBlogsStaticImage;
 extern NSString * const kCamerronOnlineTechStaticImage;
 extern NSString * const kCamerronOnlinePoliticsStaticImage;
+
+#pragma mark - Google adMob
+
+extern NSString * const kGoogleAdMob50pxHeightBannerId;
+extern NSString * const kGoogleAdMob100pxHeightBannerId;
+extern NSString * const kGoogleAdMob250pxHeightBannerId;
 

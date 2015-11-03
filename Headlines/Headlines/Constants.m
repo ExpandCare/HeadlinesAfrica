@@ -61,3 +61,9 @@ NSString * const kTwitterConsumerKey = @"QmspYnu7HSPGVjqxn35si7aCK";
 NSString * const kTwitterConsumerSecret = @"gkKWvLpgJvww3IWX3cGWpM8TGVGx8OotKBpWIfOmtRgKUUelS2";
 
 #endif
+
+#pragma mark - Google AdMob
+
+NSString * const kGoogleAdMob50pxHeightBannerId  = @"ca-app-pub-7204105635035592/3354045064";
+NSString * const kGoogleAdMob100pxHeightBannerId = @"ca-app-pub-7204105635035592/3434770265";
+NSString * const kGoogleAdMob250pxHeightBannerId = @"";

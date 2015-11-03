@@ -234,9 +234,11 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     {
         self.smallBanner = [[GADBannerView alloc] initWithAdSize:GADAdSizeFullWidthPortraitWithHeight(50)];
         
-        self.smallBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.smallBanner.adUnitID = kGoogleAdMob50pxHeightBannerId;
         self.smallBanner.rootViewController = [self window].rootViewController;
-        [self.smallBanner loadRequest:[GADRequest request]];
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ kGADSimulatorID ];
+        [self.smallBanner loadRequest:request];
         self.smallBanner.autoloadEnabled = NO;
     }
     
@@ -244,9 +246,11 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     {
         self.bigBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeLargeBanner];
         
-        self.bigBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.bigBanner.adUnitID = kGoogleAdMob100pxHeightBannerId;
         self.bigBanner.rootViewController = [self window].rootViewController;
-        [self.bigBanner loadRequest:[GADRequest request]];
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ kGADSimulatorID ];
+        [self.bigBanner loadRequest:request];
         self.bigBanner.autoloadEnabled = NO;
     }
     
@@ -254,9 +258,11 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     {
         self.rectangleBanner = [[GADBannerView alloc] initWithAdSize:GADAdSizeFullWidthPortraitWithHeight(250)];
         
-        self.rectangleBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.rectangleBanner.adUnitID = kGoogleAdMob250pxHeightBannerId;
         self.rectangleBanner.rootViewController = [self window].rootViewController;
-        [self.rectangleBanner loadRequest:[GADRequest request]];
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ kGADSimulatorID ];
+        [self.rectangleBanner loadRequest:request];
         self.rectangleBanner.autoloadEnabled = NO;
     }
 }

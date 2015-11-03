@@ -45,17 +45,21 @@
 {
     if (self.smallBanner)
     {        
-        self.smallBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.smallBanner.adUnitID = kGoogleAdMob50pxHeightBannerId;
         self.smallBanner.rootViewController = [[UIApplication sharedApplication].delegate window].rootViewController;
-        [self.smallBanner loadRequest:[GADRequest request]];
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ kGADSimulatorID ];
+        [self.smallBanner loadRequest:request];
         self.smallBanner.autoloadEnabled = NO;
     }
     
     if (self.bigBanner)
     {
-        self.bigBanner.adUnitID = @"ca-app-pub-7204105635035592/3354045064";
+        self.bigBanner.adUnitID = kGoogleAdMob100pxHeightBannerId;
         self.bigBanner.rootViewController = [[UIApplication sharedApplication].delegate window].rootViewController;
-        [self.bigBanner loadRequest:[GADRequest request]];
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ kGADSimulatorID ];
+        [self.bigBanner loadRequest:request];
         self.bigBanner.autoloadEnabled = NO;
     }
 }
