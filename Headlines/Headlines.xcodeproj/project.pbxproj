@@ -1452,7 +1452,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "5b730723-b377-4d09-8b2b-6a0f3c2cad71";
+				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1488,7 +1488,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8ccd3d91-4a2f-42de-a741-bf51c024d55b";
+				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1650,7 +1650,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ccd3d91-4a2f-42de-a741-bf51c024d55b";
+				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
 			};
 			name = Debug;
 		};
@@ -1810,7 +1810,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ccd3d91-4a2f-42de-a741-bf51c024d55b";
+				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
 			};
 			name = Release;
 		};
@@ -1856,6 +1856,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Polyakov (2XSZLPA73V)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1884,6 +1885,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1900,7 +1902,7 @@
 					"$(PROJECT_DIR)/Headlines",
 				);
 				PRODUCT_NAME = "Headlines copy";
-				PROVISIONING_PROFILE = "7fe0cb47-0b17-44ca-9611-4e9af47af7de";
+				PROVISIONING_PROFILE = "15c5141a-9e15-4d5c-ae18-cc75d118248e";
 			};
 			name = Release;
 		};

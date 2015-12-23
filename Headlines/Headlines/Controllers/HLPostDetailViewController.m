@@ -700,7 +700,7 @@
 {
     HLLinkedInActivity *linkedInActivity = [HLLinkedInActivity new];
     HLWhatsAppActivity *whatsAppActivity = [HLWhatsAppActivity new];
-    NSString *shareMessage = [NSString stringWithFormat:@"Sent from Headlines Africa app: %@ \n\n%@\n\n", APP_STORE_LINK, self.post.title];
+    NSString *shareMessage = [NSString stringWithFormat:@"Sent from Headlines Africa app: %@ \n\n%@\n\n", WEB_SITE_LINK, self.post.title];
 		
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[shareMessage, [NSURL URLWithString:[self.post.link stringByReplacingOccurrencesOfString:@"/AllPortal" withString:@""]]] applicationActivities:@[linkedInActivity, whatsAppActivity]];
     
