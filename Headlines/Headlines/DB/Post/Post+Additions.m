@@ -77,6 +77,7 @@
             thePost.content = post.content;
             thePost.category = post.category;
             thePost.sharesCount = post.sharesCount;
+            thePost.thumb = post.thumb.url;
             
             NSArray *images = post[@"image"];
             

@@ -72,8 +72,6 @@ function savePosts(response, options, cbNext) {
     } 
     else 
     {
-        var Image = require("parse-image");
-
         for (var i = 0; i < jsonResults.results.length; i++) 
         {
             post = new Post();
@@ -91,24 +89,6 @@ function savePosts(response, options, cbNext) {
                 image = [image];
             }
 
-            Parse.Cloud.httpRequest({ url: image[0] }).then(function(response)
-            {
-               var image = new Image();
-               console.log('IMAGE DATA = '.concat(image.data));
-               image.setData(response.buffer);
-               console.log('IMAGE DATA = '.concat(image.data));
-               image.scale({ width: 64, height: 64 });
-                var file = new Parse.File("image.jpg", { base64: image.data.toString("base64")});
-                    file.save().then(function()
-                    {
-                       post.set({thumb: file});
-                       post.save();
-                    }, function(error)
-                    {
-
-                    });
-            });
-
             post.set({
                 title: title,
                 author: author,
@@ -124,7 +104,7 @@ function savePosts(response, options, cbNext) {
             postsArr.push(post);
         }
 
-        var acts = [];
+            var acts = [];
 
         for (var i = 0; i < postsArr.length; i++) {
             acts.push(isPostExist(postsArr[i].get('title'), postsArr));
@@ -274,7 +254,8 @@ function savePosts(response, options, cbNext) {
             _(actions).reduceRight(_.wrap, function() {
                 postsArr = checkPosts(postsArr, ['content']);
                 Parse.Object.saveAll(postsArr, {
-                    success: function(objs) {
+                    success: function(objs)
+                    {
                         cbNext();
                     },
                     error: function(error) {
@@ -883,7 +864,7 @@ function savePosts(response, options, cbNext) {
                                         if (data.results[0].image) postsArr[i].set("image", [data.results[0].image]);
                                         if (typeof data.results[0].content === "string") {
                                             postsArr[i].set("content", data.results[0].content);
-                                        } else {//	                                        
+                                        } else {//                                          
                                             postsArr[i].set("content", data.results[0].content.join(''));
                                         }
                                     }
@@ -1618,6 +1599,8 @@ function savePosts(response, options, cbNext) {
             }
 
         })();
+        
+        
     }
 }
 

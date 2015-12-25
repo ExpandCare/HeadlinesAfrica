@@ -26,7 +26,6 @@
 		49A212EC1ACAD3CD00CE8204 /* Comment+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212EB1ACAD3CD00CE8204 /* Comment+Additions.m */; };
 		49A212F21ACAD92400CE8204 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212F11ACAD92400CE8204 /* Comment.m */; };
 		49A212F51ACAE47700CE8204 /* HLLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212F41ACAE47700CE8204 /* HLLike.m */; };
-		49A212F81ACB033000CE8204 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212F71ACB033000CE8204 /* Post.m */; };
 		49A212FB1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212FA1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m */; };
 		49A8E7A01AF0F4DC008C1DDD /* NSCache+Fix.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8E79F1AF0F4DC008C1DDD /* NSCache+Fix.m */; };
 		49BAAA491ABC4156004C99AD /* ForgotPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BAAA471ABC4156004C99AD /* ForgotPasswordCell.m */; };
@@ -84,6 +83,8 @@
 		591C1EBD1BA3181200599E20 /* HLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59879E361BA066B3007642BD /* HLSettingsViewController.m */; };
 		593A55D51BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
 		593A55D61BA191FE00A56393 /* UIImage+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 593A55D41BA191FD00A56393 /* UIImage+Extentions.m */; };
+		594430681C2C312B00CDBC98 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 594430651C2C312B00CDBC98 /* Post.m */; };
+		594430691C2C312B00CDBC98 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 594430651C2C312B00CDBC98 /* Post.m */; };
 		5952A19B1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */; };
 		5952A19C1BE37DD5006C5FC8 /* libAdapterFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */; };
 		596196181BA9BF1200C3312D /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 596196151BA9BF1200C3312D /* images-16.jpeg */; };
@@ -113,7 +114,6 @@
 		596C899E1B9718C3009A9E3C /* UIView+SBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6941AD2C8F900ADC969 /* UIView+SBExtras.m */; };
 		596C899F1B9718C3009A9E3C /* SBTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC6921AD2C8F900ADC969 /* SBTickerView.m */; };
 		596C89A01B9718C3009A9E3C /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C22D071AB2DF0D00BCEFAF /* TextFieldCell.m */; };
-		596C89A11B9718C3009A9E3C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A212F71ACB033000CE8204 /* Post.m */; };
 		596C89A21B9718C3009A9E3C /* HLChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49784EC51ACD3A4D00ECDE26 /* HLChangePasswordViewController.m */; };
 		596C89A31B9718C3009A9E3C /* NSString+EmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494230BE1AB9BEAE00DE722F /* NSString+EmailValidation.m */; };
 		596C89A41B9718C3009A9E3C /* ExistingUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59856E141B9449890023E144 /* ExistingUserCell.m */; };
@@ -249,8 +249,6 @@
 		49A212F11ACAD92400CE8204 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Headlines/DB/Comment/Comment.m; sourceTree = "<group>"; };
 		49A212F31ACAE47700CE8204 /* HLLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLLike.h; path = ParseSubclusses/HLLike.h; sourceTree = "<group>"; };
 		49A212F41ACAE47700CE8204 /* HLLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLLike.m; path = ParseSubclusses/HLLike.m; sourceTree = "<group>"; };
-		49A212F61ACB033000CE8204 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = Headlines/DB/Post/Post.h; sourceTree = "<group>"; };
-		49A212F71ACB033000CE8204 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = Headlines/DB/Post/Post.m; sourceTree = "<group>"; };
 		49A212F91ACBCCAD00CE8204 /* NSString+HTMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HTMLAdditions.h"; path = "Categories/NSString+HTMLAdditions.h"; sourceTree = "<group>"; };
 		49A212FA1ACBCCAD00CE8204 /* NSString+HTMLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HTMLAdditions.m"; path = "Categories/NSString+HTMLAdditions.m"; sourceTree = "<group>"; };
 		49A8E79E1AF0F4DC008C1DDD /* NSCache+Fix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCache+Fix.h"; path = "Categories/NSCache+Fix.h"; sourceTree = "<group>"; };
@@ -356,6 +354,8 @@
 		4C72B6F1508031ACBADC7039 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		593A55D31BA191FD00A56393 /* UIImage+Extentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extentions.h"; sourceTree = "<group>"; };
 		593A55D41BA191FD00A56393 /* UIImage+Extentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extentions.m"; sourceTree = "<group>"; };
+		594430641C2C312B00CDBC98 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = Headlines/DB/Post/Post.h; sourceTree = "<group>"; };
+		594430651C2C312B00CDBC98 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = Headlines/DB/Post/Post.m; sourceTree = "<group>"; };
 		5952A19A1BE37DD5006C5FC8 /* libAdapterFacebook.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdapterFacebook.a; sourceTree = "<group>"; };
 		5952A19D1BE3812A006C5FC8 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		5952A19E1BE3812A006C5FC8 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -476,10 +476,10 @@
 		497A27611ABACB820063ACB8 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				49A212F61ACB033000CE8204 /* Post.h */,
-				49A212F71ACB033000CE8204 /* Post.m */,
 				497A276B1ABACF3B0063ACB8 /* Post+Additions.h */,
 				497A276C1ABACF3C0063ACB8 /* Post+Additions.m */,
+				594430641C2C312B00CDBC98 /* Post.h */,
+				594430651C2C312B00CDBC98 /* Post.m */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -1221,7 +1221,6 @@
 				49DAC6981AD2C8F900ADC969 /* UIView+SBExtras.m in Sources */,
 				49DAC6971AD2C8F900ADC969 /* SBTickerView.m in Sources */,
 				49C22D081AB2DF0D00BCEFAF /* TextFieldCell.m in Sources */,
-				49A212F81ACB033000CE8204 /* Post.m in Sources */,
 				49784EC61ACD3A4D00ECDE26 /* HLChangePasswordViewController.m in Sources */,
 				494230BF1AB9BEAE00DE722F /* NSString+EmailValidation.m in Sources */,
 				59856E151B9449890023E144 /* ExistingUserCell.m in Sources */,
@@ -1256,6 +1255,7 @@
 				49A212F51ACAE47700CE8204 /* HLLike.m in Sources */,
 				49C22CAF1AB028CA00BCEFAF /* AppDelegate.m in Sources */,
 				59856E181B944E030023E144 /* ContactCell.m in Sources */,
+				594430681C2C312B00CDBC98 /* Post.m in Sources */,
 				49C22CAC1AB028CA00BCEFAF /* main.m in Sources */,
 				49C22CE51AB1CAAA00BCEFAF /* HLProfileViewController.m in Sources */,
 				49D441E01ADFA6A60091C401 /* SmallBannerPostCell.m in Sources */,
@@ -1306,7 +1306,6 @@
 				596C899E1B9718C3009A9E3C /* UIView+SBExtras.m in Sources */,
 				596C899F1B9718C3009A9E3C /* SBTickerView.m in Sources */,
 				596C89A01B9718C3009A9E3C /* TextFieldCell.m in Sources */,
-				596C89A11B9718C3009A9E3C /* Post.m in Sources */,
 				596C89A21B9718C3009A9E3C /* HLChangePasswordViewController.m in Sources */,
 				596C89A31B9718C3009A9E3C /* NSString+EmailValidation.m in Sources */,
 				591C1EBD1BA3181200599E20 /* HLSettingsViewController.m in Sources */,
@@ -1346,6 +1345,7 @@
 				596C89C41B9718C3009A9E3C /* HLProfileViewController.m in Sources */,
 				596C89C51B9718C3009A9E3C /* SmallBannerPostCell.m in Sources */,
 				596C89C61B9718C3009A9E3C /* NSString+HTMLAdditions.m in Sources */,
+				594430691C2C312B00CDBC98 /* Post.m in Sources */,
 				596C89C71B9718C3009A9E3C /* HLInviteFriendsViewController.m in Sources */,
 				596C89C81B9718C3009A9E3C /* Constants.m in Sources */,
 				596C89C91B9718C3009A9E3C /* HLRegion.m in Sources */,

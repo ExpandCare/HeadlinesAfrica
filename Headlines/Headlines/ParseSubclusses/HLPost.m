@@ -24,6 +24,7 @@
 @dynamic sharesCount;
 @dynamic likesCount;
 @dynamic commentsCount;
+@dynamic thumb;
 
 + (void)load
 {

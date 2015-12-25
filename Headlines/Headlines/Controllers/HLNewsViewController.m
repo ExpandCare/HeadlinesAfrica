@@ -305,18 +305,18 @@
     
     self.downloading = YES;
     
-    NSError *error;
-    if ([self.resultController performFetch:&error])
-    {
-        if (error)
-        {
-            NSLog(@"%@", error);
-        }
-        else
-        {
-            [self.tableView reloadData];
-        }
-    }
+//    NSError *error;
+//    if ([self.resultController performFetch:&error])
+//    {
+//        if (error)
+//        {
+//            NSLog(@"%@", error);
+//        }
+//        else
+//        {
+//            [self.tableView reloadData];
+//        }
+//    }
     
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
     
@@ -615,7 +615,7 @@
             logoImage = [UIImage imageNamed:@"NewLogo"];
         }
         
-        [((SimplePostCell *)cell) .postImageView sd_setImageWithURL:[NSURL URLWithString:post.imageURL.URLWithoutQueryParameters] placeholderImage:logoImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+        [((SimplePostCell *)cell) .postImageView sd_setImageWithURL:[NSURL URLWithString:post.thumb.length ? post.thumb : post.imageURL.URLWithoutQueryParameters] placeholderImage:logoImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
          {
              //NSLog(@"%@\n%@", indexPath, post);
          }];
@@ -637,7 +637,7 @@
         return headerCell;
     }
     
-    if ((indexPath.row == self.resultController.fetchedObjects.count - 1 && !self.downloading && !self.downloadedAllNews))
+    if (((indexPath.row == self.resultController.fetchedObjects.count - 15) || (indexPath.row == self.resultController.fetchedObjects.count - 1)) && !self.downloading && !self.downloadedAllNews)
     {
         [self fetchAndLoadNewsWithSkipping:YES];
     }

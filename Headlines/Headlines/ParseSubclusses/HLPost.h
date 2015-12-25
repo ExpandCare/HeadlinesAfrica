@@ -26,6 +26,7 @@
 @property (nonatomic) NSNumber * sharesCount;
 @property (nonatomic) NSNumber * likesCount;
 @property (nonatomic) NSNumber * commentsCount;
+@property (nonatomic) PFFile *thumb;
 
 + (NSString *)parseClassName;
 

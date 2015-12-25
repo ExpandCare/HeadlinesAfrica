@@ -241,7 +241,46 @@ function getPosts(query, posts, response)
 
 Parse.Cloud.afterSave("Post", function(request, response)
 {
+   var Image = require("parse-image");
    
+   var post = request.object;
+   var postImage = post.get('image')[0];
+   var postThumb = post.get('thumb');
+
+   if(postImage && !postThumb)
+   {
+      Parse.Cloud.httpRequest({url: postImage}).then(function(httpResponse) 
+                            {
+                              var image = new Image();
+                              return image.setData(httpResponse.buffer);
+                            }).then(function(image)
+                             {
+                                var width = 260, height = 260;
+                                if (image.width() > image.height())
+                                {
+                                    height = image.height() * (width/image.width());
+                                }
+                                else 
+                                {
+                                    width = image.width() * (width/image.height());
+                                }
+                                return image.scale({width: width, height: height});
+                                }).then(function(scaledImage)
+                                {
+                                  return scaledImage.data();
+                                }).then(function(buffer)
+                                 {
+                                     var base64 = buffer.toString("base64");
+                                     var name = "Thumbnail.png";
+                                     var thumbnail = new Parse.File(name, { base64: base64 });
+                                     return thumbnail.save();
+                                 }).then(function(thumbnail) 
+                                 {
+                                    post.set("thumb", thumbnail);
+                                    post.save();
+                                 });
+   }
+
    var SearchPost = Parse.Object.extend("SearchPost");
 
    var contentString = request.object.get("content").concat(" ", request.object.get("title"));

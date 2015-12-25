@@ -338,12 +338,12 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         
         BOOL animate = YES;
         
-        if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:featuredPost.imageURL]])
+        if ([[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:featuredPost.thumb.length ? featuredPost.thumb : featuredPost.imageURL]])
         {
             animate = NO;
         }
         
-        if ([self.usedURLs[key] length] > 0 && [self.usedURLs[key] isEqualToString:featuredPost.imageURL])
+        if ([self.usedURLs[key] length] > 0 && [self.usedURLs[key] isEqualToString:featuredPost.thumb.length ? featuredPost.thumb : featuredPost.imageURL])
         {
             continue;
         }
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
         __weak typeof(self) controller = self;
         
         
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:featuredPost.imageURL.URLWithoutQueryParameters]
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:featuredPost.thumb.length ? featuredPost.thumb : featuredPost.imageURL.URLWithoutQueryParameters]
                                                               options:(SDWebImageDownloaderContinueInBackground|SDWebImageDownloaderUseNSURLCache)
                                                              progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                                  
@@ -365,9 +365,7 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                                                 
                                                                 if (image && finished)
                                                                 {
-                                                                    NSLog(@"Downloaded** %li %@", (long)i, featuredPost.imageURL);
-                                                                    
-                                                                    self.usedURLs[key] = featuredPost.imageURL;
+                                                                    self.usedURLs[key] = featuredPost.thumb.length ? featuredPost.thumb : featuredPost.imageURL;
                                                                     
                                                                     images[i] = image;
                                                                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -377,8 +375,6 @@ typedef NS_ENUM(NSUInteger, CellIndex) {
                                                                 }
                                                                 else
                                                                 {
-                                                                    NSLog(@"Failed** %li %@", (long)i, featuredPost.imageURL);
-                                                                    
                                                                     controller.usedURLs[key] = @"";
                                                                     
                                                                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
