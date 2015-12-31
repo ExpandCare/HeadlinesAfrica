@@ -16,7 +16,7 @@
     {
         formatter = [[NSDateFormatter alloc] init];
         //formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-        formatter.dateFormat = @"dd MMMM YYYY";
+        formatter.dateFormat = @"dd MMMM yyyy";
     }
     
     return [formatter stringFromDate:self];
