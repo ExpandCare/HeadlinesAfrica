@@ -1,0 +1,106 @@
+PODS:
+  - Bolts (1.2.1):
+    - Bolts/AppLinks (= 1.2.1)
+    - Bolts/Tasks (= 1.2.1)
+  - Bolts/AppLinks (1.2.1):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.1)
+  - DAKeyboardControl (2.4.0)
+  - Facebook-iOS-SDK (3.24.1):
+    - Bolts (~> 1.2)
+  - FBAudienceNetwork (4.7.0)
+  - Google-Mobile-Ads-SDK (7.5.2)
+  - Google/Analytics (1.0.7):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.0.7):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleAnalytics (3.13.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.0)
+  - GoogleUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0.0)
+  - Helpshift (4.13.0)
+  - hpple (0.2.0)
+  - KissXML (5.0)
+  - MagicalRecord (2.3.0)
+  - MWFeedParser (1.0.1):
+    - MWFeedParser/FeedParser (= 1.0.1)
+    - MWFeedParser/NSDate+InternetDateTime (= 1.0.1)
+    - MWFeedParser/NSString+HTML (= 1.0.1)
+  - MWFeedParser/FeedParser (1.0.1):
+    - MWFeedParser/NSDate+InternetDateTime
+    - MWFeedParser/NSString+HTML
+  - MWFeedParser/NSDate+InternetDateTime (1.0.1)
+  - MWFeedParser/NSString+HTML (1.0.1)
+  - Parse (1.8.2):
+    - Bolts/Tasks (>= 1.2.1)
+  - ParseCrashReporting (1.8.2):
+    - Bolts/Tasks (>= 1.2.1)
+    - Parse (~> 1.8.2)
+  - ParseFacebookUtils (1.8.2):
+    - Bolts/Tasks (>= 1.2.1)
+    - Facebook-iOS-SDK (~> 3.23)
+    - Parse (~> 1.8.2)
+  - ParseTwitterUtils (1.8.2):
+    - Bolts/Tasks (>= 1.2.1)
+    - Parse (~> 1.8.2)
+  - Reachability (3.2)
+  - SAMHUDView (0.1.3)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - TestFairy (1.4.8)
+  - UIImage-Categories (1.0.0)
+
+DEPENDENCIES:
+  - DAKeyboardControl
+  - Facebook-iOS-SDK
+  - FBAudienceNetwork
+  - Google-Mobile-Ads-SDK (~> 7.5.2)
+  - Google/Analytics (~> 1.0.0)
+  - Helpshift
+  - hpple (~> 0.2)
+  - KissXML (~> 5.0)
+  - MagicalRecord (~> 2.2)
+  - MWFeedParser
+  - Parse
+  - ParseCrashReporting
+  - ParseFacebookUtils
+  - ParseTwitterUtils
+  - Reachability (~> 3.2)
+  - SAMHUDView (~> 0.1)
+  - SDWebImage (~> 3.7)
+  - TestFairy
+  - UIImage-Categories (~> 1.0)
+
+SPEC CHECKSUMS:
+  Bolts: 7686a5cb204d1ac54cee26f12d9b7622db3f80d1
+  DAKeyboardControl: 9d9bca22a5cc3c1d3cc61e24fbd208c3e84a3d2d
+  Facebook-iOS-SDK: 08689c2690dc4e087b9c8e171e48667608b72a2a
+  FBAudienceNetwork: 4d69cb1946c3ba83491e2470ce288e559b7215bf
+  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  Google-Mobile-Ads-SDK: 24a8ddfc0bcfec281960c5d88f75327df0d86b00
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
+  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  Helpshift: 7611a36eca09d83349038037130fd4aa1b16fb2b
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  KissXML: ce643413d618ad69886d0d43c3792b7dedfe476e
+  MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
+  Parse: 188601c6cd91fae55906badd283b513104a3a8c9
+  ParseCrashReporting: 437b722377462faaeba60ffde23af95fcc486c28
+  ParseFacebookUtils: 28c52272173ec19ceb7839718af8323d5b825792
+  ParseTwitterUtils: af5c073b0750519b9efb33c3069a161cdeafe433
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SAMHUDView: 374d9b53c2d52bf2e7b49e943ae66ee7ed5538b2
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  TestFairy: 9999055af23d8fc6b09f12337d08bd6cf2afe4fa
+  UIImage-Categories: a0593f6a7991c99016b9ecadfbd38b3717ff1a73
+
+COCOAPODS: 0.38.2
