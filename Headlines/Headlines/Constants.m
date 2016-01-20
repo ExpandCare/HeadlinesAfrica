@@ -66,4 +66,4 @@ NSString * const kTwitterConsumerSecret = @"gkKWvLpgJvww3IWX3cGWpM8TGVGx8OotKBpW
 
 NSString * const kGoogleAdMob50pxHeightBannerId  = @"ca-app-pub-7204105635035592/3354045064";
 NSString * const kGoogleAdMob100pxHeightBannerId = @"ca-app-pub-7204105635035592/3434770265";
-NSString * const kGoogleAdMob250pxHeightBannerId = @"";
+NSString * const kGoogleAdMob250pxHeightBannerId = @"ca-app-pub-7204105635035592/2457849063";
