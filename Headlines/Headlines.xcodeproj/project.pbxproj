@@ -978,6 +978,7 @@
 				TargetAttributes = {
 					49C22CA51AB028CA00BCEFAF = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = ZZN73ZMFJE;
 					};
 					49C22CBE1AB028CA00BCEFAF = {
 						CreatedOnToolsVersion = 6.2;
@@ -1500,8 +1501,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -1650,7 +1651,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
+				PROVISIONING_PROFILE = "d58e119f-c845-43a2-a60a-59067356a88d";
 			};
 			name = Debug;
 		};
@@ -1660,8 +1661,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Headlines Africa LLC (ZZN73ZMFJE)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -1810,7 +1811,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2c5db75-24da-4a53-a35f-4f79785cc840";
+				PROVISIONING_PROFILE = "d58e119f-c845-43a2-a60a-59067356a88d";
 			};
 			name = Release;
 		};
