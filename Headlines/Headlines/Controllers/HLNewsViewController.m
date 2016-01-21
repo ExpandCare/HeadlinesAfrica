@@ -671,7 +671,8 @@
             }
             else
             {
-                theCell = [tableView dequeueReusableCellWithIdentifier:CELL_ID_REGULAR_BIG
+                //theCell = [tableView dequeueReusableCellWithIdentifier:CELL_ID_REGULAR_BIG
+                theCell = [tableView dequeueReusableCellWithIdentifier:CELL_ID_REGULAR_SMALL
                                                           forIndexPath:indexPath];
             }
         }
