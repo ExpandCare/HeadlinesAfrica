@@ -232,7 +232,7 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
 {
     if (!self.smallBanner)
     {
-        self.smallBanner = [[GADBannerView alloc] initWithAdSize:GADAdSizeFullWidthPortraitWithHeight(50)];
+        self.smallBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
         
         self.smallBanner.adUnitID = kGoogleAdMob50pxHeightBannerId;
         self.smallBanner.rootViewController = [self window].rootViewController;
@@ -256,7 +256,7 @@ NSString * const kGoogleAnalyticsKey = @"UA-61736612-2";
     
     if (!self.rectangleBanner)
     {
-        self.rectangleBanner = [[GADBannerView alloc] initWithAdSize:GADAdSizeFullWidthPortraitWithHeight(250)];
+        self.rectangleBanner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
         
         self.rectangleBanner.adUnitID = kGoogleAdMob250pxHeightBannerId;
         self.rectangleBanner.rootViewController = [self window].rootViewController;
