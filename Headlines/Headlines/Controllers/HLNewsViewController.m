@@ -305,18 +305,19 @@
     
     self.downloading = YES;
     
-//    NSError *error;
-//    if ([self.resultController performFetch:&error])
-//    {
-//        if (error)
-//        {
-//            NSLog(@"%@", error);
-//        }
+
+    NSError *error;
+   if ([self.resultController performFetch:&error])
+    {
+        if (error)
+        {
+            NSLog(@"%@", error);
+        }
 //        else
 //        {
 //            [self.tableView reloadData];
 //        }
-//    }
+    }
     
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Post class])];
     
