@@ -568,7 +568,8 @@
         }
         else if (IS_BIG_BANNER_INDEX(indexPath.row))
         {
-            return CELL_HEIGHT_REGULAR + BIG_BANNER_HEIGHT;
+            //return CELL_HEIGHT_REGULAR + BIG_BANNER_HEIGHT;
+            return CELL_HEIGHT_REGULAR + BANNER_HEIGHT;
         }
         
         return CELL_HEIGHT_REGULAR;
