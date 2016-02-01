@@ -154,10 +154,10 @@ function savePosts(response, options, cbNext) {
             for (var i = 0; i < postsArr.length; i++) {
                 if (options.source === 'This Day Live') {
                     actions.push(getThisDayPost(postsArr[i].get('link')));
-                }
+                }/*
                 if (options.source === 'Vanguard') {
                     actions.push(getVanguardPost(postsArr[i].get('link')));
-                }
+                }*/
                 if (options.source === 'Punch') {
                     actions.push(getPunchPost(postsArr[i].get('link')));
                 }
@@ -1188,7 +1188,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',                        
-                        url: "https://api.import.io/store/data/2d95d065-8591-494c-8a73-ec0dbd1748f2/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/connector/20287aa9-7a6a-4cb9-ae8d-92974a439426/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -1926,7 +1926,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Business',
         country: 'Kenya'
     }, {
-        url: "https://api.import.io/store/data/71071b3a-db41-4c0c-aca6-d6d848054009/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Fsport%2Fmore-sport&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/connector/71071b3a-db41-4c0c-aca6-d6d848054009/_query?input=webpage/url:http%3A%2F%2Fwww.iol.co.za%2Fsport%2Fmore-sport&_user=" + user + "&_apikey=" + apiKey,
         source: 'IOL',
         category: 'Sports',
         country: 'South Africa'
