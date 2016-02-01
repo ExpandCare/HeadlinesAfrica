@@ -1936,12 +1936,12 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Blogs',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/1768aac7-5098-4768-b769-93153762adb4/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Fscitech&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/connector/1768aac7-5098-4768-b769-93153762adb4/_query?input=webpage/url:http%3A%2F%2Fwww.iol.co.za%2Fscitech&_user=" + user + "&_apikey=" + apiKey,
         source: 'IOL',
         category: 'Technology',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/9fa08ed2-63f2-4e7e-8502-1347e4dc7747/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Flifestyle&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/connector/9fa08ed2-63f2-4e7e-8502-1347e4dc7747/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Flifestyle&_user=" + user + "&_apikey=" + apiKey,
         source: 'IOL',
         category: 'Blogs',
         country: 'South Africa'
