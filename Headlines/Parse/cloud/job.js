@@ -1931,7 +1931,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Sports',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/fe6bc2c9-f7df-4b12-bfb8-eb9bc79ef76f/_query?input/webpage/url=http%3A%2F%2Fwww.iol.co.za%2Ftonight%2Ftv-radio%2Flocal-news%3Fpage%3D1&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/connector/fe6bc2c9-f7df-4b12-bfb8-eb9bc79ef76f/_query?input=webpage/url:http%3A%2F%2Fwww.iol.co.za%2Ftonight%2Ftv-radio%2Flocal-news%3Fpage%3D1&_user=" + user + "&_apikey=" + apiKey,
         source: 'IOL',
         category: 'Blogs',
         country: 'South Africa'
