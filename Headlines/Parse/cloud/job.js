@@ -585,7 +585,7 @@ function savePosts(response, options, cbNext) {
 
                     Parse.Cloud.httpRequest({
                         method: 'POST',
-                        url: "https://api.import.io/store/data/c7e9fbb0-ec12-46e0-92d1-1d2cf108510c/_query?_user=" + user + "&_apikey=" + apiKey,
+                        url: "https://api.import.io/store/connector/0792f008-cb47-49b0-bae1-7328919a4012/_query?_user=" + user + "&_apikey=" + apiKey,
                         body: body,
                         success: function(httpResponse) {
                             var data = JSON.parse(httpResponse.text);
@@ -1751,7 +1751,7 @@ Parse.Cloud.job("updateAll", function(request, status) {
         category: 'Food',
         country: 'South Africa'
     }, {
-        url: "https://api.import.io/store/data/83e39aea-740c-4875-8a5b-de275f59c42d/_query?input/webpage/url=http%3A%2F%2Fwww.dailyguideghana.com%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
+        url: "https://api.import.io/store/connector/139bf134-6c04-4bd0-a37c-f6f7f9f0593a/_query?input=webpage/url:http%3A%2F%2Fdailyguideafrica.com%2Fcategory%2Fbusiness-news%2F&_user=" + user + "&_apikey=" + apiKey,
         source: 'Daily Guide',
         category: 'Business',
         country: 'Ghana'
